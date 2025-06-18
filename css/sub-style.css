@@ -1,0 +1,887 @@
+/* ======== 전체 공통 설정 ======== */
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+}
+
+/* ======== 고정 헤더 ======== */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+.logo img {
+  height: 40px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav .menu-item {
+  position: relative;
+  margin-left: 40px;
+}
+
+nav .menu-item a {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  padding: 10px 12px;
+  display: block;
+  text-decoration: none;
+  line-height: 40px;
+}
+
+nav .submenu {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  display: none;
+  opacity: 0;
+  transform: translateY(-10px);
+  background: #fff;
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 10000;
+}
+
+nav .menu-item:hover .submenu {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+nav .submenu a {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 6px 0;
+}
+
+/* ======== 푸터 ======== */
+footer {
+  background-color: #000;
+  color: #ccc;
+  padding: 60px 40px 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.footer-logo {
+  flex: 1 1 200px;
+  margin-bottom: 20px;
+}
+
+.footer-logo img {
+  height: 30px;
+}
+
+.footer-section {
+  flex: 1 1 150px;
+  margin-bottom: 20px;
+}
+
+.footer-section h4 {
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.footer-section ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-section li {
+  margin-bottom: 6px;
+}
+
+.footer-section a {
+  font-size: 14px;
+  color: #ccc;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  text-decoration: underline;
+}
+
+.social-icons {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-top: 10px;
+}
+
+.social-icons img {
+  height: 24px;
+  filter: brightness(0.9);
+}
+
+footer .copyright {
+  width: 100%;
+  margin-top: 30px;
+  font-size: 13px;
+  text-align: center;
+  color: #888;
+}
+
+/* ======== 공통 섹션 ======== */
+.section {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* ======== 회사개요 ======== */
+/* ====== 섹션, 테이블 등 기존 스타일 유지 ====== */
+.section {
+  max-width: 1100px;
+  margin: 60px auto 80px;
+  padding: 0 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #333;
+}
+
+.vision {
+  text-align: center;
+}
+
+.vision h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.vision p {
+  font-size: 1.2em;
+  color: #666;
+}
+
+.values {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  gap: 20px;
+}
+
+.value-item {
+  flex: 1;
+  background: #f9f9f9;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.value-item h3 {
+  margin-bottom: 10px;
+  color: #006633;
+}
+
+.info-table {
+  margin-top: 80px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.info-table th, .info-table td {
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: left;
+}
+
+.info-table th {
+  background: #f0f0f0;
+  width: 200px;
+}
+
+/* ======== CEO 인사말 ======== */
+.ceo-message {
+  max-width: 1100px;
+  margin: 60px auto 80px;
+  padding: 0 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #333;
+}
+
+.ceo-message h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.ceo-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.ceo-photo img {
+  width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ceo-text {
+  max-width: 700px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.ceo-sign img {
+  width: 150px;
+  margin-top: 30px;
+}
+
+.ceo-name {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #004a99;
+}
+
+/* ======== 회사연혁 (타임라인) ======== */
+.history {
+  max-width: 1100px;
+  margin: 60px auto 80px;
+  padding: 0 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #333;
+}
+
+.history h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 30px;
+  margin-left: 30px;
+  border-left: 3px solid #004a99;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.timeline-year {
+  position: absolute;
+  left: -105px;
+  top: 0;
+  width: 80px;
+  padding: 5px 10px;
+  background: #e1efff;
+  border-radius: 20px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #004a99;
+  text-align: center;
+}
+
+.timeline-content h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #004a99;
+}
+
+.timeline-content p {
+  margin: 0;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* ======== 면허 및 등록현황 ======== */
+.license {
+  max-width: 1100px;
+  margin: 60px auto 80px;
+  padding: 0 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #333;
+}
+
+.license h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.license-table-wrapper {
+  overflow-x: auto;
+}
+
+.license-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  font-size: 1rem;
+}
+
+.license-table thead {
+  background-color: #004a99;
+  color: #fff;
+}
+
+.license-table th,
+.license-table td {
+  padding: 14px 16px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.license-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* ======== 조직도 ======== */
+.organization {
+  max-width: 1000px;
+  margin: 60px auto 80px;
+  padding: 0 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  text-align: center;
+  color: #333;
+}
+
+.organization h1 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
+
+.org-chart-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.org-box {
+  margin-top: 40px;
+}
+
+.org-level {
+  max-width: 300px;
+  margin: 10px auto;
+  padding: 12px 20px;
+  border-radius: 6px;
+  background-color: #004a99;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.org-level-group {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* ======== 사업분야 갤러리 ======== */
+.business-gallery {
+  max-width: 1200px;
+  margin: 60px auto 80px;
+  padding: 0 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  text-align: center;
+  color: #333;
+}
+
+.business-gallery h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.gallery-item {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+}
+
+.gallery-item img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-item p {
+  font-size: 1rem;
+  padding: 15px 10px;
+  margin: 0;
+  background-color: #f9f9f9;
+  border-top: 1px solid #eee;
+}
+
+/* recruit.html 전용 스타일 */
+
+.recruit-page {
+  max-width: 1200px;
+  margin: 60px auto 80px;
+  padding: 0 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #333;
+}
+
+.recruit-page h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.traits {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.trait {
+  flex: 1 1 220px;
+  text-align: center;
+}
+
+.trait img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 15px;
+}
+
+.trait h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.trait p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* 채용 폼 스타일 */
+.recruit-form {
+  margin-top: 80px;
+}
+
+.recruit-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.recruit-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.recruit-form input,
+.recruit-form textarea {
+  padding: 10px;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-top: 5px;
+}
+
+.recruit-form input[type="file"] {
+  padding: 5px;
+}
+
+.recruit-form button {
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #004aad;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.recruit-form button:hover {
+  background-color: #00327e;
+}
+
+/* 이력서 다운로드 */
+.resume-download {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.resume-download a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #004aad;
+  text-decoration: underline;
+}
+
+/* 이력서 다운로드 버튼 개선 */
+
+.resume-download {
+  margin-top: 50px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.resume-download p {
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: 500;
+}
+
+.resume-download .resume-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #f1f3f5;
+  color: #004aad;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  transition: all 0.25s ease;
+  border: 1px solid #ccd6e0;
+}
+
+.resume-download .resume-btn:hover {
+  background-color: #e0e7ef;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+.welfare-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+  justify-items: center;
+}
+
+/* 복리후생 섹션 스타일 */
+.welfare-section {
+  max-width: 1100px;
+  margin: 60px auto 80px;
+  padding: 0 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #333;
+}
+
+.welfare-section .page-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.welfare-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+  justify-items: center;
+}
+
+.welfare-card {
+  background: #fff;
+  padding: 30px 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: transform 0.3s ease;
+  max-width: 260px;
+}
+
+.welfare-card:hover {
+  transform: translateY(-5px);
+}
+
+.welfare-icon {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.welfare-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.welfare-card p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+
+/* 모든 카드의 높이를 동일하게 유지 */
+.welfare-card {
+  background: #fff;
+  padding: 30px 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: transform 0.3s ease;
+  max-width: 260px;
+  min-height: 300px; /* 👈 카드 높이 통일 핵심! */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.welfare-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+.welfare-card {
+  width: 260px;
+  height: 300px;
+  background: #fff;
+  padding: 30px 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+}
+
+.welfare-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+.welfare-card {
+  width: 260px;
+  height: 300px;
+  background: #fff;
+  padding: 30px 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;        /* 수평 중앙 정렬 */
+  justify-content: center;    /* 수직 중앙 정렬 */
+  text-align: center;
+}
+
+/* 공통 부모: max-width와 가운데 정렬 유지 */
+.contact-container {
+  max-width: 1200px;      /* 지도, 3단 텍스트 너비 기준 */
+  margin: 60px auto 80px;
+  padding: 0 20px;        
+  box-sizing: border-box; 
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #333;
+}
+
+/* 지도 영역 */
+.map {
+  width: 100%;           
+  margin-bottom: 40px;
+}
+
+/* 3단 텍스트 영역: flex 레이아웃 */
+.contact-details {
+  display: flex;
+  gap: 20px;             /* 컬럼 사이 간격 */
+  width: 100%;           
+  box-sizing: border-box;
+}
+
+/* 1번째 컬럼: 주소 - 고정 너비 */
+.info-column:first-child {
+  flex: 0 0 300px;       /* 고정 너비 300px */
+}
+
+
+/* 2번째 컬럼: 대중교통 + 주차 - 유동 너비 */
+.info-column:nth-child(2) {
+  /* 오른쪽으로 밀기 위해 왼쪽 마진을 크게 줌 */
+  margin-left: 90px;  /* 원하는 만큼 숫자 조절 */
+}
+
+/* 3번째 컬럼: 근무시간 - 고정 너비 + 오른쪽 끝 정렬 */
+.info-column:nth-child(3) {
+  flex-direction: column;
+  margin-left: 150px;  /* 원하는 만큼 숫자 조절 */
+}
+
+
+/* 내부 텍스트 스타일 */
+.contact-details h2 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+.contact-details p,
+.contact-details ul {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* 제목 중앙 정렬 */
+.contact-container > h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* 공지사항 */
+    .notice-container {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+    .notice-container h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 40px;
+}
+    table.notice-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    .notice-table th, .notice-table td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+    }
+    .notice-table th {
+      background-color: #f4f4f4;
+    }
+    .notice-table td.title {
+      text-align: left;
+    }
+    .notice-table td.title a {
+      color: #333;
+      text-decoration: none;
+    }
+    .notice-table td.title a:hover {
+      text-decoration: underline;
+    }
+    .write-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 8px 16px;
+      background-color: #1f3e72;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+/* 공지사항 글쓰기 스타일 */
+.write-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 30px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 10px;
+}
+
+.write-container h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #004080;
+  padding-bottom: 10px;
+  color: #004080;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.form-group textarea {
+  height: 200px;
+  resize: vertical;
+}
+
+.form-group input[type="file"] {
+  padding: 5px;
+  font-size: 14px;
+}
+
+.btn-box {
+  text-align: right;
+}
+
+.btn-box button {
+  padding: 12px 24px;
+  background-color: #004080;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-box button:hover {
+  background-color: #002e5b;
+}
