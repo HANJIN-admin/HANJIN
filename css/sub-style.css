@@ -796,8 +796,10 @@ footer .copyright {
       padding: 12px;
       text-align: center;
     }
+
     .notice-table th {
-      background-color: #f4f4f4;
+      background-color: #004a99;
+      color: #fff;
     }
     .notice-table td.title {
       text-align: left;
