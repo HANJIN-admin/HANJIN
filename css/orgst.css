@@ -287,3 +287,9 @@ main {
   background-color: #003366;
   z-index: 0;
 }
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #f7f7f7;
+}
