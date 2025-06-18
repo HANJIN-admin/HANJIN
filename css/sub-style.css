@@ -885,3 +885,135 @@ footer .copyright {
 .btn-box button:hover {
   background-color: #002e5b;
 }
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #f7f7f7;
+}
+
+main {
+  padding: 150px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.org-container {
+  position: relative;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.org-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.ceo {
+  background: #003366;
+  color: white;
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  z-index: 2;
+  position: relative;
+}
+
+.connector-line {
+  width: 2px;
+  height: 40px;
+  background-color: #003366;
+  margin-top: -2px;
+  position: relative;
+  z-index: 1;
+}
+
+.branches {
+  display: flex;
+  justify-content: center;
+  gap: 250px;
+  margin-top: 20px;
+  position: relative;
+}
+
+.branch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.branch:first-child::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  left: 100%;
+  width: 50%;
+  height: 40px;
+  border-left: 2px solid #003366;
+  transform: translateX(-100%);
+}
+
+.branch:nth-child(2)::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  width: 2px;
+  height: 40px;
+  background-color: #003366;
+  transform: translateX(-50%);
+}
+
+.branch:last-child::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  left: 50;
+  width: 0%;
+  height: 40px;
+  border-right: 2px solid #003366;
+  border-bottom: 2px solid #003366;
+}
+
+
+.dept-box {
+  background-color: #005baa;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.tasks {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tasks div {
+  background: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  min-width: 120px;
+  text-align: center;
+}
+
+/* 선 연결을 위한 H자 수평선 */
+.branches::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  left: 8%;
+  width: 84%;
+  height: 2px;
+  background-color: #003366;
+  z-index: 0;
+}
+
