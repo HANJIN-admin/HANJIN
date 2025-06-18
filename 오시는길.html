@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>오시는 길 | 한진종합건설</title>
+  <link rel="stylesheet" href="css/sub-style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- 카카오 지도 API, autoload=false -->
+  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=6ff6576e2744b22bb069b5a8dccd1a1c&autoload=false"></script>
+</head>
+<body>
+<header>
+  <div class="logo">
+    <a href="index.html">
+      <img src="img/logo.png" alt="로고" />
+    </a>
+  </div>
+  <nav>
+    <div class="menu-item">
+      <a href="#">회사소개</a>
+      <div class="submenu">
+        <a href="ceo.html">CEO 인사말</a>
+        <a href="company-overview.html">회사개요</a>
+        <a href="history.html">회사연혁</a>
+        <a href="license.html">면허 및 등록현황</a>
+        <a href="organization.html">조직도</a>
+      </div>
+    </div>
+    <div class="menu-item">
+      <a href="#">사업영역</a>
+      <div class="submenu">
+        <a href="건축.html">건축사업</a>
+        <a href="토목.html">토목사업</a>
+        <a href="플랜트.html">플랜트사업</a>
+        <a href="기타.html">기타</a>
+      </div>
+    </div>
+    <div class="menu-item">
+      <a href="#">채용문의</a>
+      <div class="submenu">
+        <a href="인재상.html">인재상</a>
+        <a href="복리후생.html">복리후생</a>
+      </div>
+    </div>
+    <div class="menu-item">
+      <a href="#">Contact Us</a>
+      <div class="submenu">
+        <a href="오시는길.html">오시는 길</a>
+      </div>
+    </div>
+    <div class="menu-item">
+      <a href="#">한진 뉴스룸</a>
+      <div class="submenu">
+        <a href="공지사항.html">공지사항</a>
+        <a href="보도자료.html">보도자료</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main class="contact-container">
+  <h1>오시는 길</h1>
+
+  <!-- 카카오 지도 API 영역 -->
+  <section class="map">
+    <div id="map" style="width: 100%; height: 300px;"></div>
+  </section>
+
+  <div class="contact-details">
+    <!-- 1번째 열: 주소, 전화/팩스 -->
+    <div class="info-column">
+      <section class="contact-info">
+        <h2><i class="fas fa-map-marker-alt"></i> 주소</h2>
+        <p>울산광역시 중구 백양로 128</p>
+
+        <h2><i class="fas fa-phone"></i> 전화번호</h2>
+        <p>052-242-1293</p>
+
+        <h2><i class="fas fa-fax"></i> 팩스번호</h2>
+        <p>052-243-9258</p>
+      </section>
+    </div>
+
+    <!-- 2번째 열: 대중교통 + 주차 -->
+    <div class="info-column">
+      <section class="transport">
+        <h2><i class="fas fa-bus"></i> 대중교통 안내</h2>
+        <p>백양로128 정류장 하차 (울산버스 104, 123, 401 경유)<br />정류장에서 도보 약 3분 거리</p>
+      </section>
+
+      <section class="parking">
+        <h2><i class="fas fa-car"></i> 주차 안내</h2>
+        <p>방문객 전용 주차장이 마련되어 있습니다.</p>
+      </section>
+    </div>
+
+    <!-- 3번째 열: 영업시간 -->
+    <div class="info-column">
+      <section class="business-hours">
+        <h2><i class="fas fa-clock"></i> 근무시간</h2>
+        <ul>
+          <li>평일: 오전 9시 ~ 오후 6시</li>
+          <li>점심시간: 오후 12시 ~ 1시</li>
+          <li>주말 및 공휴일: 휴무</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer>
+    <div class="footer-logo">
+    <a href="index.html">
+      <img src="img/logo-footer.png" alt="로고" />
+    </a>
+    <p>(주)한진종합건설<br>울산광역시 중구 백양로 128<br>
+    Tel. 052-242-1293<br>
+    Fax. 052-243-9258</p>
+    <div class="social-icons">
+      <a href="https://www.youtube.com" target="_blank"><img src="img/youtube.png" alt="YouTube" /></a>
+      <a href="https://www.kakaocorp.com" target="_blank"><img src="img/kakaotalk.png" alt="KakaoTalk" /></a>
+      <a href="https://www.instagram.com" target="_blank"><img src="img/instagram.png" alt="Instagram" /></a>
+    </div>
+  </div>
+
+  <div class="footer-section">
+    <h4>회사소개</h4>
+    <ul>
+      <li><a href="ceo.html">CEO 인사말</a></li>
+      <li><a href="company-overview.html">회사개요</a></li>
+      <li><a href="history.html">회사연혁</a></li>
+      <li><a href="license.html">면허 및 등록현황</a></li>
+      <li><a href="organization.html">조직도</a></li>
+    </ul>
+  </div>
+
+  <div class="footer-section">
+    <h4>사업영역</h4>
+    <ul>
+      <li><a href="건축.html">건축사업</a></li>
+      <li><a href="토목.html">토목사업</a></li>
+      <li><a href="플랜트.html">플랜트사업</a></li>
+      <li><a href="기타.html">기타</a></li>
+    </ul>
+  </div>
+
+  <div class="footer-section">
+    <h4>채용문의</h4>
+    <ul>
+      <li><a href="인재상.html">인재상</a></li>
+      <li><a href="복리후생.html">복리후생</a></li>
+    </ul>
+  </div>
+
+  <div class="footer-section">
+    <h4>Contact us</h4>
+    <ul>
+      <li><a href="오시는길.html">오시는 길</a></li>
+    </ul>
+  </div>
+
+  <div class="footer-section">
+    <h4>한진 뉴스룸</h4>
+    <ul>
+      <li><a href="공지사항.html">공지사항</a></li>
+      <li><a href="보도자료.html">보도자료</a></li>
+    </ul>
+  </div>
+
+  <div class="copyright">
+    &copy; 2025 HANJIN CONSTRUCTION. All rights reserved.
+  </div>
+</footer>
+
+<!-- 카카오 지도 API 스크립트 -->
+<script>
+  kakao.maps.load(function () {
+    var container = document.getElementById('map');
+    var options = {
+      center: new kakao.maps.LatLng(35.57417742588071, 129.31992031774436),
+      level: 5
+    };
+    var map = new kakao.maps.Map(container, options);
+
+    // 커스텀 오버레이: 원형 배경에 로고만
+    var content = `
+      <div style="position: relative; bottom: 35px;">
+        <div style="
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          background-color: #ffffff;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        ">
+          <img src="img/justlogo.png" alt="로고" style="width: 50px; height: 50px; border-radius: 50%;" />
+        </div>
+      </div>
+    `;
+
+    var position = new kakao.maps.LatLng(35.574208, 129.319937);
+
+    var customOverlay = new kakao.maps.CustomOverlay({
+      position: position,
+      content: content,
+      yAnchor: 1
+    });
+
+    customOverlay.setMap(map);
+  });
+</script>
+</body>
+</html>

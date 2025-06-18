@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>인재상 | 한진종합건설</title>
+  <link rel="stylesheet" href="css/sub-style.css" />
+  <script>
+    // 헤더/푸터 포함 스크립트
+    window.addEventListener("DOMContentLoaded", () => {
+      fetch("header.html")
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById("header").innerHTML = data;
+        });
+      fetch("footer.html")
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById("footer").innerHTML = data;
+        });
+    });
+  </script>
+</head>
+<body>
+  <!-- Header -->
+<header>
+  <div class="logo">
+    <a href="index.html">
+      <img src="img/logo.png" alt="로고" />
+    </a>
+  </div>
+  <nav>
+      <div class="menu-item">
+        <a href="#">회사소개</a>
+        <div class="submenu">
+          <a href="ceo.html">CEO 인사말</a>
+          <a href="company-overview.html">회사개요</a>
+          <a href="history.html">회사연혁</a>
+          <a href="license.html">면허 및 등록현황</a>
+          <a href="organization.html">조직도</a>
+        </div>
+      </div>
+      <div class="menu-item">
+        <a href="#">사업영역</a>
+        <div class="submenu">
+          <a href="건축.html">건축사업</a>
+          <a href="토목.html">토목사업</a>
+          <a href="플랜트.html">플랜트사업</a>
+          <a href="기타.html">기타</a>
+        </div>
+      </div>
+      <div class="menu-item">
+        <a href="#">채용문의</a>
+        <div class="submenu">
+          <a href="인재상.html">인재상</a>
+          <a href="복리후생.html">복리후생</a>
+        </div>
+      </div>
+      <div class="menu-item">
+        <a href="#">Contact Us</a>
+        <div class="submenu">
+          <a href="오시는길.html">오시는 길</a>
+        </div>
+      </div>
+      <div class="menu-item">
+        <a href="#">한진 뉴스룸</a>
+        <div class="submenu">
+          <a href="공지사항.html">공지사항</a>
+          <a href="보도자료.html">보도자료</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="recruit-page">
+    <h2>인재상</h2>
+    <div class="traits">
+      <div class="trait">
+        <img src="img/인재상/도전.png" alt="도전" />
+        <h3>도전정신</h3>
+        <p>변화를 두려워하지 않고 끊임없이 도전하는 사람</p>
+      </div>
+      <div class="trait">
+        <img src="img/인재상/윤리.png" alt="윤리" />
+        <h3>윤리의식</h3>
+        <p>투명하고 정직하며 기본을 지키는 바른 인재</p>
+      </div>
+      <div class="trait">
+        <img src="img/인재상/전문성.png" alt="전문성" />
+        <h3>전문성</h3>
+        <p>자기 분야에서 최고가 되기 위해 노력하는 사람</p>
+      </div>
+    </div>
+
+    <section class="recruit-form">
+      <h2></h2>
+      <form id="recruitForm">
+        <label>
+          이름
+          <input type="text" name="user_name" required />
+        </label>
+        <label>
+          이메일
+          <input type="email" name="user_email" required />
+        </label>
+        <label>
+          제목
+          <input type="text" name="subject" required />
+        </label>
+        <label>
+          문의 내용
+          <textarea name="message" rows="6" required></textarea>
+        </label>
+        <label>
+          이력서 첨부
+          <input type="file" name="resume" />
+        </label>
+        <button type="submit">문의 보내기</button>
+      </form>
+
+      <div class="resume-download">
+        <p>한진종합건설 이력서 양식을 다운로드하세요.</p>
+        <a href="download/HANJIN_recruit.hwp" class="resume-btn" download>
+          📄 이력서 양식 다운로드
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo">
+    <a href="index.html">
+      <img src="img/logo-footer.png" alt="로고" />
+    </a>
+      <p>(주)한진종합건설<br>울산광역시 중구 백양로 128<br>
+      Tel. 052-242-1293<br>
+      Fax. 052-243-9258</p>
+      <div class="social-icons">
+        <a href="https://www.youtube.com" target="_blank"><img src="img/youtube.png" alt="YouTube" /></a>
+        <a href="https://www.kakaocorp.com" target="_blank"><img src="img/kakaotalk.png" alt="KakaoTalk" /></a>
+        <a href="https://www.instagram.com" target="_blank"><img src="img/instagram.png" alt="Instagram" /></a>
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <h4>회사소개</h4>
+      <ul>
+        <li><a href="ceo.html">CEO 인사말</a></li>
+        <li><a href="company-overview.html">회사개요</a></li>
+        <li><a href="history.html">회사연혁</a></li>
+        <li><a href="license.html">면허 및 등록현황</a></li>
+        <li><a href="organization.html">조직도</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4>사업영역</h4>
+      <ul>
+        <li><a href="건축.html">건축사업</a></li>
+        <li><a href="토목.html">토목사업</a></li>
+        <li><a href="플랜트.html">플랜트사업</a></li>
+        <li><a href="기타.html">기타</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4>채용문의</h4>
+      <ul>
+        <li><a href="인재상.html">인재상</a></li>
+        <li><a href="복리후생.html">복리후생</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4>Contact us</h4>
+      <ul>
+        <li><a href="오시는길.html">오시는 길</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4>한진 뉴스룸</h4>
+      <ul>
+        <li><a href="공지사항.html">공지사항</a></li>
+        <li><a href="보도자료.html">보도자료</a></li>
+      </ul>
+    </div>
+
+    <div class="copyright">
+      &copy; 2025 HANJIN CONSTRUCTION. All rights reserved.
+    </div>
+  </footer>
+</body>
+</html>
