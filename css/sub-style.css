@@ -900,3 +900,18 @@ body {
   font-family: 'Noto Sans KR', sans-serif;
   background-color: #f7f7f7;
 }
+/* 본문 영역 최소 높이 설정 (푸터가 스크롤 아래에만 보이도록) */
+main,
+.section,
+.business-gallery,
+.ceo-message,
+.history,
+.license,
+.organization,
+.recruit-page,
+.notice-container,
+.write-container,
+.contact-container {
+  min-height: calc(100vh - 60px - 120px); /* 화면높이 - 헤더(60px) - 푸터 여유 포함(약 120px) */
+  box-sizing: border-box;
+}
