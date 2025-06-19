@@ -405,7 +405,7 @@ footer .copyright {
 
 /* ======== 사업분야 갤러리 ======== */
 .business-gallery {
-  max-width: 1200px;
+  max-width: 1800px;
   margin: 60px auto 80px;
   padding: 0 20px;
   font-family: 'Noto Sans KR', sans-serif;
@@ -421,11 +421,17 @@ footer .copyright {
 
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
+  justify-items: center;
+  align-items: stretch;
 }
 
 .gallery-item {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
   background: #fff;
   border-radius: 8px;
   overflow: hidden;
@@ -433,15 +439,12 @@ footer .copyright {
   transition: transform 0.2s ease;
 }
 
-.gallery-item:hover {
-  transform: translateY(-5px);
-}
-
 .gallery-item img {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   display: block;
+  flex-shrink: 0;
 }
 
 .gallery-item p {
@@ -450,6 +453,13 @@ footer .copyright {
   margin: 0;
   background-color: #f9f9f9;
   border-top: 1px solid #eee;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
 }
 
 /* recruit.html 전용 스타일 */
