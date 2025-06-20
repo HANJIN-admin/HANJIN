@@ -199,3 +199,12 @@
   </footer>
 </body>
 </html>
+
+<script>
+  document.querySelector("form").addEventListener("submit", function () {
+    // 제출 직후 바로 페이지 이동
+    setTimeout(function () {
+      window.location.href = "thanks.html";
+    }, 100); // 너무 빠르면 전송 안될 수 있어서 살짝 지연
+  });
+</script>
