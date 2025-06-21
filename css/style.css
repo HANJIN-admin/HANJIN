@@ -184,3 +184,77 @@ body {
   background-color: #f7f7f7;
 }
 
+/* ======== 모바일 대응 (768px 이하) ======== */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 10px 20px;
+  }
+
+  .logo img {
+    height: 30px;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  nav .menu-item {
+    margin: 0;
+    width: 100%;
+  }
+
+  nav .menu-item a {
+    font-size: 15px;
+    padding: 8px 16px;
+    line-height: 1.5;
+  }
+
+  nav .submenu {
+    position: static;
+    display: none;
+    opacity: 1;
+    transform: none;
+    padding: 0 16px 10px;
+    box-shadow: none;
+    border: none;
+  }
+
+  nav .menu-item:hover .submenu {
+    display: block;
+  }
+
+  .overlay-text {
+    font-size: 6vw;
+    padding: 0 20px;
+  }
+
+  footer {
+    flex-direction: column;
+    padding: 40px 20px 20px;
+  }
+
+  .footer-section,
+  .footer-logo {
+    flex: 1 1 100%;
+    margin-bottom: 20px;
+  }
+
+  .social-icons {
+    gap: 20px;
+    margin-top: 10px;
+  }
+
+  .social-icons img {
+    height: 20px;
+  }
+
+  footer .copyright {
+    font-size: 12px;
+    margin-top: 20px;
+  }
+}
