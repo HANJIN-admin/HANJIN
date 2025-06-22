@@ -145,33 +145,5 @@
     </div>
   </footer>
 
-    <script>
-    const menuIcon = document.querySelector('.mobile-menu-icon');
-    const sidebar = document.querySelector('.mobile-sidebar');
-    const closeBtn = document.querySelector('.close-btn');
-
-    function isMobile() {
-      return window.innerWidth <= 768;
-    }
-
-    if (menuIcon && sidebar && closeBtn) {
-      menuIcon.addEventListener('click', () => {
-        if (isMobile()) {
-          sidebar.style.display = 'flex';
-        }
-      });
-
-      closeBtn.addEventListener('click', () => {
-        sidebar.style.display = 'none';
-      });
-
-      window.addEventListener('resize', () => {
-        if (!isMobile()) {
-          sidebar.style.display = 'none';
-        }
-      });
-    }
-  </script>
-
 </body>
 </html>
