@@ -3,8 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- ✅ 제목은 유지 -->
   <title>(주)한진종합건설</title>
 
   <!-- ✅ SEO용 -->
@@ -23,14 +21,14 @@
 </head>
 
 <body>
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <img src="img/logo.png" alt="로고" />
+      </a>
+    </div>
 
-<header>
-  <div class="logo">
-    <a href="index.html">
-      <img src="img/logo.png" alt="로고" />
-    </a>
-  </div>
-  <nav>
+    <nav>
       <div class="menu-item">
         <a href="#">회사소개</a>
         <div class="submenu">
@@ -71,24 +69,23 @@
         </div>
       </div>
     </nav>
-  
-  <!-- 헤더 내부에 추가 -->
-<div class="mobile-menu-icon">
-  <img src="img/hamburger.png" alt="메뉴" />
-</div>
 
-<!-- 사이드 메뉴 -->
-<div class="mobile-sidebar">
-  <button class="close-btn">&times;</button>
-  <ul>
-    <li><a href="ceo.html">회사소개</a></li>
-    <li><a href="건축.html">건축사업</a></li>
-    <li><a href="인재상.html">채용문의</a></li>
-    <li><a href="오시는길.html">오시는 길</a></li>
-    <li><a href="공지사항.html">공지사항</a></li>
-  </ul>
-</div>
+    <!-- ✅ 모바일 메뉴 아이콘 -->
+    <div class="mobile-menu-icon">
+      <img src="img/hamburger.png" alt="모바일 메뉴" />
+    </div>
 
+    <!-- ✅ 모바일 사이드 메뉴 -->
+    <div class="mobile-sidebar">
+      <button class="close-btn">&times;</button>
+      <ul>
+        <li><a href="ceo.html">회사소개</a></li>
+        <li><a href="건축.html">건축사업</a></li>
+        <li><a href="인재상.html">채용문의</a></li>
+        <li><a href="오시는길.html">오시는 길</a></li>
+        <li><a href="공지사항.html">공지사항</a></li>
+      </ul>
+    </div>
   </header>
 
   <div class="video-container">
@@ -101,17 +98,12 @@
 
   <footer>
     <div class="footer-logo">
-    <a href="index.html">
-      <img src="img/logo-footer.png" alt="로고" />
-    </a>
+      <a href="index.html">
+        <img src="img/logo-footer.png" alt="로고" />
+      </a>
       <p>(주)한진종합건설<br>울산광역시 중구 백양로 128<br>
       Tel. 052-242-1293<br>
       Fax. 052-243-9258</p>
-      <div class="social-icons">
-        <a href="https://www.youtube.com/@HANJIN_construct" target="_blank"><img src="img/youtube.png" alt="YouTube" /></a>
-        <a href="https://www.kakaocorp.com" target="_blank"><img src="img/kakaotalk.png" alt="KakaoTalk" /></a>
-        <a href="https://www.instagram.com/hanjin_construction?igsh=ejN4emJpc2JxOGVo&utm_source=qr" target="_blank"><img src="img/instagram.png" alt="Instagram" /></a>
-      </div>
     </div>
 
     <div class="footer-section">
@@ -163,34 +155,32 @@
     </div>
   </footer>
 
+  <script>
+    const menuIcon = document.querySelector('.mobile-menu-icon');
+    const sidebar = document.querySelector('.mobile-sidebar');
+    const closeBtn = document.querySelector('.close-btn');
+
+    function isMobile() {
+      return window.innerWidth <= 768;
+    }
+
+    if (menuIcon && sidebar && closeBtn) {
+      menuIcon.addEventListener('click', () => {
+        if (isMobile()) {
+          sidebar.style.display = 'flex';
+        }
+      });
+
+      closeBtn.addEventListener('click', () => {
+        sidebar.style.display = 'none';
+      });
+
+      window.addEventListener('resize', () => {
+        if (!isMobile()) {
+          sidebar.style.display = 'none';
+        }
+      });
+    }
+  </script>
 </body>
 </html>
-
-<script>
-  const menuIcon = document.querySelector('.mobile-menu-icon');
-  const sidebar = document.querySelector('.mobile-sidebar');
-  const closeBtn = document.querySelector('.close-btn');
-
-  function isMobile() {
-    return window.innerWidth <= 768;
-  }
-
-  menuIcon.addEventListener('click', () => {
-    if (isMobile()) {
-      sidebar.style.display = 'flex';
-    }
-  });
-
-  closeBtn.addEventListener('click', () => {
-    sidebar.style.display = 'none';
-  });
-
-  // 화면 크기 바뀌었을 때 사이드바 자동 닫힘
-  window.addEventListener('resize', () => {
-    if (!isMobile()) {
-      sidebar.style.display = 'none';
-    }
-  });
-</script>
-
-
