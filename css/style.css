@@ -5,6 +5,7 @@ body, html {
   overflow-x: hidden;
   font-family: 'Segoe UI', sans-serif;
   color: #333;
+  background-color: #f7f7f7;
 }
 
 /* ======== 고정 헤더 ======== */
@@ -150,6 +151,7 @@ footer .copyright {
   color: #888;
 }
 
+/* ======== 비디오 영역 ======== */
 .video-container {
   position: relative;
   width: 100vw;
@@ -178,13 +180,7 @@ footer .copyright {
   text-align: center;
 }
 
-body {
-  margin: 0;
-  font-family: 'Noto Sans KR', sans-serif;
-  background-color: #f7f7f7;
-}
-
-/* 추가: 기본 컨테이너 반응형 설정 */
+/* ======== 기본 컨테이너 ======== */
 .container {
   width: 100%;
   max-width: 1200px;
@@ -193,8 +189,8 @@ body {
   box-sizing: border-box;
 }
 
+/* ======== 모바일 전용 스타일 ======== */
 @media (max-width: 768px) {
-  /* 헤더 */
   nav {
     display: none;
   }
@@ -216,7 +212,7 @@ body {
     width: 240px;
     height: 100vh;
     background-color: #fff;
-    box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
     z-index: 99999;
     flex-direction: column;
@@ -225,6 +221,7 @@ body {
   .mobile-sidebar ul {
     list-style: none;
     padding: 0;
+    margin-top: 40px;
   }
 
   .mobile-sidebar li {
@@ -245,8 +242,8 @@ body {
     cursor: pointer;
   }
 
-  /* 푸터 정리 */
-  .footer-section {
+  .footer-section,
+  .social-icons {
     display: none;
   }
 
@@ -255,7 +252,22 @@ body {
     line-height: 1.5;
   }
 
-  .social-icons {
-    display: none;
+  footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px 20px;
   }
+
+  footer .copyright {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #aaa;
+  }
+}
+
+/* ======== PC 기본값 초기화 ======== */
+.mobile-menu-icon,
+.mobile-sidebar {
+  display: none;
 }
