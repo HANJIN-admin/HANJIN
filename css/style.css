@@ -214,3 +214,9 @@ body {
   0%, 100% { border-color: transparent; }
   50% { border-color: white; }
 }
+
+.overlay-text {
+  /* ... 기존 스타일 ... */
+  animation: typing 3s steps(30, end) forwards, blink 0.75s step-end 4; /* blink 반복 횟수 제한 */
+}
+
