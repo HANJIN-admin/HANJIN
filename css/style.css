@@ -199,14 +199,15 @@ body {
   color: white;
   white-space: nowrap;
   overflow: hidden;
-  border-right: 2px solid #fff;
-  width: 0;
+  border-right: 2px solid white;
+  display: inline-block;
+  width: 0ch;               /* 시작은 0 글자 너비 */
   animation: typing 3s steps(30, end) forwards, blink 0.75s step-end infinite;
 }
 
 @keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
+  from { width: 0ch; }
+  to { width: 30ch; }       /* 타이핑할 총 글자수에 맞게 설정 */
 }
 
 @keyframes blink {
