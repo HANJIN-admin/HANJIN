@@ -201,22 +201,17 @@ body {
   overflow: hidden;
   border-right: 2px solid white;
   display: inline-block;
-  width: 0ch;               /* 시작은 0 글자 너비 */
-  animation: typing 3s steps(30, end) forwards, blink 0.75s step-end infinite;
+  width: 0ch;
+  animation: typing 3s steps(30, end) forwards,
+             blink 0.75s step-end 4 forwards;
 }
 
 @keyframes typing {
   from { width: 0ch; }
-  to { width: 34ch; }       /* 타이핑할 총 글자수에 맞게 설정 */
+  to { width: 34ch; }
 }
 
 @keyframes blink {
   0%, 100% { border-color: transparent; }
   50% { border-color: white; }
 }
-
-.overlay-text {
-  /* ... 기존 스타일 ... */
-  animation: typing 3s steps(30, end) forwards, blink 0.75s step-end 4; /* blink 반복 횟수 제한 */
-}
-
