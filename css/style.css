@@ -207,7 +207,7 @@ body {
 
 @keyframes typing {
   from { width: 0ch; }
-  to { width: 30ch; }       /* 타이핑할 총 글자수에 맞게 설정 */
+  to { width: 34ch; }       /* 타이핑할 총 글자수에 맞게 설정 */
 }
 
 @keyframes blink {
