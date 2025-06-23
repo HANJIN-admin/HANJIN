@@ -183,3 +183,8 @@ body {
   font-family: 'Noto Sans KR', sans-serif;
   background-color: #f7f7f7;
 }
+
+.highlight-s {
+  color: #3FA447; /* 한진 로고의 초록색 (#3FA447 기준, 필요시 조정 가능) */
+  font-weight: bold; /* 선택: 강조하고 싶다면 */
+}
