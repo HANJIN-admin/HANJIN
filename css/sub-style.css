@@ -1030,16 +1030,18 @@ main,
   position: absolute;
   left: -90px;
   top: 0;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: bold;
-  color: #333;
+  color: #FFFFFF;
   width: 80px;
-  text-align: right;
+  text-align: center;
+  background-color: #004a99;
 }
 
 .timeline-content {
   background-color: #f9f9f9;
   padding: 15px 20px;
+  font-weight: bold;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
