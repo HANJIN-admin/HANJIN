@@ -952,3 +952,99 @@ main,
 }
 
 
+/* 워터마크 텍스트 */
+.watermark {
+  position: absolute;
+  bottom: 220px;
+  left: 1330px;
+  font-size: 100px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.06);
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
+  font-family: 'Segoe UI', sans-serif;
+  letter-spacing: 2px;
+}
+
+.ceo-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 50px;
+  padding: 60px 5%;
+}
+
+/* 사진과 배경을 감싸는 wrapper */
+.ceo-photo-wrap {
+  position: relative;
+  width: 400px;
+  flex-shrink: 0;
+}
+
+/* 배경 박스 */
+.ceo-photo-bg {
+  position: absolute;
+  top: 80px;         /* 사진보다 아래에서 시작 */
+  left: -60px;       /* 왼쪽 바깥으로 확장 */
+  width: 500px;      /* 사진보다 넓게 */
+  height: 220px;     /* 바 형태 */
+  z-index: 0;
+}
+
+/* 배경 바 디자인 */
+.ceo-photo-bg .bg-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f9f1f3;
+  border-radius: 8px; /* 선택 사항: 둥글게 */
+  z-index: 1;
+}
+
+
+/* 실제 이미지 */
+.ceo-photo img {
+  position: relative;
+  width: 100%;
+  height: auto;
+  z-index: 2;
+  display: block;
+}
+
+.timeline {
+  position: relative;
+  margin: 60px 20px;
+  padding-left: 40px;
+  border-left: 3px solid #ccc;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+  padding-left: 30px;
+}
+
+.timeline-year {
+  position: absolute;
+  left: -90px;
+  top: 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  width: 80px;
+  text-align: right;
+}
+
+.timeline-content {
+  background-color: #f9f9f9;
+  padding: 15px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.timeline-content p {
+  margin: 5px 0;
+}
+
