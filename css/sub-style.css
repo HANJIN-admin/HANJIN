@@ -916,3 +916,39 @@ main,
   box-sizing: border-box;
 }
 
+/* ===== 갤러리 마우스 오버 효과 ===== */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 36px;
+  justify-content: center;
+}
+
+.gallery-item {
+  position: relative;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  z-index: 1;
+}
+
+.gallery-item img {
+  max-width: 400px;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* 전체 갤러리 호버 중 */
+.gallery:hover .gallery-item {
+  transform: scale(0.95);
+  filter: brightness(0.6);
+}
+
+/* 호버된 이미지만 다시 확대 + 밝게 */
+.gallery-item:hover {
+  transform: scale(1.4)!important;
+  filter: brightness(1) !important;
+  z-index: 2;
+}
+
+
