@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://hanjin-r-e.kr/sitemap.xml
+Sitemap: https://www.hanjin.r-e.kr/sitemap.xml
