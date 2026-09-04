@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
-Sitemap: https://www.hjingc.co.kr/sitemap.xml
+
+Sitemap: https://hanjingc.co.kr/sitemap.xml
+
 #DaumWebMasterTool:4ad0831f38882e6f305abbc6cccfffb375db15757005598765920a3fe2438a7d:/rROxydMIOcaD59/dAkQxg==
