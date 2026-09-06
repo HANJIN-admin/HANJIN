@@ -583,19 +583,6 @@
       "date": "2012-02",
       "thumb": "assets/portfolio/thumb/p068.jpg",
       "image": "assets/portfolio/full/p068.jpg"
-    },
-    {
-      "period": "2026.09 ~ 2027.12",
-      "body": "이것은 테스트 입니다.",
-      "work_type": "토공사, 철근콘크리트 공사",
-      "scale": "연면적 3,200㎡",
-      "client": "울산광역시",
-      "date": "2026-09-07",
-      "location": "울산광역시 중구 성안동",
-      "title": "테스트 프로젝트",
-      "id": "p74",
-      "image": "/assets/uploads/스크린샷-2026-04-15-151849.png",
-      "category": "건축"
     }
   ]
 }
