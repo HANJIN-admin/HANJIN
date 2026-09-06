@@ -11,6 +11,30 @@ public_folder: "/assets/uploads"
 locale: "ko"
 
 collections:
+  - name: "home"
+    label: "홈 화면"
+    files:
+      - name: "home"
+        label: "메인 배너 & 통계"
+        description: "메인(index.html) 화면 맨 위 배너 사진·문구와 그 아래 숫자(37년, 73건 등)를 관리합니다."
+        file: "content/home.json"
+        format: "json"
+        fields:
+          - { name: "hero", label: "메인 배너", widget: "object", fields: [
+              { name: "eyebrow", label: "작은 안내문구", widget: "string", hint: "배너 맨 위 작은 글씨. 예: Since 1989 · Nationwide" },
+              { name: "title", label: "메인 문구", widget: "text", hint: "줄바꿈하려면 Enter를 누르세요." },
+              { name: "subtitle", label: "설명 문구", widget: "text" },
+              { name: "image", label: "배경 사진", widget: "image", media_library: { config: { multiple: false } } },
+              { name: "credit_title", label: "사진 출처 - 현장명 (선택)", widget: "string", required: false, hint: "배경 사진 우측 하단에 굵게 표시됩니다." },
+              { name: "credit_meta", label: "사진 출처 - 위치/연도 (선택)", widget: "string", required: false },
+            ] }
+          - { name: "stats", label: "상단 통계 숫자 (4개)", widget: "list", minimize_collapsed: false, fields: [
+              { name: "num", label: "숫자 또는 글자", widget: "string", hint: "예: 37, 73, 4, 전국" },
+              { name: "unit", label: "숫자 뒤에 붙는 단위", widget: "string", hint: "예: 년,  건 +,  개 분야,  단위" },
+              { name: "label", label: "아래 설명 문구", widget: "string" },
+              { name: "is_text", label: "숫자가 아닌 글자입니다 (예: '전국')", widget: "boolean", default: false, required: false },
+            ] }
+
   - name: "portfolio"
     label: "시공사례"
     files:

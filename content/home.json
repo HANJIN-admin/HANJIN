@@ -1,0 +1,16 @@
+{
+  "hero": {
+    "eyebrow": "Since 1989 · Nationwide",
+    "title": "성실이 짓고,\n신뢰가 잇습니다.",
+    "subtitle": "1989년 설립 이후 37년간 울산 본사를 기반으로 전국 각지에서 건축·토목·플랜트 전 영역의 시공을 수행해 온 종합건설사, (주)한진종합건설입니다.",
+    "image": "assets/hero.jpg",
+    "credit_title": "대진항 정비사업",
+    "credit_meta": "경상북도 영덕군 · 2024"
+  },
+  "stats": [
+    { "num": "37", "unit": "년", "label": "1989년 설립부터 현재까지", "is_text": false },
+    { "num": "73", "unit": "건 +", "label": "포트폴리오 등재 시공사례 (계속 추가 중)", "is_text": false },
+    { "num": "4", "unit": "개 분야", "label": "건축 · 토목 · 플랜트 · 기타", "is_text": false },
+    { "num": "전국", "unit": " 단위", "label": "울산 본사, 시공실적은 전국 각지", "is_text": true }
+  ]
+}
