@@ -9,6 +9,20 @@
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="css/main.css" />
+<!-- Netlify Identity: 관리자 초대/비밀번호 재설정 메일 링크(#invite_token, #recovery_token)를
+     이 홈페이지에서 받아서 처리하기 위한 스크립트. 로그인 성공 시 관리자 화면(admin)으로 이동. -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", function (user) {
+      if (!user) {
+        window.netlifyIdentity.on("login", function () {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
 </head>
 <body>
 
