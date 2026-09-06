@@ -363,6 +363,14 @@ section.band-surface{ background:var(--surface); border-top:1px solid var(--bord
 .board-row .dt, .board-row .per{ flex:0 0 auto; font-family:"IBM Plex Mono",monospace; color:var(--ink-faint); font-size:0.82rem; white-space:nowrap; }
 .board-row .who{ flex:0 0 auto; font-size:0.82rem; color:var(--ink-soft); width:5.5rem; }
 .board-row .pin{ display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:0.62rem; font-weight:700; color:#fff; background:var(--red); padding:0.15rem 0.4rem; border-radius:3px; margin-right:0.5rem; vertical-align:1px; }
+.board-row-click{ cursor:pointer; transition:background 0.15s; }
+.board-row-click:hover, .board-row-click.is-open{ background:var(--paper2); }
+.board-row-click::after{ content:"+"; margin-left:auto; flex:0 0 auto; font-family:"IBM Plex Mono",monospace; color:var(--ink-faint); font-size:1rem; }
+.board-row-click.is-open::after{ content:"−"; }
+.board-detail{ padding:1.1rem 1.3rem 1.4rem; margin:-1px 0 0; background:var(--paper2); border-bottom:1px solid var(--border); }
+.board-detail-body{ font-size:0.92rem; line-height:1.8; color:var(--ink-soft); white-space:normal; }
+.board-detail-file{ display:inline-flex; align-items:center; gap:0.4rem; margin-top:0.9rem; font-size:0.85rem; font-weight:600; color:var(--green-deep); }
+.board-detail-file:hover{ text-decoration:underline; }
 @media (max-width:640px){
   .board-row.head{ display:none; }
   .board-row .num{ display:none; }

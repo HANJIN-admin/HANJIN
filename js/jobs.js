@@ -3,6 +3,12 @@
   function esc(s) {
     return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   }
+  function nl2br(s) {
+    return esc(s).replace(/\n/g, "<br>");
+  }
+  function fileName(path) {
+    return decodeURIComponent(String(path).split("/").pop());
+  }
   fetch("content/jobs.json")
     .then((r) => r.json())
     .then((data) => {
@@ -23,13 +29,39 @@
         <div class="board-row head"><span class="num">번호</span><span class="ttl">제목</span><span class="per">접수기간</span><span>상태</span></div>
         ${items
           .map(
-            (j, i) => `<div class="board-row">
+            (j, i) => `<div class="board-row board-row-click" data-idx="${i}" role="button" tabindex="0" aria-expanded="false">
           <span class="num">${items.length - i}</span>
           <span class="ttl">${esc(j.title)}</span>
           <span class="per">${esc(j.period || "-")}</span>
-          <span class="tag ${j.status === "모집중" ? "tag-open" : "tag-closed"}">${esc(j.status)}</span></div>`
+          <span class="tag ${j.status === "모집중" ? "tag-open" : "tag-closed"}">${esc(j.status)}</span></div>
+        <div class="board-detail" id="job-detail-${i}" hidden>
+          <div class="board-detail-body">${nl2br(j.body || "상세 내용이 아직 등록되지 않았습니다.")}</div>
+          ${j.attachment ? `<a class="board-detail-file" href="${esc(j.attachment)}" target="_blank" rel="noopener" download>📎 ${esc(fileName(j.attachment))}</a>` : ""}
+        </div>`
           )
           .join("")}
       </div>`;
+
+      root.querySelectorAll(".board-row-click").forEach((row) => {
+        function toggle() {
+          const idx = row.dataset.idx;
+          const detail = document.getElementById("job-detail-" + idx);
+          const willOpen = detail.hasAttribute("hidden");
+          if (willOpen) {
+            detail.removeAttribute("hidden");
+          } else {
+            detail.setAttribute("hidden", "");
+          }
+          row.setAttribute("aria-expanded", String(willOpen));
+          row.classList.toggle("is-open", willOpen);
+        }
+        row.addEventListener("click", toggle);
+        row.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            toggle();
+          }
+        });
+      });
     });
 })();
