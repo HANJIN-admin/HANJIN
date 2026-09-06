@@ -57,9 +57,9 @@
 <div class="trait-list"><div class="trait-row"><span class="idx">01</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/></svg></span><div><h3>도전정신</h3><p>변화를 두려워하지 않고 끊임없이 도전하는 사람</p></div></div><div class="trait-row"><span class="idx">02</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3"/><path d="M5 6h14"/><path d="M5 6 2 12a3 3 0 0 0 6 0L5 6Z"/><path d="M19 6l-3 6a3 3 0 0 0 6 0l-3-6Z"/><path d="M12 6v15"/><path d="M8 21h8"/></svg></span><div><h3>윤리의식</h3><p>투명하고 정직하며 기본을 지키는 바른 인재</p></div></div><div class="trait-row"><span class="idx">03</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5-10-5Z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v6"/></svg></span><div><h3>전문성</h3><p>자기 분야에서 최고가 되기 위해 노력하는 사람</p></div></div></div>
 <div class="recruit-wrap">
   <h2>채용 문의</h2>
-  <form class="recruit-grid" id="recruitForm" action="https://formsubmit.co/hanjingc@hanjingc.co.kr" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="_subject" value="한진종합건설 채용문의!">
-    <input type="hidden" name="_captcha" value="false">
+  <form class="recruit-grid" id="recruitForm" name="recruit" action="/" method="POST" enctype="multipart/form-data" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="recruit">
+    <p style="display:none"><label>스팸 방지용, 비워두세요<input name="bot-field"></label></p>
     <label>이름<input type="text" name="이름" required></label>
     <label>이메일<input type="email" name="이메일" required></label>
     <label class="full">제목<input type="text" name="제목" required></label>
@@ -88,7 +88,10 @@
 
   form.addEventListener('submit', function(e){
     e.preventDefault();
-    var endpoint = 'https://formsubmit.co/ajax/hanjingc@hanjingc.co.kr';
+    // Netlify Forms: 같은 사이트의 "/"로 제출하면, 배포 시 자동으로 인식된
+    // (data-netlify="true") 이 폼의 제출로 처리되어 관리자 이메일로 알림이 감.
+    // (알림 이메일 수신 주소는 Netlify 대시보드 > Forms > Notifications에서 설정)
+    var endpoint = '/';
     var formData = new FormData(form);
     btn.disabled = true;
     var prevLabel = btn.textContent;
@@ -97,8 +100,7 @@
 
     fetch(endpoint, {
       method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
+      body: formData
     }).then(function(res){
       if(!res.ok){ throw new Error('bad status'); }
       return res.json().catch(function(){ return {}; });
