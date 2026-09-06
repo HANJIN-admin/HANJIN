@@ -1,0 +1,588 @@
+{
+  "items": [
+    {
+      "id": "p039",
+      "title": "두동면행정복지센터",
+      "category": "건축",
+      "date": "2022-01",
+      "thumb": "assets/portfolio/thumb/p039.jpg",
+      "image": "assets/portfolio/full/p039.jpg"
+    },
+    {
+      "id": "p038",
+      "title": "강동주민센타 신축공사",
+      "category": "건축",
+      "date": "2020-02",
+      "thumb": "assets/portfolio/thumb/p038.jpg",
+      "image": "assets/portfolio/full/p038.jpg"
+    },
+    {
+      "id": "p037",
+      "title": "범서 곡연경로당 신축공사",
+      "category": "건축",
+      "date": "2019-12",
+      "thumb": "assets/portfolio/thumb/p037.jpg",
+      "image": "assets/portfolio/full/p037.jpg"
+    },
+    {
+      "id": "p036",
+      "title": "삼산동174-11번지 근린생활시설 신축공사",
+      "category": "건축",
+      "date": "2019-08",
+      "thumb": "assets/portfolio/thumb/p036.jpg",
+      "image": "assets/portfolio/full/p036.jpg"
+    },
+    {
+      "id": "p035",
+      "title": "태화새마을금고 종합청사 신축공사",
+      "category": "건축",
+      "date": "2018-10",
+      "thumb": "assets/portfolio/thumb/p035.jpg",
+      "image": "assets/portfolio/full/p035.jpg"
+    },
+    {
+      "id": "p034",
+      "title": "울산간이휴게시설 설치공사",
+      "category": "건축",
+      "date": "2018-01",
+      "thumb": "assets/portfolio/thumb/p034.jpg",
+      "image": "assets/portfolio/full/p034.jpg"
+    },
+    {
+      "id": "p033",
+      "title": "화봉동 1458번지 근린생활시설 신축공사",
+      "category": "건축",
+      "date": "2016-07",
+      "thumb": "assets/portfolio/thumb/p033.jpg",
+      "image": "assets/portfolio/full/p033.jpg"
+    },
+    {
+      "id": "p031",
+      "title": "남구 공립어린이집 신충공사",
+      "category": "건축",
+      "date": "2016-06",
+      "thumb": "assets/portfolio/thumb/p031.jpg",
+      "image": "assets/portfolio/full/p031.jpg"
+    },
+    {
+      "id": "p032",
+      "title": "중구성안동400-4번지 주상복합신축공사",
+      "category": "건축",
+      "date": "2016-06",
+      "thumb": "assets/portfolio/thumb/p032.jpg",
+      "image": "assets/portfolio/full/p032.jpg"
+    },
+    {
+      "id": "p030",
+      "title": "태화동 23-11번지 근린생활시설 신축공사",
+      "category": "건축",
+      "date": "2015-09",
+      "thumb": "assets/portfolio/thumb/p030.jpg",
+      "image": "assets/portfolio/full/p030.jpg"
+    },
+    {
+      "id": "p029",
+      "title": "전하 체육시설 조성사업",
+      "category": "건축",
+      "date": "2015-05",
+      "thumb": "assets/portfolio/thumb/p029.jpg",
+      "image": "assets/portfolio/full/p029.jpg"
+    },
+    {
+      "id": "p028",
+      "title": "울산화물자동차 공동차고지 건물신축공사",
+      "category": "건축",
+      "date": "2014-12",
+      "thumb": "assets/portfolio/thumb/p028.jpg",
+      "image": "assets/portfolio/full/p028.jpg"
+    },
+    {
+      "id": "p027",
+      "title": "중울산새마을금고 신축공사",
+      "category": "건축",
+      "date": "2014-10",
+      "thumb": "assets/portfolio/thumb/p027.jpg",
+      "image": "assets/portfolio/full/p027.jpg"
+    },
+    {
+      "id": "p025",
+      "title": "울산보훈회관",
+      "category": "건축",
+      "date": "2011-02",
+      "thumb": "assets/portfolio/thumb/p025.jpg",
+      "image": "assets/portfolio/full/p025.jpg"
+    },
+    {
+      "id": "p026",
+      "title": "화봉고등학교 신축공사",
+      "category": "건축",
+      "date": "2011-02",
+      "thumb": "assets/portfolio/thumb/p026.jpg",
+      "image": "assets/portfolio/full/p026.jpg"
+    },
+    {
+      "id": "p024",
+      "title": "태화동 주택 신축공사",
+      "category": "건축",
+      "date": "2010-11",
+      "thumb": "assets/portfolio/thumb/p024.jpg",
+      "image": "assets/portfolio/full/p024.jpg"
+    },
+    {
+      "id": "p023",
+      "title": "울주도서관 리모델링공사",
+      "category": "건축",
+      "date": "2010-07",
+      "thumb": "assets/portfolio/thumb/p023.jpg",
+      "image": "assets/portfolio/full/p023.jpg"
+    },
+    {
+      "id": "p022",
+      "title": "학성고 생활관 및 화장실 증.개축공사",
+      "category": "건축",
+      "date": "2009-08",
+      "thumb": "assets/portfolio/thumb/p022.jpg",
+      "image": "assets/portfolio/full/p022.jpg"
+    },
+    {
+      "id": "p019",
+      "title": "○○지역시설공사(1026)",
+      "category": "건축",
+      "date": "2008-12",
+      "thumb": "assets/portfolio/thumb/p019.jpg",
+      "image": "assets/portfolio/full/p019.jpg"
+    },
+    {
+      "id": "p020",
+      "title": "부산-울산선 온산지사 증축공사",
+      "category": "건축",
+      "date": "2008-12",
+      "thumb": "assets/portfolio/thumb/p020.jpg",
+      "image": "assets/portfolio/full/p020.jpg"
+    },
+    {
+      "id": "p021",
+      "title": "울주군 서생보건지소 신축공사",
+      "category": "건축",
+      "date": "2008-12",
+      "thumb": "assets/portfolio/thumb/p021.jpg",
+      "image": "assets/portfolio/full/p021.jpg"
+    },
+    {
+      "id": "p018",
+      "title": "현우빌딩 신축공사",
+      "category": "건축",
+      "date": "2008-04",
+      "thumb": "assets/portfolio/thumb/p018.jpg",
+      "image": "assets/portfolio/full/p018.jpg"
+    },
+    {
+      "id": "p017",
+      "title": "경암주유소",
+      "category": "건축",
+      "date": "2006-11",
+      "thumb": "assets/portfolio/thumb/p017.jpg",
+      "image": "assets/portfolio/full/p017.jpg"
+    },
+    {
+      "id": "p015",
+      "title": "범서남부교회 신축공사",
+      "category": "건축",
+      "date": "2006-10",
+      "thumb": "assets/portfolio/thumb/p015.jpg",
+      "image": "assets/portfolio/full/p015.jpg"
+    },
+    {
+      "id": "p016",
+      "title": "성안동 근린생활 및 주택신축공사",
+      "category": "건축",
+      "date": "2006-10",
+      "thumb": "assets/portfolio/thumb/p016.jpg",
+      "image": "assets/portfolio/full/p016.jpg"
+    },
+    {
+      "id": "p014",
+      "title": "미암초등학교 교사신축및 부지정지공사",
+      "category": "건축",
+      "date": "2006-04",
+      "thumb": "assets/portfolio/thumb/p014.jpg",
+      "image": "assets/portfolio/full/p014.jpg"
+    },
+    {
+      "id": "p013",
+      "title": "울주군 장애인 복지회관 신축공사",
+      "category": "건축",
+      "date": "2004-09",
+      "thumb": "assets/portfolio/thumb/p013.jpg",
+      "image": "assets/portfolio/full/p013.jpg"
+    },
+    {
+      "id": "p012",
+      "title": "온산초등학교 교사신축및 부지정지공사",
+      "category": "건축",
+      "date": "2003-02",
+      "thumb": "assets/portfolio/thumb/p012.jpg",
+      "image": "assets/portfolio/full/p012.jpg"
+    },
+    {
+      "id": "p011",
+      "title": "삼산동 근린생활시설 신축공사",
+      "category": "건축",
+      "date": "2002-05",
+      "thumb": "assets/portfolio/thumb/p011.jpg",
+      "image": "assets/portfolio/full/p011.jpg"
+    },
+    {
+      "id": "p010",
+      "title": "도산초등학교 교사신축및 부지정지공사",
+      "category": "건축",
+      "date": "2002-02",
+      "thumb": "assets/portfolio/thumb/p010.jpg",
+      "image": "assets/portfolio/full/p010.jpg"
+    },
+    {
+      "id": "p009",
+      "title": "(주)덕양가스 사옥 신축공사",
+      "category": "건축",
+      "date": "2000-05",
+      "thumb": "assets/portfolio/thumb/p009.jpg",
+      "image": "assets/portfolio/full/p009.jpg"
+    },
+    {
+      "id": "p008",
+      "title": "경남도립치매요양병원 시축공사",
+      "category": "건축",
+      "date": "1999-12",
+      "thumb": "assets/portfolio/thumb/p008.jpg",
+      "image": "assets/portfolio/full/p008.jpg"
+    },
+    {
+      "id": "p007",
+      "title": "성전사 사옥 신축공사",
+      "category": "건축",
+      "date": "1998-08",
+      "thumb": "assets/portfolio/thumb/p007.jpg",
+      "image": "assets/portfolio/full/p007.jpg"
+    },
+    {
+      "id": "p006",
+      "title": "한진전원맨션 2차 신축공사",
+      "category": "건축",
+      "date": "1996-05",
+      "thumb": "assets/portfolio/thumb/p006.jpg",
+      "image": "assets/portfolio/full/p006.jpg"
+    },
+    {
+      "id": "p005",
+      "title": "달동 근린시설 신축공사",
+      "category": "건축",
+      "date": "1995-09",
+      "thumb": "assets/portfolio/thumb/p005.jpg",
+      "image": "assets/portfolio/full/p005.jpg"
+    },
+    {
+      "id": "p003",
+      "title": "국민청소년 수련마을 신축공사",
+      "category": "건축",
+      "date": "1994-10",
+      "thumb": "assets/portfolio/thumb/p003.jpg",
+      "image": "assets/portfolio/full/p003.jpg"
+    },
+    {
+      "id": "p004",
+      "title": "한진전원맨션 신축공사",
+      "category": "건축",
+      "date": "1994-10",
+      "thumb": "assets/portfolio/thumb/p004.jpg",
+      "image": "assets/portfolio/full/p004.jpg"
+    },
+    {
+      "id": "p002",
+      "title": "달성빌딩 신축공사",
+      "category": "건축",
+      "date": "1994-01",
+      "thumb": "assets/portfolio/thumb/p002.jpg",
+      "image": "assets/portfolio/full/p002.jpg"
+    },
+    {
+      "id": "p001",
+      "title": "국립수산과학관 신축공사",
+      "category": "건축",
+      "date": "1993-10",
+      "thumb": "assets/portfolio/thumb/p001.jpg",
+      "image": "assets/portfolio/full/p001.jpg"
+    },
+    {
+      "id": "p060",
+      "title": "동구 파크골프장 조성공사",
+      "category": "토목",
+      "date": "2025-04-07",
+      "thumb": "assets/portfolio/thumb/p060.jpg",
+      "image": "assets/portfolio/full/p060.jpg"
+    },
+    {
+      "id": "p059",
+      "title": "대진항 정비사업",
+      "category": "토목",
+      "date": "2024-08",
+      "thumb": "assets/portfolio/thumb/p059.jpg",
+      "image": "assets/portfolio/full/p059.jpg"
+    },
+    {
+      "id": "p058",
+      "title": "고리통합 CT 유실사면 응급조치 공사",
+      "category": "토목",
+      "date": "2024-07",
+      "thumb": "assets/portfolio/thumb/p058.jpg",
+      "image": "assets/portfolio/full/p058.jpg"
+    },
+    {
+      "id": "p057",
+      "title": "남창천 대운산 수목원 일원 자전거도로 개설공사",
+      "category": "토목",
+      "date": "2022-12",
+      "thumb": "assets/portfolio/thumb/p057.jpg",
+      "image": "assets/portfolio/full/p057.jpg"
+    },
+    {
+      "id": "p056",
+      "title": "국도31호선강양1지구 낙석산사태 정비공사",
+      "category": "토목",
+      "date": "2021-10",
+      "thumb": "assets/portfolio/thumb/p056.jpg",
+      "image": "assets/portfolio/full/p056.jpg"
+    },
+    {
+      "id": "p055",
+      "title": "인공어초 시설공사",
+      "category": "토목",
+      "date": "2021-01",
+      "thumb": "assets/portfolio/thumb/p055.jpg",
+      "image": "assets/portfolio/full/p055.jpg"
+    },
+    {
+      "id": "p054",
+      "title": "여천천 악취 개선공사",
+      "category": "토목",
+      "date": "2019-07",
+      "thumb": "assets/portfolio/thumb/p054.jpg",
+      "image": "assets/portfolio/full/p054.jpg"
+    },
+    {
+      "id": "p053",
+      "title": "고막원천 문평1지구 외 1개소 하천 환경정비사업",
+      "category": "토목",
+      "date": "2018-11",
+      "thumb": "assets/portfolio/thumb/p053.jpg",
+      "image": "assets/portfolio/full/p053.jpg"
+    },
+    {
+      "id": "p052",
+      "title": "울산축협 건조창고 증축공사",
+      "category": "토목",
+      "date": "2017-07",
+      "thumb": "assets/portfolio/thumb/p052.jpg",
+      "image": "assets/portfolio/full/p052.jpg"
+    },
+    {
+      "id": "p051",
+      "title": "달천 편백산림욕장 진입도로 개설공사",
+      "category": "토목",
+      "date": "2017-02",
+      "thumb": "assets/portfolio/thumb/p051.jpg",
+      "image": "assets/portfolio/full/p051.jpg"
+    },
+    {
+      "id": "p050",
+      "title": "미포국가산업단지 진입도로(오토밸리로) 개설공사",
+      "category": "토목",
+      "date": "2016-09",
+      "thumb": "assets/portfolio/thumb/p050.jpg",
+      "image": "assets/portfolio/full/p050.jpg"
+    },
+    {
+      "id": "p049",
+      "title": "망양-덕신간(중1-20) 도로개설공사",
+      "category": "토목",
+      "date": "2016-05",
+      "thumb": "assets/portfolio/thumb/p049.jpg",
+      "image": "assets/portfolio/full/p049.jpg"
+    },
+    {
+      "id": "p048",
+      "title": "척과천 물놀이장 조성공사",
+      "category": "토목",
+      "date": "2014-05",
+      "thumb": "assets/portfolio/thumb/p048.jpg",
+      "image": "assets/portfolio/full/p048.jpg"
+    },
+    {
+      "id": "p047",
+      "title": "진하해수욕장 공영주차장 조성공사",
+      "category": "토목",
+      "date": "2012-06",
+      "thumb": "assets/portfolio/thumb/p047.jpg",
+      "image": "assets/portfolio/full/p047.jpg"
+    },
+    {
+      "id": "p046",
+      "title": "주전로 직선화도로개설공사",
+      "category": "토목",
+      "date": "2010-10",
+      "thumb": "assets/portfolio/thumb/p046.jpg",
+      "image": "assets/portfolio/full/p046.jpg"
+    },
+    {
+      "id": "p045",
+      "title": "진하-강양간 인도교(명선교) 개설공사",
+      "category": "토목",
+      "date": "2009-12",
+      "thumb": "assets/portfolio/thumb/p045.jpg",
+      "image": "assets/portfolio/full/p045.jpg"
+    },
+    {
+      "id": "p044",
+      "title": "온산읍 학남리 주택부지 조성공사",
+      "category": "토목",
+      "date": "2009-09",
+      "thumb": "assets/portfolio/thumb/p044.jpg",
+      "image": "assets/portfolio/full/p044.jpg"
+    },
+    {
+      "id": "p043",
+      "title": "언양보람병원앞(대2-23호선) 도로확장공사",
+      "category": "토목",
+      "date": "2009-08",
+      "thumb": "assets/portfolio/thumb/p043.jpg",
+      "image": "assets/portfolio/full/p043.jpg"
+    },
+    {
+      "id": "p042",
+      "title": "성안동 26번지일원 도로확장공사(2공구)",
+      "category": "토목",
+      "date": "2009-07",
+      "thumb": "assets/portfolio/thumb/p042.jpg",
+      "image": "assets/portfolio/full/p042.jpg"
+    },
+    {
+      "id": "p041",
+      "title": "지방어항 당사항 시설사업",
+      "category": "토목",
+      "date": "2008-12",
+      "thumb": "assets/portfolio/thumb/p041.jpg",
+      "image": "assets/portfolio/full/p041.jpg"
+    },
+    {
+      "id": "p040",
+      "title": "구영 입암간 도로개설공사",
+      "category": "토목",
+      "date": "2007-12",
+      "thumb": "assets/portfolio/thumb/p040.jpg",
+      "image": "assets/portfolio/full/p040.jpg"
+    },
+    {
+      "id": "p067",
+      "title": "범서 자동차종합정비공장 신축공사",
+      "category": "플랜트",
+      "date": "2026-03",
+      "thumb": "assets/portfolio/thumb/p067.jpg",
+      "image": "assets/portfolio/full/p067.jpg"
+    },
+    {
+      "id": "p066",
+      "title": "에스알공장 신축공사",
+      "category": "플랜트",
+      "date": "2017-07",
+      "thumb": "assets/portfolio/thumb/p066.jpg",
+      "image": "assets/portfolio/full/p066.jpg"
+    },
+    {
+      "id": "p065",
+      "title": "세일엠티씨공장 신축공사",
+      "category": "플랜트",
+      "date": "2015-10",
+      "thumb": "assets/portfolio/thumb/p065.jpg",
+      "image": "assets/portfolio/full/p065.jpg"
+    },
+    {
+      "id": "p064",
+      "title": "강원도 종자정선 신축공사",
+      "category": "플랜트",
+      "date": "2008-12",
+      "thumb": "assets/portfolio/thumb/p064.jpg",
+      "image": "assets/portfolio/full/p064.jpg"
+    },
+    {
+      "id": "p061",
+      "title": "부대시설공사(영상판독실)",
+      "category": "플랜트",
+      "date": "2007-11",
+      "thumb": "assets/portfolio/thumb/p061.jpg",
+      "image": "assets/portfolio/full/p061.jpg"
+    },
+    {
+      "id": "p062",
+      "title": "부대시설공사(정비고)",
+      "category": "플랜트",
+      "date": "2007-11",
+      "thumb": "assets/portfolio/thumb/p062.jpg",
+      "image": "assets/portfolio/full/p062.jpg"
+    },
+    {
+      "id": "p063",
+      "title": "부대시설공사(지상통제소)",
+      "category": "플랜트",
+      "date": "2007-11",
+      "thumb": "assets/portfolio/thumb/p063.jpg",
+      "image": "assets/portfolio/full/p063.jpg"
+    },
+    {
+      "id": "p073",
+      "title": "북구 평생학습관 인테리어공사",
+      "category": "기타",
+      "date": "2021-01",
+      "thumb": "assets/portfolio/thumb/p073.jpg",
+      "image": "assets/portfolio/full/p073.jpg"
+    },
+    {
+      "id": "p072",
+      "title": "상진초 병설유치원 설치공사",
+      "category": "기타",
+      "date": "2020-02",
+      "thumb": "assets/portfolio/thumb/p072.jpg",
+      "image": "assets/portfolio/full/p072.jpg"
+    },
+    {
+      "id": "p071",
+      "title": "성안1가압장",
+      "category": "기타",
+      "date": "2019-11",
+      "thumb": "assets/portfolio/thumb/p071.jpg",
+      "image": "assets/portfolio/full/p071.jpg"
+    },
+    {
+      "id": "p070",
+      "title": "장생포고래마을조성공사",
+      "category": "기타",
+      "date": "2015-02",
+      "thumb": "assets/portfolio/thumb/p070.jpg",
+      "image": "assets/portfolio/full/p070.jpg"
+    },
+    {
+      "id": "p069",
+      "title": "공업탑 상가지역공영주차장 설치공사",
+      "category": "기타",
+      "date": "2013-09",
+      "thumb": "assets/portfolio/thumb/p069.jpg",
+      "image": "assets/portfolio/full/p069.jpg"
+    },
+    {
+      "id": "p068",
+      "title": "울산상징조형물설치 기반시설공사",
+      "category": "기타",
+      "date": "2012-02",
+      "thumb": "assets/portfolio/thumb/p068.jpg",
+      "image": "assets/portfolio/full/p068.jpg"
+    }
+  ]
+}

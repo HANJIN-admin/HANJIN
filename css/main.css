@@ -1,0 +1,675 @@
+/* ===================================================================
+   한진종합건설 홈페이지 — 공통 스타일시트 (Concept B: 로고 컬러)
+   =================================================================== */
+
+:root{
+  --green:#1b7a3e; --green-deep:#0f4a26; --green-bright:#28a552; --green-soft:#e6f2e9;
+  --red:#b5222b; --red-soft:#f8e3e2;
+  --ink:#0f2117; --ink-soft:#516d5c; --ink-faint:#889099;
+  --steel:#5b665d; --paper:#f7f5ee; --paper2:#efece1; --cream:#f2ecd9; --surface:#ffffff; --border:#e1ddcf;
+  --shadow:0 1px 2px rgba(15,33,23,0.05), 0 10px 28px rgba(15,33,23,0.06);
+}
+*{ box-sizing:border-box; }
+html{ background:var(--paper); scroll-behavior:smooth; }
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Gothic A1","Noto Sans KR",-apple-system,sans-serif;
+  font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased;
+}
+.mono{ font-family:"IBM Plex Mono",ui-monospace,monospace; }
+h1,h2,h3{ text-wrap:balance; letter-spacing:-0.01em; margin:0; }
+a{ color:inherit; text-decoration:none; }
+img{ max-width:100%; }
+a:focus-visible, button:focus-visible{ outline:2px solid var(--green); outline-offset:2px; }
+@media (prefers-reduced-motion: reduce){ *{ animation-duration:.001ms !important; transition-duration:.001ms !important; } }
+
+.wrap{ max-width:1600px; margin:0 auto; padding:0 clamp(1.25rem,5vw,4rem); }
+.wrap-fluid{ max-width:2100px; margin:0 auto; padding:0 clamp(1.25rem,5vw,4rem); }
+
+/* ---- main nav (floating dark bar — logo/menu/소셜 always legible, over photo or page) ---- */
+.mainnav{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+/* blur lives on a pseudo-element, not .mainnav itself — backdrop-filter on the
+   real element would create a new containing block for position:fixed
+   descendants (the mobile .navmenu panel), breaking its full-viewport overlay */
+.mainnav::before{
+  content:""; position:absolute; inset:0; z-index:-1;
+  background:linear-gradient(180deg, rgba(8,18,13,0.86) 0%, rgba(8,18,13,0.78) 100%);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+}
+.mainnav .wrap{ display:flex; align-items:center; justify-content:space-between; padding:0.85rem clamp(1.25rem,5vw,4rem); gap:1.5rem; max-width:1600px; }
+.brand{ display:block; flex-shrink:0; }
+.brand img{ height:32px; width:auto; display:block; }
+.nav-right{ display:flex; align-items:center; gap:1.4rem; }
+.navmenu{ display:flex; gap:2rem; }
+.navmenu-mobile-social{ display:none; }
+.navmenu > div{ position:relative; }
+.navmenu > div > a{ font-weight:600; font-size:0.92rem; padding:0.4rem 0; display:inline-block; color:rgba(255,255,255,0.88); }
+.navmenu > div:hover > a, .navmenu > div.current > a{ color:#8fe0a8; }
+.navmenu .sub{ display:none; position:absolute; top:100%; left:-0.5rem; background:#fff; border:1px solid var(--border); border-radius:6px; box-shadow:var(--shadow); padding:0.5rem; min-width:160px; z-index:20; }
+.navmenu > div:hover .sub{ display:block; }
+.navmenu .sub a{ display:block; padding:0.5rem 0.7rem; border-radius:4px; font-size:0.86rem; color:var(--ink-soft); }
+.navmenu .sub a:hover{ background:var(--green-soft); color:var(--green-deep); }
+
+/* ---- nav social icons (유튜브 · 카카오톡 · 인스타그램) ---- */
+.nav-social{ display:flex; gap:0.55rem; }
+.nav-social a{ width:29px; height:29px; border-radius:50%; border:1px solid rgba(255,255,255,0.32); display:flex; align-items:center; justify-content:center; transition:background .15s ease; }
+.nav-social a:hover{ background:rgba(255,255,255,0.16); }
+.nav-social svg{ width:13px; height:13px; fill:#fff; }
+
+/* ---- mobile nav toggle (hamburger) ---- */
+.nav-toggle{ display:none; flex-direction:column; justify-content:center; gap:5px; width:38px; height:38px; padding:0; border:none; background:transparent; cursor:pointer; flex-shrink:0; }
+.nav-toggle span{ display:block; width:100%; height:2px; background:#fff; border-radius:2px; transition:transform .2s ease, opacity .2s ease; }
+.nav-toggle.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2){ opacity:0; }
+.nav-toggle.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+@media (max-width:860px){
+  .nav-right .nav-social{ display:none; }
+  .nav-toggle{ display:flex; }
+  .navmenu{
+    display:none; position:fixed; inset:64px 0 0 0; z-index:99;
+    flex-direction:column; gap:0; background:var(--ink); overflow-y:auto;
+    padding:0.5rem clamp(1.25rem,5vw,4rem) 2rem;
+  }
+  .navmenu.open{ display:flex; }
+  .navmenu > div{ border-bottom:1px solid rgba(255,255,255,0.12); padding:0.3rem 0; }
+  .navmenu > div > a{ display:block; padding:0.9rem 0.1rem; font-size:1.02rem; color:#fff; }
+  .navmenu .sub{
+    display:block; position:static; border:none; box-shadow:none; background:transparent;
+    padding:0 0 0.6rem 0.9rem; min-width:0;
+  }
+  .navmenu .sub a{ padding:0.55rem 0.3rem; font-size:0.92rem; color:#aab7ad; }
+  .navmenu .sub a:hover{ background:transparent; color:#fff; }
+  .navmenu-mobile-social{ display:flex; gap:0.6rem; margin-top:1.3rem; }
+  .navmenu-mobile-social a{ width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,0.28); display:flex; align-items:center; justify-content:center; }
+  .navmenu-mobile-social svg{ width:14px; height:14px; fill:#fff; }
+}
+body.nav-locked{ overflow:hidden; }
+
+/* ---- home nav (transparent, over hero photo) ---- */
+.nav{ position:sticky; top:0; z-index:110; }
+.nav-inner{
+  display:flex; align-items:center; justify-content:space-between; gap:1.5rem;
+  padding:1rem clamp(1.25rem,5vw,4rem);
+  position:absolute; top:0; left:0; right:0; z-index:20;
+  background:linear-gradient(180deg, rgba(6,14,10,0.62) 0%, rgba(6,14,10,0.4) 45%, rgba(6,14,10,0.16) 78%, rgba(6,14,10,0) 100%);
+}
+.nav-inner .brand img{ height:34px; width:auto; display:block; }
+.navlinks{ display:flex; gap:2.1rem; }
+.navlinks a{ color:rgba(255,255,255,0.88); font-size:0.88rem; font-weight:600; }
+.navlinks a:hover{ color:#fff; }
+/* 서브페이지에서 현재 위치한 대분류 메뉴를 초록색으로 강조(구 .navmenu > div.current > a 와 동일한 취지). */
+.navlinks a.current{ color:#8fe0a8; }
+.nav-panel{ display:none; position:absolute; top:0; left:0; right:0; background:var(--ink); z-index:19; padding:5.2rem clamp(1.25rem,5vw,3.5rem) 1.8rem; }
+.nav-panel.open{ display:block; }
+.nav-panel nav{ display:flex; flex-direction:column; }
+.nav-panel nav a{ color:#fff; font-size:1.05rem; font-weight:700; padding:0.95rem 0; border-bottom:1px solid rgba(255,255,255,0.1); display:block; }
+.nav-panel nav a.current{ color:#8fe0a8; }
+.nav-panel-social{ display:flex; gap:0.7rem; margin-top:1.3rem; }
+.nav-panel-social a{ width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.28); display:flex; align-items:center; justify-content:center; }
+.nav-panel-social svg{ width:15px; height:15px; fill:#fff; }
+@media (max-width:760px){ .navlinks{ display:none; } }
+
+/* ---- hero (home) ---- */
+.hero{ position:relative; min-height:min(92vh,880px); display:flex; align-items:flex-end; background-size:cover; background-position:center; }
+.hero::before{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(0deg, rgba(6,14,10,0.92) 0%, rgba(6,14,10,0.55) 38%, rgba(6,14,10,0.28) 62%, rgba(6,14,10,0.42) 100%);
+}
+.hero-inner{ position:relative; z-index:2; padding:0 clamp(1.25rem,5vw,4rem) clamp(3rem,7vw,5rem); width:100%; }
+.hero-eyebrow{ font-family:"IBM Plex Mono",monospace; font-size:0.78rem; letter-spacing:0.2em; text-transform:uppercase; color:#a9d6b6; margin-bottom:1.1rem; }
+.hero h1{ color:#fff; font-weight:900; font-size:clamp(2.4rem,6vw,4.6rem); max-width:14ch; line-height:1.14; letter-spacing:-0.01em; text-wrap:balance; }
+.hero-sub{ color:rgba(255,255,255,0.82); max-width:52ch; margin:1.3rem 0 0; font-size:1.02rem; line-height:1.7; word-break:keep-all; overflow-wrap:break-word; }
+.hero-ctas{ margin-top:2.1rem; display:flex; gap:1rem; flex-wrap:wrap; }
+.hero-credit{ position:absolute; right:clamp(1.25rem,5vw,4rem); bottom:clamp(1.6rem,4vw,2.4rem); z-index:2; color:rgba(255,255,255,0.75); font-size:0.72rem; text-align:right; line-height:1.6; }
+.hero-credit b{ display:block; color:#fff; font-weight:700; font-size:0.78rem; }
+/* 좁은 화면에서 히어로 카피가 길어지면 CTA 버튼과 hero-credit(우측 하단 출처 표기)이
+   겹치는 문제가 있어, 버튼 아래로 여백을 더 확보하고 credit을 살짝 축소/재배치함.
+   디자인 자체는 그대로 유지, 겹침만 방지하는 반응형 보정. */
+@media (max-width:480px){
+  .hero-inner{ padding-bottom:5.4rem; }
+  .hero-credit{ right:1.1rem; bottom:1.1rem; font-size:0.62rem; }
+  .hero-credit b{ font-size:0.68rem; }
+}
+.btn{ display:inline-flex; align-items:center; gap:0.4rem; font-weight:700; font-size:0.92rem; padding:0.8rem 1.4rem; border-radius:4px; transition:transform .15s ease, background .15s ease; cursor:pointer; border:none; font-family:inherit; }
+.btn:hover{ transform:translateY(-1px); }
+.btn-primary{ background:var(--green-bright); color:#0d1a12; }
+.btn-primary:hover{ background:#12b348; }
+.btn-ghost{ background:rgba(255,255,255,0.94); border:1px solid rgba(255,255,255,0.94); color:var(--ink); }
+.btn-ghost:hover{ background:#fff; }
+
+/* ---- section shell ---- */
+.section{ padding:clamp(4rem,8vw,6.5rem) 0; }
+.sec-head{ max-width:640px; margin-bottom:3rem; }
+.sec-eyebrow{ font-family:"IBM Plex Mono",monospace; font-size:0.74rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--green-deep); display:block; margin-bottom:0.9rem; }
+.sec-head h2{ font-size:clamp(1.7rem,3.4vw,2.5rem); font-weight:900; line-height:1.3; letter-spacing:-0.01em; }
+
+/* ---- business band (bento photo grid) ---- */
+.bento{ display:grid; grid-template-columns:1.3fr 1fr 1fr; grid-template-rows:auto auto; gap:1.1rem; }
+.bento a{ position:relative; overflow:hidden; border-radius:2px; display:block; min-height:260px; background-size:cover; background-position:center; }
+.bento a::after{ content:""; position:absolute; inset:0; background:linear-gradient(0deg, rgba(6,14,10,0.82) 0%, rgba(6,14,10,0.05) 55%); }
+.bento .tile-big{ grid-row:span 2; min-height:100%; }
+.bento .cap{ position:absolute; left:1.5rem; bottom:1.4rem; right:1.5rem; z-index:2; color:#fff; }
+.bento .cap .n{ font-family:"IBM Plex Mono",monospace; font-size:0.7rem; letter-spacing:0.1em; color:#bcdcc3; margin-bottom:0.4rem; display:block; }
+.bento .cap h3{ font-size:1.3rem; font-weight:800; }
+.bento .cap p{ font-size:0.8rem; color:rgba(255,255,255,0.78); margin-top:0.35rem; }
+.bento a:hover .cap h3{ text-decoration:underline; }
+@media (max-width:900px){
+  .bento{ grid-template-columns:1fr 1fr; }
+  .bento .tile-big{ grid-column:span 2; grid-row:auto; min-height:320px; }
+}
+.bento .tile-wide{ grid-column:span 2; }
+@media (max-width:560px){ .bento{ grid-template-columns:1fr; } .bento .tile-big, .bento .tile-wide{ grid-column:auto; } }
+
+/* ---- about (home) ---- */
+.about{ background:var(--paper2); }
+.about-top{ display:grid; grid-template-columns:1fr minmax(360px,420px); gap:3rem; align-items:center; margin-bottom:2.6rem; }
+@media (max-width:820px){ .about-top{ grid-template-columns:1fr; } }
+.about blockquote{ font-size:clamp(1.25rem,2.3vw,1.6rem); font-weight:700; line-height:1.5; letter-spacing:-0.01em; margin:0; }
+.about blockquote span{ color:var(--green-deep); }
+.s3-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:2.2rem; border-top:1px solid var(--border); padding-top:2rem; }
+@media (max-width:700px){ .s3-row{ grid-template-columns:1fr; gap:1.3rem; } }
+.s3-item{ display:flex; flex-wrap:wrap; align-items:baseline; gap:0 0.6rem; }
+.s3-k{ font-family:"IBM Plex Mono",monospace; font-size:0.7rem; letter-spacing:0.1em; color:var(--green-deep); }
+.s3-n{ font-weight:800; font-size:1.02rem; }
+.s3-item p{ flex-basis:100%; margin:0.5rem 0 0; font-size:0.87rem; color:var(--steel); line-height:1.6; }
+.about-fact{ background:var(--surface); border-radius:3px; padding:1.8rem 2rem; box-shadow:var(--shadow); }
+.about-fact .cardlabel{ font-family:"IBM Plex Mono",monospace; font-size:0.7rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--green-deep); display:block; margin-bottom:1.4rem; }
+.about-fact dl{ margin:0; display:flex; flex-direction:column; gap:1rem; }
+.about-fact dl div{ display:flex; justify-content:space-between; align-items:baseline; gap:1.2rem; border-bottom:1px solid var(--border); padding-bottom:1rem; }
+.about-fact dl div:last-child{ border-bottom:none; padding-bottom:0; }
+.about-fact dt{ color:var(--steel); font-size:0.82rem; flex-shrink:0; }
+.about-fact dd{ margin:0; font-weight:700; text-align:right; color:var(--ink); white-space:nowrap; }
+.about-fact dd.mono{ font-family:"IBM Plex Mono",monospace; font-weight:600; letter-spacing:-0.01em; }
+
+/* ---- stats ---- */
+.stats{ background:var(--ink); padding:clamp(2.6rem,6vw,4rem) 0; }
+.stats .wrap{ display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); }
+.stat{ padding:0 clamp(1rem,3vw,2.4rem); border-left:1px solid rgba(255,255,255,0.14); }
+.stat:first-child{ border-left:none; padding-left:0; }
+.stat .num{ font-family:"IBM Plex Mono","Gothic A1",monospace; font-weight:700; font-size:clamp(2.1rem,4.5vw,3.1rem); min-height:clamp(2.1rem,4.5vw,3.1rem); line-height:1; display:flex; align-items:flex-end; color:#fff; letter-spacing:-0.02em; }
+.stat .num span{ font-size:1rem; color:#7fae8c; margin-left:0.3rem; }
+/* 한글 글리프는 같은 font-size에서도 라틴/모노 숫자보다 커 보여서(약 1.28배) "전국"만 그대로 두면
+   숫자들 옆에서 유독 커 보임 — 실측 비율만큼 줄여 시각적 크기를 맞춤(min-height는 유지해 라벨 위치 고정). */
+.stat .num.kr{ font-size:clamp(1.64rem,3.5vw,2.42rem); }
+.stat .label{ font-size:0.8rem; color:#8ea294; margin-top:0.5rem; letter-spacing:0.01em; }
+
+/* ---- section shell ---- */
+section.block{ padding:clamp(2.6rem,6vw,3.6rem) 0; }
+section.block.lg{ padding:clamp(3.5rem,7vw,5.5rem) 0; }
+section.band-surface{ background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.block-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:1rem; margin-bottom:1.8rem; flex-wrap:wrap; }
+.block-eyebrow{ font-family:"IBM Plex Mono",monospace; font-size:0.72rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--green-deep); margin-bottom:0.5rem; display:block; }
+.block-head h2{ font-size:clamp(1.5rem,3vw,1.9rem); font-weight:800; }
+.block-more{ font-size:0.86rem; font-weight:700; color:var(--green-deep); white-space:nowrap; }
+.block-more:hover{ text-decoration:underline; }
+
+/* ---- subhero (inner pages) ---- */
+.subhero{
+  position:relative; overflow:hidden;
+  background:linear-gradient(128deg,#0a1420 0%, var(--ink) 55%, #123522 130%);
+  padding:clamp(5.8rem,10vw,7.6rem) 0 clamp(2.3rem,5vw,3.1rem);
+}
+.subhero::after{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(ellipse 60% 100% at 100% 0%, rgba(15,154,60,0.22), transparent 65%);
+  pointer-events:none;
+}
+.subhero .wrap{ position:relative; z-index:1; }
+.subhero .glyph{
+  position:absolute; right:clamp(0.5rem,5vw,4.5rem); top:50%; transform:translateY(-50%);
+  width:clamp(84px,11vw,150px); height:clamp(84px,11vw,150px); color:#fff; opacity:0.09; pointer-events:none;
+}
+.subhero .glyph svg{ width:100%; height:100%; }
+.breadcrumb{ font-family:"IBM Plex Mono",monospace; font-size:0.72rem; color:#8fa1ac; letter-spacing:0.02em; }
+.breadcrumb a:hover{ color:#fff; }
+.breadcrumb .sep{ margin:0 0.45rem; color:#3d4c5e; }
+.subhero h1{ color:#fff; font-size:clamp(1.9rem,4.6vw,3rem); font-weight:900; margin-top:0.8rem; position:relative; padding-left:1rem; border-left:4px solid var(--green-bright); }
+.subhero .meta{ display:flex; gap:0.7rem; align-items:center; margin-top:1.1rem; flex-wrap:wrap; }
+@media (max-width:560px){ .subhero .glyph{ display:none; } }
+.catpill{ font-family:"IBM Plex Mono",monospace; font-size:0.68rem; letter-spacing:0.05em; padding:0.3rem 0.7rem; border-radius:3px; background:var(--green-bright); color:#0d1a12; font-weight:700; }
+.datechip{ font-family:"IBM Plex Mono",monospace; font-size:0.74rem; color:#9db3a1; }
+
+/* ---- gallery / portfolio grid ---- */
+.filter-tabs{ display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:2rem; }
+.filter-tabs button{ font-size:0.86rem; font-weight:700; padding:0.55rem 1.1rem; border-radius:20px; border:1px solid var(--border); color:var(--ink-soft); background:var(--surface); cursor:pointer; font-family:inherit; }
+.filter-tabs button.active{ background:var(--ink); border-color:var(--ink); color:#fff; }
+.gallery-grid, .pfgrid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:1.4rem; }
+.pfgrid{ grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:1.5rem; }
+.gcard{ background:var(--surface); border:1px solid var(--border); border-radius:8px; overflow:hidden; box-shadow:var(--shadow); display:block; }
+.gcard .thumb{ height:150px; background-size:cover; background-position:center; position:relative; }
+.pfgrid .gcard .thumb{ height:180px; }
+.gcard .badge{ position:absolute; top:0.6rem; left:0.6rem; background:var(--red); color:#fff; font-family:"IBM Plex Mono",monospace; font-size:0.6rem; font-weight:600; letter-spacing:0.05em; padding:0.2rem 0.5rem; border-radius:3px; }
+.gcard .cc{ padding:0.9rem 1rem 1.05rem; }
+.gcard .cat{ font-family:"IBM Plex Mono",monospace; font-size:0.66rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--green-deep); }
+.gcard .ct{ font-size:0.92rem; font-weight:700; margin-top:0.35rem; color:var(--ink); line-height:1.4; }
+.gcard .date{ font-size:0.74rem; color:var(--ink-faint); margin-top:0.35rem; font-family:"IBM Plex Mono",monospace; }
+.gcard.empty{ display:flex; align-items:center; justify-content:center; min-height:236px; border:1.5px dashed var(--border); background:transparent; box-shadow:none; }
+.gcard.empty .es{ text-align:center; color:var(--ink-faint); font-size:0.8rem; }
+.gcard.empty .es .plus{ font-size:1.5rem; color:#c3cbc6; display:block; margin-bottom:0.3rem; font-family:"IBM Plex Mono",monospace; }
+.empty-state{ text-align:center; padding:3.5rem 1rem; color:var(--ink-faint); font-size:0.92rem; border:1.5px dashed var(--border); border-radius:8px; }
+
+.pager{ display:flex; justify-content:center; gap:0.4rem; margin-top:2.6rem; }
+.pager button, .pager span{ width:34px; height:34px; display:flex; align-items:center; justify-content:center; border-radius:5px; font-family:"IBM Plex Mono",monospace; font-size:0.82rem; color:var(--ink-soft); border:1px solid var(--border); background:var(--surface); cursor:pointer; }
+.pager button.active{ background:var(--ink); border-color:var(--ink); color:#fff; cursor:default; }
+.pager button:disabled{ color:#c3cbc6; cursor:not-allowed; }
+
+/* ---- detail page ---- */
+.detail-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:2.4rem; align-items:start; }
+.detail-figure{ height:340px; border-radius:8px; overflow:hidden; box-shadow:var(--shadow); background-size:cover; background-position:center; }
+.detail-thumbs{ display:grid; grid-template-columns:repeat(4,1fr); gap:0.7rem; margin-top:0.9rem; }
+.detail-thumbs div{ height:64px; border-radius:5px; background-size:cover; background-position:center; border:1px solid var(--border); }
+.detail-body h3{ font-size:1.05rem; font-weight:800; margin-bottom:0.7rem; }
+.detail-body p{ color:var(--ink-soft); font-size:0.92rem; line-height:1.8; }
+.detail-table{ width:100%; border-collapse:collapse; background:var(--surface); border:1px solid var(--border); border-radius:8px; overflow:hidden; box-shadow:var(--shadow); font-size:0.87rem; }
+.detail-table th, .detail-table td{ text-align:left; padding:0.8rem 1.05rem; border-bottom:1px solid var(--border); }
+.detail-table tr:last-child th, .detail-table tr:last-child td{ border-bottom:none; }
+.detail-table th{ width:34%; color:var(--ink-soft); font-weight:600; background:var(--green-soft); }
+.sample-note{ margin-top:0.9rem; font-size:0.76rem; color:var(--ink-faint); padding:0.7rem 0.9rem; background:var(--paper); border:1px dashed var(--border); border-radius:6px; }
+.case-nav{ display:flex; justify-content:space-between; margin-top:2.4rem; border-top:1px solid var(--border); padding-top:1.4rem; gap:1rem; flex-wrap:wrap; }
+.case-nav a{ font-size:0.85rem; font-weight:700; color:var(--ink-soft); }
+.case-nav a:hover{ color:var(--green-deep); }
+.case-nav .dir{ font-family:"IBM Plex Mono",monospace; font-size:0.66rem; color:var(--ink-faint); display:block; margin-bottom:0.25rem; letter-spacing:0.06em; }
+
+/* ---- about / company pages ---- */
+.about-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(360px,1fr)); gap:3rem; align-items:start; }
+.value-row{ display:flex; gap:1.2rem; margin-top:1.6rem; flex-wrap:wrap; }
+.value-row .v{ flex:1; min-width:140px; }
+.value-row .v .k{ font-family:"IBM Plex Mono",monospace; font-size:0.68rem; color:var(--green-deep); letter-spacing:0.08em; }
+.value-row .v .n{ font-weight:800; font-size:1.05rem; margin-top:0.3rem; }
+.value-row .v p{ font-size:0.84rem; color:var(--ink-soft); margin:0.4rem 0 0; line-height:1.55; }
+.fact-table{ width:100%; border-collapse:collapse; background:var(--surface); border:1px solid var(--border); border-radius:8px; overflow:hidden; box-shadow:var(--shadow); font-size:0.88rem; }
+.fact-table th, .fact-table td{ text-align:left; padding:0.85rem 1.1rem; border-bottom:1px solid var(--border); }
+.fact-table tr:last-child th, .fact-table tr:last-child td{ border-bottom:none; }
+.fact-table th{ width:36%; color:var(--ink-soft); font-weight:600; background:var(--green-soft); }
+@media (max-width:560px){
+  .fact-table, .detail-table{ border:none; box-shadow:none; }
+  .fact-table tr, .detail-table tr{ display:flex; flex-direction:column; padding:0.8rem 0 0.8rem; border-bottom:1px solid var(--border); }
+  .fact-table th, .detail-table th{ background:none; width:auto; padding:0 0 0.2rem; font-size:0.72rem; letter-spacing:0.03em; color:var(--green-deep); font-family:"IBM Plex Mono",monospace; border-bottom:none; }
+  .fact-table td, .detail-table td{ padding:0; border-bottom:none; font-size:0.94rem; }
+}
+
+.page-title{ padding:2.4rem 0 1rem; }
+.page-title h1{ font-size:clamp(1.5rem,3.4vw,2.1rem); font-weight:900; }
+.page-title .block-eyebrow{ margin-bottom:0.6rem; }
+
+.ceo-grid{ display:grid; grid-template-columns:minmax(240px,320px) 1fr; gap:2.6rem; align-items:start; }
+@media (max-width:640px){ .ceo-grid{ grid-template-columns:1fr; } }
+.ceo-intro{ font-size:1.15rem; font-weight:700; color:var(--ink); margin:0 0 1.1rem; line-height:1.6; max-width:64ch; }
+.ceo-quote{ margin:1.7rem 0; padding:0.2rem 0 0.2rem 1.4rem; border-left:3px solid var(--green); font-size:clamp(1.05rem,2vw,1.3rem); font-weight:800; color:var(--green-deep); line-height:1.6; max-width:52ch; }
+.ceo-name{ margin-top:1.6rem; font-weight:800; color:var(--ink) !important; font-size:1.05rem; }
+.ceo-name span{ font-weight:500; color:var(--ink-soft); font-size:0.85rem; margin-left:0.5rem; }
+.ceo-photo{ border-radius:8px; overflow:hidden; box-shadow:var(--shadow); background:var(--surface); }
+.ceo-photo img{ display:block; width:100%; }
+.ceo-text p{ color:var(--ink-soft); font-size:0.97rem; line-height:1.9; max-width:64ch; }
+.ceo-name{ margin-top:1.4rem; font-weight:800; color:var(--ink) !important; font-size:1rem; }
+
+.timeline-decade{ font-family:"IBM Plex Mono",monospace; font-weight:800; font-size:0.78rem; letter-spacing:0.12em; color:#fff; background:var(--green); align-self:flex-start; padding:0.3rem 0.8rem; border-radius:20px; margin:2.2rem 0 0.6rem 0; }
+.timeline > .timeline-decade:first-child{ margin-top:0; }
+.timeline{ display:flex; flex-direction:column; gap:0; border-left:2px solid var(--border); margin-left:0.4rem; }
+.timeline .timeline-decade{ margin-left:-0.4rem; border-left:none; }
+.timeline-item{ display:flex; gap:1.6rem; padding:1.1rem 0 1.1rem 1.6rem; position:relative; }
+.timeline-item::before{ content:""; position:absolute; left:-6.5px; top:1.4rem; width:11px; height:11px; border-radius:50%; background:var(--green); border:2px solid var(--paper); }
+.timeline-year{ font-family:"IBM Plex Mono",monospace; font-weight:700; color:var(--green-deep); font-size:0.95rem; width:4.5rem; flex-shrink:0; }
+.timeline-content p{ margin:0 0 0.3rem; font-size:0.92rem; color:var(--ink); }
+.timeline-content p:last-child{ margin-bottom:0; }
+
+.trait-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.4rem; }
+.welfare-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:1.4rem; }
+.trait-card, .welfare-card{ background:var(--surface); border:1px solid var(--border); border-radius:8px; box-shadow:var(--shadow); padding:1.8rem 1.4rem; text-align:center; border-top:3px solid var(--green); transition:transform .18s ease, box-shadow .18s ease; }
+.trait-card:hover, .welfare-card:hover{ transform:translateY(-3px); box-shadow:0 4px 8px rgba(18,35,58,0.06), 0 16px 32px rgba(18,35,58,0.09); }
+.trait-card .ic, .welfare-card .ic{ width:60px; height:60px; border-radius:50%; background:var(--green-soft); display:flex; align-items:center; justify-content:center; margin:0 auto 1.1rem; color:var(--green-deep); }
+.trait-card .ic svg, .welfare-card .ic svg{ width:28px; height:28px; }
+.trait-card h3, .welfare-card h3{ font-size:1rem; font-weight:800; margin-bottom:0.5rem; }
+.trait-card p, .welfare-card p{ font-size:0.84rem; color:var(--ink-soft); line-height:1.6; margin:0; }
+
+/* ---- license card ---- */
+.license-card{ display:flex; gap:1.6rem; align-items:center; background:var(--surface); border:1px solid var(--border); border-radius:10px; box-shadow:var(--shadow); padding:1.8rem 2rem; max-width:640px; }
+.license-badge{ width:64px; height:64px; border-radius:50%; background:var(--green-soft); color:var(--green-deep); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.license-badge svg{ width:30px; height:30px; }
+.license-info h3{ font-size:1.05rem; font-weight:800; margin-bottom:0.7rem; }
+.license-info dl{ display:flex; gap:2.2rem; margin:0; flex-wrap:wrap; }
+.license-info dt{ font-size:0.72rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.04em; font-family:"IBM Plex Mono",monospace; }
+.license-info dd{ margin:0.2rem 0 0; font-size:0.95rem; font-weight:700; font-family:"IBM Plex Mono",monospace; color:var(--ink); }
+@media (max-width:520px){ .license-card{ flex-direction:column; align-items:flex-start; text-align:left; } }
+
+.org-chart{ display:flex; flex-direction:column; align-items:center; gap:0; }
+.org-ceo{ background:var(--ink); color:#fff; font-weight:800; padding:1rem 2.5rem; border-radius:6px; font-size:1rem; }
+.org-line{ width:2px; height:2rem; background:var(--border); }
+.org-branches{ display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:1.4rem; width:100%; max-width:820px; }
+.org-branch{ background:var(--surface); border:1px solid var(--border); border-radius:8px; box-shadow:var(--shadow); overflow:hidden; }
+.org-dept{ background:var(--green-soft); color:var(--green-deep); font-weight:800; text-align:center; padding:0.9rem; font-size:0.95rem; display:flex; flex-direction:column; align-items:center; gap:0.45rem; }
+.org-dept svg{ width:22px; height:22px; }
+.org-tasks{ display:flex; flex-direction:column; }
+.org-tasks div{ padding:0.6rem 0.9rem; font-size:0.84rem; color:var(--ink-soft); border-top:1px solid var(--border); text-align:center; }
+
+.license-table{ width:100%; border-collapse:collapse; background:var(--surface); border:1px solid var(--border); border-radius:8px; overflow:hidden; box-shadow:var(--shadow); font-size:0.9rem; }
+.license-table th{ text-align:left; padding:0.9rem 1.1rem; background:var(--green-soft); color:var(--green-deep); font-weight:700; font-size:0.82rem; }
+.license-table td{ padding:0.9rem 1.1rem; border-top:1px solid var(--border); }
+
+/* ---- board (jobs / news) ---- */
+.board-tabs{ display:flex; gap:1.8rem; border-bottom:2px solid var(--border); margin-bottom:0; }
+.board-tabs a{ font-size:1rem; font-weight:800; padding:0 0 0.9rem; color:var(--ink-faint); border-bottom:2px solid transparent; margin-bottom:-2px; }
+.board-tabs a.active{ color:var(--ink); border-color:var(--green); }
+.board-list{ display:flex; flex-direction:column; margin-top:1.6rem; border-top:2px solid var(--ink); }
+.board-row{ display:flex; flex-wrap:wrap; align-items:center; gap:0.3rem 1.3rem; padding:1.05rem 0.4rem; border-bottom:1px solid var(--border); }
+.board-row.head{ font-family:"IBM Plex Mono",monospace; font-size:0.7rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--ink-soft); padding-top:0; padding-bottom:0.8rem; border-bottom:1px solid var(--border); }
+.board-row.pinned{ background:var(--green-soft); border-radius:6px; }
+.board-row .num{ width:2.4rem; flex:0 0 auto; font-family:"IBM Plex Mono",monospace; color:var(--ink-faint); font-size:0.82rem; }
+.board-row .ttl{ flex:1 1 240px; font-weight:600; color:var(--ink); }
+.board-row .dt, .board-row .per{ flex:0 0 auto; font-family:"IBM Plex Mono",monospace; color:var(--ink-faint); font-size:0.82rem; white-space:nowrap; }
+.board-row .who{ flex:0 0 auto; font-size:0.82rem; color:var(--ink-soft); width:5.5rem; }
+.board-row .pin{ display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:0.62rem; font-weight:700; color:#fff; background:var(--red); padding:0.15rem 0.4rem; border-radius:3px; margin-right:0.5rem; vertical-align:1px; }
+@media (max-width:640px){
+  .board-row.head{ display:none; }
+  .board-row .num{ display:none; }
+  .board-row .ttl{ flex-basis:100%; font-size:0.98rem; }
+}
+.tag{ font-family:"IBM Plex Mono",monospace; font-size:0.64rem; padding:0.15rem 0.45rem; border-radius:3px; white-space:nowrap; }
+.tag-open{ background:var(--green-soft); color:var(--green-deep); }
+.tag-closed{ background:#eee; color:var(--ink-faint); }
+
+/* ---- preview split (home) ---- */
+.split-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.6rem; }
+@media (max-width:820px){ .split-grid{ grid-template-columns:1fr; } }
+.panel{ background:var(--surface); border:1px solid var(--border); border-radius:8px; box-shadow:var(--shadow); overflow:hidden; }
+.panel-head{ display:flex; justify-content:space-between; align-items:center; padding:1.1rem 1.3rem; border-bottom:1px solid var(--border); }
+.panel-head h3{ font-size:1.02rem; font-weight:800; }
+.panel-head .more{ font-size:0.78rem; font-weight:700; color:var(--green-deep); }
+.rowlist{ list-style:none; margin:0; padding:0; }
+.rowlist li{ display:flex; justify-content:space-between; gap:1rem; align-items:baseline; padding:0.9rem 1.3rem; border-top:1px solid var(--border); }
+.rowlist li:first-child{ border-top:none; }
+.rowlist .t{ font-size:0.9rem; color:var(--ink); }
+.rowlist .d{ font-family:"IBM Plex Mono",monospace; font-size:0.72rem; color:var(--ink-faint); white-space:nowrap; }
+.panel .empty-row{ padding:1.8rem 1.3rem; text-align:center; color:var(--ink-faint); font-size:0.86rem; }
+
+/* ---- contact page ---- */
+.contact-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.6rem; }
+.contact-card{ background:var(--surface); border:1px solid var(--border); border-radius:8px; box-shadow:var(--shadow); padding:1.6rem; }
+.contact-card h2{ font-size:0.95rem; font-weight:800; display:flex; align-items:center; gap:0.5rem; margin-bottom:0.8rem; }
+.contact-card p, .contact-card li{ font-size:0.88rem; color:var(--ink-soft); line-height:1.7; }
+.contact-card ul{ margin:0; padding-left:1.1rem; }
+#map{ width:100%; height:340px; border-radius:8px; overflow:hidden; border:1px solid var(--border); background:var(--green-soft); }
+
+/* ---- recruit form ---- */
+.recruit-form{ background:var(--surface); border:1px solid var(--border); border-radius:8px; box-shadow:var(--shadow); padding:2rem; max-width:640px; }
+.recruit-form label{ display:block; font-size:0.86rem; font-weight:700; margin-bottom:1rem; color:var(--ink); }
+.recruit-form input, .recruit-form textarea{ display:block; width:100%; margin-top:0.4rem; padding:0.7rem 0.9rem; border:1px solid var(--border); border-radius:5px; font-family:inherit; font-size:0.9rem; background:var(--paper); }
+.recruit-form input:focus, .recruit-form textarea:focus{ outline:2px solid var(--green); outline-offset:1px; background:#fff; }
+.recruit-form button{ margin-top:0.5rem; }
+.recruit-form input[type="file"]{ padding:0.5rem; background:var(--paper); }
+.recruit-form input[type="file"]::file-selector-button{
+  font-family:inherit; font-weight:700; font-size:0.82rem; color:#fff; background:var(--green-deep);
+  border:none; border-radius:4px; padding:0.55rem 1rem; margin-right:0.8rem; cursor:pointer; transition:background .15s ease;
+}
+.recruit-form input[type="file"]::file-selector-button:hover{ background:var(--green); }
+.resume-download{ margin-top:1.6rem; padding-top:1.6rem; border-top:1px solid var(--border); font-size:0.88rem; color:var(--ink-soft); }
+.resume-download a{ font-weight:700; color:var(--green-deep); }
+
+/* ---- footer ---- */
+footer{ background:#0f1c14; color:#aab7ad; padding:2.8rem 0 1.4rem; }
+/* 홈페이지 전용 미니멀 1줄 푸터(signature_v8 참조) — 서브페이지의 5열 sitemap 푸터(.foot-grid, 위 규칙)는
+   그대로 두고, 홈에서만 더 낮고 단순한 형태로 오버라이드. */
+footer.foot-slim{ background:var(--ink); color:#8ea294; padding:1.9rem clamp(1.25rem,5vw,3.5rem); font-size:0.78rem; }
+.foot-info{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.8rem; }
+.foot-right{ display:flex; align-items:center; gap:1rem; }
+.admin-link{ color:#5c6b60; font-size:0.7rem; transition:color 0.15s; }
+.admin-link:hover{ color:#aab7ad; }
+.foot-grid{ display:grid; grid-template-columns:1.3fr repeat(4,1fr); gap:2rem; }
+@media (max-width:900px){ .foot-grid{ grid-template-columns:repeat(2,1fr); } }
+.foot-brand img{ height:32px; }
+.foot-brand p{ font-size:0.8rem; line-height:1.7; margin:1rem 0 0; color:#8a978c; }
+.foot-social{ display:flex; gap:0.7rem; margin-top:1.1rem; }
+.foot-social a{ width:32px; height:32px; border-radius:50%; background:#1a2b1f; display:flex; align-items:center; justify-content:center; }
+.foot-social a:hover{ background:var(--green); }
+.foot-social svg{ width:16px; height:16px; fill:#cfd8d1; }
+.foot-col h4{ color:#e7ece7; font-size:0.83rem; font-weight:700; margin-bottom:0.8rem; }
+.foot-col ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:0.5rem; }
+.foot-col a{ font-size:0.8rem; }
+.foot-col a:hover{ color:#fff; }
+.foot-bottom{ margin-top:2.2rem; padding-top:1.3rem; border-top:1px solid #1e2f24; font-size:0.72rem; color:#6f7c73; display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; }
+.foot-bottom .mono{ letter-spacing:0.03em; transition:color .15s ease; }
+.foot-bottom a.mono:hover{ color:#aab7ad; }
+.foot-bottom .admin-sep{ color:#3d4c3f; margin:0 0.5rem; }
+
+/* ===================================================================
+   Signature 서브페이지 시리즈 (12/13절 승인분) — 회사소개/채용 그룹의
+   좌측 레일(dossier), 뉴스룸/시공사례/오시는길의 폭 전체(wide-content).
+   고정(position:fixed) mainnav 아래로 오므로 .pageshell로 상단 여백을 확보한다.
+   =================================================================== */
+.pageshell{ padding-top:clamp(5.2rem,10vw,6.4rem); }
+
+.dossier{ display:grid; grid-template-columns:236px 1fr; gap:0; max-width:1600px; margin:0 auto; padding-left:clamp(1.25rem,5vw,4rem); padding-right:clamp(1.25rem,5vw,4rem); }
+@media (max-width:860px){ .dossier{ grid-template-columns:1fr; } }
+.rail{ padding:0 2rem clamp(2.6rem,5vw,3.6rem) 0; border-right:1px solid var(--border); min-width:0; }
+@media (max-width:860px){ .rail{ border-right:none; border-bottom:1px solid var(--border); padding:0 0 1.8rem; } }
+.rail-label{ font-family:"IBM Plex Mono",monospace; font-size:0.68rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--steel); margin-bottom:1.2rem; display:block; }
+.rail-list{ display:flex; flex-direction:column; gap:0.15rem; }
+@media (max-width:860px){ .rail-list{ flex-direction:row; flex-wrap:wrap; gap:0.5rem; } }
+.rail-list a{ display:flex; align-items:baseline; gap:0.65rem; padding:0.62rem 0.2rem; border-left:2px solid transparent; padding-left:0.9rem; font-size:0.92rem; font-weight:600; color:var(--steel); }
+.rail-list a .ri{ font-family:"IBM Plex Mono",monospace; font-size:0.72rem; color:#b7b09a; }
+.rail-list a:hover{ color:var(--ink); }
+.rail-list a.current{ border-left-color:var(--green-bright); color:var(--ink); font-weight:800; background:linear-gradient(90deg, rgba(40,165,82,0.07), transparent 70%); }
+.rail-list a.current .ri{ color:var(--green-deep); }
+@media (max-width:860px){ .rail-list a{ border-left:none; border-bottom:2px solid transparent; padding:0.5rem 0.7rem; background:var(--paper2); border-radius:20px; }
+  .rail-list a.current{ border-bottom-color:var(--green-bright); background:#fff; } }
+.content{ padding:0 0 clamp(3.5rem,7vw,5rem) 2.6rem; min-width:0; }
+@media (max-width:860px){ .content{ padding:2rem 0 3rem; } }
+.wide-content{ max-width:1600px; margin:0 auto; padding-left:clamp(1.25rem,5vw,4rem); padding-right:clamp(1.25rem,5vw,4rem); padding-bottom:clamp(3.5rem,7vw,5rem); }
+/* 본문이 짧은 페이지(회사개요/조직도/면허/복리후생/채용공고/뉴스룸)는 열자마자 푸터가 바로
+   보이지 않도록 본문 영역이 최소 한 화면 높이(100vh)는 차지하도록 함. 내용이 이미 충분히 긴
+   페이지(CEO/연혁/인재상/오시는길/시공사례)에는 적용하지 않음. */
+.short-page{ min-height:100vh; box-sizing:border-box; }
+
+.crumb{ font-family:"IBM Plex Mono",monospace; font-size:0.72rem; color:var(--steel); }
+.crumb span{ color:#c8c2ac; margin:0 0.5rem; }
+.pagehead{ margin:1.6rem 0 clamp(2.2rem,5vw,3rem); display:flex; align-items:flex-end; justify-content:space-between; gap:1.5rem; flex-wrap:wrap; }
+.pagehead h1{ font-size:clamp(1.8rem,3.6vw,2.6rem); font-weight:900; color:var(--ink); }
+.pagehead .rule{ width:2.6rem; height:3px; background:var(--green-bright); margin-top:1rem; }
+.pagehead-count{ font-family:"IBM Plex Mono",monospace; font-size:0.82rem; color:var(--steel); padding-bottom:0.4rem; }
+
+/* ---- CEO 인사말: 인물기사형 ---- */
+.ceo-layout{ display:grid; grid-template-columns:1fr 230px; gap:3rem; align-items:start; }
+@media (max-width:760px){ .ceo-layout{ grid-template-columns:1fr; } }
+.ceo-photo-col{ position:sticky; top:6.5rem; }
+@media (max-width:760px){ .ceo-photo-col{ position:static; width:220px; margin-bottom:1.6rem; } }
+.ceo-photo-col img{ border-radius:2px; width:100%; }
+.ceo-photo-col .tag{ margin-top:0.7rem; font-family:"IBM Plex Mono",monospace; font-size:0.68rem; letter-spacing:0.08em; color:var(--steel); }
+.ceo-greet{ font-size:clamp(1.3rem,2.5vw,1.65rem); font-weight:800; line-height:1.5; margin:0 0 1.3rem; color:var(--ink); }
+.ceo-body p{ color:#31392f; font-size:0.98rem; margin-bottom:1.3rem; max-width:68ch; }
+.ceo-pull{ margin:2.2rem 0 2.4rem; padding:1.6rem 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); max-width:68ch; }
+.ceo-pull p{ font-size:clamp(1.1rem,2.2vw,1.4rem); font-weight:800; color:var(--ink); line-height:1.6; margin:0; }
+.ceo-pull .mark{ color:var(--green-bright); font-size:1.3em; font-weight:900; }
+.ceo-sign{ margin-top:2rem; padding-top:1.4rem; border-top:1px solid var(--border); display:flex; align-items:baseline; gap:0.9rem; max-width:68ch; }
+.ceo-sign .nm{ font-size:1.15rem; font-weight:900; letter-spacing:0.02em; }
+.ceo-sign .rl{ font-size:0.82rem; color:var(--steel); }
+
+/* ---- 회사개요: 매니페스토 + 콜로폰 ---- */
+.mani-statement{ text-align:center; }
+.mani blockquote{ font-size:clamp(1.3rem,2.6vw,1.9rem); font-weight:800; line-height:1.45; letter-spacing:-0.01em; margin:0 0 0.8rem; color:var(--ink); }
+.mani blockquote span{ color:var(--green-deep); }
+.mani-lede{ color:var(--steel); font-size:0.96rem; margin:0 auto 2.4rem; }
+.s3-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; border-top:1px solid var(--border); padding-top:1.8rem; margin-bottom:2.8rem; }
+@media (max-width:700px){ .s3-row{ grid-template-columns:1fr; gap:1.2rem; } }
+.s3-item{ display:flex; flex-wrap:wrap; align-items:baseline; gap:0 0.6rem; }
+.s3-k{ font-family:"IBM Plex Mono",monospace; font-size:0.7rem; letter-spacing:0.1em; color:var(--green-deep); }
+.s3-n{ font-weight:800; font-size:1.02rem; }
+.s3-item p{ flex-basis:100%; margin:0.5rem 0 0; font-size:0.87rem; color:var(--steel); line-height:1.6; }
+.colophon{ border-top:2px solid var(--ink); padding-top:1.4rem; }
+.colophon-label{ font-family:"IBM Plex Mono",monospace; font-size:0.68rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--steel); display:block; margin-bottom:1.1rem; }
+.colophon-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.6rem 2rem; }
+@media (max-width:700px){ .colophon-grid{ grid-template-columns:repeat(2,1fr); } }
+.cf{ display:flex; flex-direction:column; gap:0.35rem; }
+.cf .dt{ font-size:0.76rem; color:var(--steel); }
+.cf .dd{ font-weight:800; font-size:0.98rem; }
+.cf .dd.mono{ font-family:"IBM Plex Mono",monospace; font-weight:600; }
+
+/* ---- 연혁: 레저형 ---- */
+.ledger{ max-width:760px; }
+.ledger-decade{ display:flex; align-items:baseline; gap:0.8rem; margin:2.6rem 0 0.4rem; }
+.ledger-decade:first-child{ margin-top:0; }
+.ledger-decade .yy{ font-family:"IBM Plex Mono",monospace; font-weight:800; font-size:0.82rem; color:#fff; background:var(--ink); padding:0.3rem 0.8rem; border-radius:2px; letter-spacing:0.06em; }
+.ledger-decade .rl2{ flex:1; height:1px; background:var(--border); }
+.ledger-row{ display:grid; grid-template-columns:5.2rem 1fr; gap:1.2rem; padding:1rem 0; border-top:1px solid var(--border); }
+.ledger-row:first-of-type{ border-top:none; }
+.ledger-row .yr{ font-family:"IBM Plex Mono",monospace; font-weight:800; font-size:1.7rem; color:var(--green-deep); line-height:1; letter-spacing:-0.02em; }
+.ledger-row .ev p{ margin:0 0 0.3rem; color:#2c332a; font-size:0.94rem; line-height:1.6; }
+.ledger-row .ev p:last-child{ margin-bottom:0; }
+
+/* ---- 조직도: 구조 리스트 ---- */
+.org-top{ display:flex; align-items:center; gap:0.9rem; margin-bottom:0.4rem; }
+.org-top .badge{ font-family:"IBM Plex Mono",monospace; font-size:0.72rem; background:var(--ink); color:#fff; padding:0.35rem 0.8rem; border-radius:2px; letter-spacing:0.05em; }
+.org-top .lbl{ font-weight:800; font-size:1.05rem; }
+.org-list{ margin-top:1.6rem; border-top:2px solid var(--ink); }
+.org-row{ display:grid; grid-template-columns:9rem 1fr; gap:1.4rem; padding:1.4rem 0; border-bottom:1px solid var(--border); align-items:start; }
+@media (max-width:640px){ .org-row{ grid-template-columns:1fr; gap:0.6rem; } }
+.org-row .dept{ display:flex; align-items:center; gap:0.55rem; font-weight:800; font-size:1rem; color:var(--green-deep); }
+.org-row .dept svg{ width:19px; height:19px; flex-shrink:0; }
+.org-row .tasks{ display:flex; flex-wrap:wrap; gap:0.5rem; }
+.org-row .tasks span{ font-size:0.83rem; color:var(--steel); background:var(--paper2); padding:0.3rem 0.7rem; border-radius:20px; }
+
+/* ---- 면허 및 등록현황: 레코드 리스트 ---- */
+.record-note{ font-size:0.86rem; color:var(--steel); margin-bottom:2rem; max-width:56ch; }
+.record-list{ border-top:2px solid var(--ink); }
+.record-row{ display:grid; grid-template-columns:2.6rem 1fr auto; gap:1.2rem; align-items:center; padding:1.3rem 0; border-bottom:1px solid var(--border); }
+@media (max-width:620px){ .record-row{ grid-template-columns:2.2rem 1fr; } }
+.record-row svg{ width:22px; height:22px; color:var(--green-deep); }
+.record-row h3{ font-size:1rem; font-weight:800; margin-bottom:0.3rem; }
+.record-row .rmeta{ font-size:0.82rem; color:var(--steel); }
+.record-row .ryear{ font-family:"IBM Plex Mono",monospace; font-weight:700; color:var(--ink); font-size:0.92rem; white-space:nowrap; }
+@media (max-width:620px){ .record-row .ryear{ grid-column:2; justify-self:start; margin-top:0.3rem; } }
+
+/* ---- 인재상: 인덱스 리스트 + 채용문의 폼 ---- */
+.lede{ max-width:56ch; color:#31392f; font-size:1.02rem; margin-bottom:2.6rem; }
+.trait-list{ display:flex; flex-direction:column; }
+.trait-row{ display:grid; grid-template-columns:3.6rem 3.2rem 1fr; gap:1.5rem; align-items:start; padding:2rem 0; border-top:1px solid var(--border); min-width:0; }
+.trait-row > div{ min-width:0; }
+.trait-row:first-child{ border-top:2px solid var(--ink); }
+.trait-row .idx{ font-family:"IBM Plex Mono",monospace; font-size:1.5rem; font-weight:800; color:#d8d2bd; line-height:1; padding-top:0.15rem; }
+.trait-row .ic{ width:3.2rem; height:3.2rem; border-radius:50%; background:var(--cream); display:flex; align-items:center; justify-content:center; color:var(--green-deep); flex-shrink:0; }
+.trait-row .ic svg{ width:18px; height:18px; }
+.trait-row h3{ font-size:1.15rem; font-weight:800; margin-bottom:0.4rem; }
+.trait-row p{ color:#31392f; font-size:0.92rem; max-width:52ch; }
+
+.recruit-wrap{ margin-top:3.2rem; padding-top:2.4rem; border-top:2px solid var(--ink); }
+.recruit-wrap h2{ font-size:1.15rem; font-weight:800; margin-bottom:1.4rem; }
+.recruit-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.1rem 1.5rem; }
+.recruit-grid label{ display:flex; flex-direction:column; gap:0.45rem; font-size:0.82rem; font-weight:700; color:var(--steel); min-width:0; }
+.recruit-grid label.full{ grid-column:1/-1; }
+.recruit-grid .full{ grid-column:1/-1; }
+.recruit-actions{ display:flex; align-items:center; gap:1.4rem; margin-top:0.4rem; flex-wrap:wrap; }
+.recruit-actions .btn-primary{ background:var(--ink); color:#fff; }
+.recruit-actions .btn-primary:hover{ background:var(--green-deep); }
+.recruit-grid input, .recruit-grid textarea{ width:100%; box-sizing:border-box; min-width:0; font-family:"Gothic A1",sans-serif; font-size:0.92rem; padding:0.7rem 0.85rem; border:1px solid var(--border); border-radius:2px; background:#fff; color:var(--ink); }
+.recruit-grid input:focus, .recruit-grid textarea:focus{ outline:2px solid var(--green-bright); outline-offset:1px; }
+.recruit-grid textarea{ resize:vertical; font-family:inherit; }
+.recruit-grid input[type="file"]{ border:none; padding:0.2rem 0; background:none; font-size:0.86rem; color:var(--steel); }
+.recruit-grid input[type="file"]::file-selector-button{ background:var(--green-deep); color:#fff; border:none; padding:0.6rem 1.1rem; border-radius:2px; font-weight:700; font-size:0.82rem; margin-right:0.9rem; cursor:pointer; font-family:"Gothic A1",sans-serif; }
+.recruit-grid input[type="file"]::file-selector-button:hover{ background:var(--green-bright); }
+.resume-link{ font-size:0.84rem; color:var(--green-deep); border-bottom:1px solid var(--green-bright); padding-bottom:0.1rem; font-weight:600; }
+
+/* ---- recruit form: send status message ---- */
+.form-msg{ grid-column:1/-1; display:none; align-items:flex-start; gap:0.6rem; margin-top:0.2rem; padding:0.9rem 1.1rem; border-radius:5px; font-size:0.86rem; line-height:1.6; }
+.form-msg.show{ display:flex; }
+.form-msg .fm-ic{ flex-shrink:0; width:20px; height:20px; margin-top:0.1rem; }
+.form-msg.is-sending{ background:var(--paper2); color:var(--ink-soft); }
+.form-msg.is-success{ background:var(--green-soft); color:var(--green-deep); border:1px solid var(--green-bright); }
+.form-msg.is-error{ background:var(--red-soft); color:var(--red); border:1px solid var(--red); }
+.form-msg b{ display:block; margin-bottom:0.15rem; }
+.recruit-grid button[disabled]{ opacity:0.6; cursor:not-allowed; }
+
+/* ---- 복리후생: 2열 ---- */
+.welfare-cols{ display:grid; grid-template-columns:1fr 1fr; gap:0 3rem; }
+@media (max-width:760px){ .welfare-cols{ grid-template-columns:1fr; gap:0; } }
+.welfare-col-label{ font-family:"IBM Plex Mono",monospace; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--steel); display:block; margin-bottom:1rem; padding-bottom:0.9rem; border-bottom:2px solid var(--ink); }
+.welfare-item2{ display:flex; gap:1.1rem; padding:1.5rem 0; border-bottom:1px solid var(--border); }
+.welfare-item2 .ic{ width:2.6rem; height:2.6rem; border-radius:50%; background:var(--cream); display:flex; align-items:center; justify-content:center; color:var(--green-deep); flex-shrink:0; }
+.welfare-item2 .ic svg{ width:15px; height:15px; }
+.welfare-item2 h3{ font-size:1rem; font-weight:800; margin-bottom:0.3rem; }
+.welfare-item2 p{ color:#31392f; font-size:0.88rem; }
+
+/* ---- 오시는길: 지도 + 정보 패널 (실제 카카오맵 유지, 레이아웃만 재설계) ---- */
+.contact-layout{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:3rem; }
+@media (max-width:900px){ .contact-layout{ grid-template-columns:1fr; } }
+/* 주소는 우측 "주소·연락처" 패널에 이미 있어 지도 아래 캡션은 제거하고,
+   대신 지도가 우측 정보 패널 4개를 합친 높이만큼 꽉 차도록 늘림
+   (grid 기본 stretch로 좌측 칸이 이미 같은 높이가 되므로 #map만 100% 채움). */
+.contact-layout #map{ width:100%; height:100%; min-height:340px; border-radius:3px; border:1px solid var(--border); background:var(--paper2); }
+@media (max-width:900px){ .contact-layout #map{ height:340px; } }
+.info-panels{ display:flex; flex-direction:column; gap:1.3rem; }
+.info-panel{ border:1px solid var(--border); border-radius:3px; padding:1.5rem 1.7rem; background:#fff; }
+.info-panel h3{ display:flex; align-items:center; gap:0.55rem; font-size:0.92rem; font-weight:800; margin-bottom:0.8rem; color:var(--ink); }
+.info-panel h3 svg{ width:15px; height:15px; color:var(--green-deep); flex-shrink:0; }
+.info-panel p, .info-panel li{ color:#31392f; font-size:0.9rem; line-height:1.7; }
+.info-panel p + p{ margin-top:0.6rem; }
+.info-panel ul{ margin:0; padding:0; list-style:none; }
+.info-panel li + li{ margin-top:0.6rem; }
+
+/* ---- 채용공고: 빈 상태 (아이콘형) ---- */
+.empty-state-ic{ border-top:2px solid var(--ink); padding:3.2rem 0; text-align:center; }
+.empty-state-ic svg{ width:40px; height:40px; color:var(--steel); margin:0 auto 1.2rem; opacity:0.6; }
+.empty-state-ic h3{ font-size:1.05rem; font-weight:800; margin-bottom:0.6rem; color:var(--ink); }
+.empty-state-ic p{ color:var(--steel); font-size:0.88rem; max-width:38ch; margin:0 auto; }
+.empty-state-ic .links{ margin-top:1.4rem; display:flex; gap:0.8rem; justify-content:center; flex-wrap:wrap; }
+.empty-state-ic .links a{ font-size:0.82rem; font-weight:700; color:var(--green-deep); border-bottom:1px solid var(--green-bright); padding-bottom:0.1rem; }
+
+/* ---- 뉴스룸: 탭 + 게시글(에디토리얼 리스트) ---- */
+.news-tabs{ display:flex; gap:0.5rem; border-bottom:2px solid var(--ink); }
+.news-tabs a{ font-family:"Gothic A1",sans-serif; font-size:0.92rem; font-weight:700; color:var(--steel); padding:0.8rem 1.1rem; position:relative; top:2px; }
+.news-tabs a.active{ color:var(--ink); border-bottom:2px solid var(--green-bright); }
+.news-tabs .cnt{ font-family:"IBM Plex Mono",monospace; font-size:0.7rem; color:#b7b09a; margin-left:0.3rem; }
+.news-list{ margin-top:0.5rem; }
+.news-item{ padding:1.8rem 0; border-bottom:1px solid var(--border); }
+.news-item .nmeta{ display:flex; gap:0.9rem; align-items:center; margin-bottom:0.6rem; }
+.news-item .ntag{ font-family:"IBM Plex Mono",monospace; font-size:0.68rem; background:var(--green-deep); color:#fff; padding:0.22rem 0.55rem; border-radius:2px; letter-spacing:0.05em; }
+.news-item .ndate{ font-family:"IBM Plex Mono",monospace; font-size:0.76rem; color:var(--steel); }
+.news-item h3{ font-size:1.08rem; font-weight:800; margin-bottom:0.5rem; color:var(--ink); }
+.news-item .nauthor{ font-size:0.76rem; color:#9aa398; margin-top:0.6rem; }
+
+/* ---- 시공사례: 필터탭 + 카드 그리드 (실제 데이터, portfolio.js가 렌더링) ---- */
+.cat-tabs{ display:flex; gap:0.6rem; flex-wrap:wrap; }
+.cat-tabs button{ font-family:"IBM Plex Mono",monospace; font-size:0.78rem; font-weight:600; color:var(--steel); background:var(--paper2); border:none; padding:0.5rem 1rem; border-radius:20px; cursor:pointer; }
+.cat-tabs button.active{ background:var(--ink); color:#fff; }
+.pf-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1.7rem; margin-top:2.2rem; }
+.pf-card{ display:block; }
+.pf-card .pf-thumb{ border-radius:2px; aspect-ratio:4/3; background-size:cover; background-position:center; }
+.pf-card .pf-meta{ display:flex; justify-content:space-between; align-items:baseline; margin-top:0.8rem; }
+.pf-card .pf-cat{ font-family:"IBM Plex Mono",monospace; font-size:0.68rem; letter-spacing:0.06em; color:var(--green-deep); }
+.pf-card .pf-date{ font-family:"IBM Plex Mono",monospace; font-size:0.68rem; color:#9aa398; }
+.pf-card h3{ font-size:0.94rem; font-weight:700; margin-top:0.35rem; line-height:1.4; color:var(--ink); }
+.pf-pager{ display:flex; justify-content:center; align-items:center; gap:0.5rem; margin-top:3rem; flex-wrap:wrap; }
+.pf-pager button{ font-family:"IBM Plex Mono",monospace; font-size:0.82rem; width:2rem; height:2rem; display:flex; align-items:center; justify-content:center; border-radius:2px; color:var(--steel); background:none; border:none; cursor:pointer; }
+.pf-pager button.active{ background:var(--ink); color:#fff; cursor:default; }
+.pf-pager button:disabled{ color:#c8c2ac; cursor:not-allowed; }
+.pf-pager .pg-next, .pf-pager .pg-prev{ width:auto; padding:0 0.9rem; gap:0.3rem; }
+
+/* ---- 시공사례 상세 ---- */
+/* 원본 시공사례 사진이 대략 1200px 폭이라, 페이지 최대폭(1600px)까지 늘어나면 원본보다
+   커져서 화질이 흐려짐 — 원본 해상도에 맞춰 표시 최대폭을 줄임.
+   크럼·사진·제목·본문을 전부 이 폭(.pd-col)에 맞춰 가운데 정렬해서 서로 어긋나지 않게 함. */
+.pd-col{ max-width:1100px; margin:0 auto; }
+.pd-hero{ width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:2px; background-size:cover; background-position:center; }
+.pd-meta2{ display:flex; gap:1rem; align-items:center; margin:1.4rem 0 0.6rem; }
+.pd-meta2 .ptag{ font-family:"IBM Plex Mono",monospace; font-size:0.7rem; background:var(--green-deep); color:#fff; padding:0.25rem 0.6rem; border-radius:2px; }
+.pd-meta2 .pdate{ font-family:"IBM Plex Mono",monospace; font-size:0.8rem; color:var(--steel); }
+.pd-title2{ font-size:clamp(1.3rem,2.6vw,1.7rem); font-weight:800; margin-bottom:1.6rem; color:var(--ink); }
+/* 공사개요(표)와 상세설명(글)을 세로로 쌓지 않고 같은 행에 1:1 비율로 나란히 배치.
+   좁은 화면에서는 다시 세로로. */
+.pd-body2{ padding-top:1.4rem; border-top:1px solid var(--border); display:grid; grid-template-columns:1fr 1fr; gap:2.8rem; align-items:start; }
+@media (max-width:760px){ .pd-body2{ grid-template-columns:1fr; gap:2.2rem; } }
+.pd-body2 h3{ font-size:0.92rem; font-weight:800; margin-bottom:0.8rem; color:var(--ink); }
+.pd-body2 .fallback{ color:#9aa398; font-size:0.9rem; }
+.pd-overview{ border:1px solid var(--border); border-radius:3px; overflow:hidden; background:#fff; }
+.pd-overview .ov-row{ display:grid; grid-template-columns:7.5rem 1fr; gap:1rem; padding:0.85rem 1.2rem; font-size:0.9rem; }
+.pd-overview .ov-row+.ov-row{ border-top:1px solid var(--border); }
+.pd-overview .ov-row .k{ font-family:"IBM Plex Mono",monospace; font-size:0.74rem; color:var(--steel); font-weight:700; align-self:start; padding-top:0.1rem; }
+.pd-overview .ov-row .v{ color:#22291f; }
+.pd-overview-empty{ border:1px dashed #cbc4ab; border-radius:3px; padding:1.1rem 1.3rem; color:#7c8478; font-size:0.86rem; line-height:1.75; background:#faf8ef; }
+.pd-nav2{ display:flex; justify-content:space-between; gap:1.5rem; margin-top:2.6rem; padding-top:1.6rem; border-top:2px solid var(--ink); }
+.pd-nav2 a{ max-width:45%; }
+.pd-nav2 .dir{ display:block; font-family:"IBM Plex Mono",monospace; font-size:0.68rem; color:var(--steel); margin-bottom:0.3rem; }
+.pd-nav2 .ttl{ font-weight:700; font-size:0.92rem; color:var(--ink); }
+.pd-nav2 .empty{ color:#c8c2ac; font-size:0.8rem; }

@@ -38,25 +38,7 @@
   </url>
 
   <url>
-    <loc>https://hanjingc.co.kr/건축.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://hanjingc.co.kr/토목.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://hanjingc.co.kr/플랜트.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://hanjingc.co.kr/기타.html</loc>
+    <loc>https://hanjingc.co.kr/portfolio.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -74,13 +56,19 @@
   </url>
 
   <url>
-    <loc>https://hanjingc.co.kr/오시는길.html</loc>
+    <loc>https://hanjingc.co.kr/jobs.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://hanjingc.co.kr/공지사항.html</loc>
+    <loc>https://hanjingc.co.kr/news.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hanjingc.co.kr/오시는길.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
