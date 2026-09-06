@@ -5,9 +5,129 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>관리자 | (주)한진종합건설</title>
+    <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
+    <!--
+      관리자 화면 브랜드 리스킨 (2026-09-06)
+      ------------------------------------------------------------
+      Decap CMS는 로그인/편집 화면 자체를 공식적으로 테마 커스터마이징하는 기능이 없어서,
+      실제 로그인 화면의 렌더링 결과(class명)를 브라우저로 직접 열어 확인한 뒤 그 class에
+      맞춰 아래 CSS를 작성했습니다. Decap CMS는 Emotion(css-in-js)을 쓰는데, 클래스명이
+      "css-해시값-컴포넌트이름" 형태라서 해시 앞부분(css-xxxxx)이 아니라 컴포넌트 이름
+      부분(예: StyledAuthenticationPage)을 [class*="..."]로 골라 썼습니다 — 버전이 살짝
+      올라가도 해시만 바뀌고 컴포넌트 이름은 잘 안 바뀌는 경우가 많아 더 오래 갑니다.
+
+      * 로그인 화면: 실제 화면 보고 확인 후 작성 — 정식 적용
+      * 로그인 이후 대시보드(목록/편집 화면): 관리자 계정으로 로그인해야만 보이는 화면이라
+        이번엔 직접 확인 없이 CSS를 넣지 않았습니다 (추측으로 만들면 실제로 안 맞을 수 있어서).
+        로그인 후 화면을 보여주시면 그 다음 라운드에서 이어서 맞춰드릴게요.
+
+      * decap-cms 버전을 "^3.0.0"(자동 최신화) 대신 지금 실제로 쓰이고 있는 3.16.0으로
+        고정해서, 나중에 라이브러리가 조용히 업데이트되며 이 CSS가 깨지는 걸 방지했습니다.
+    -->
+    <style>
+      :root{
+        --green:#1b7a3e; --green-deep:#0f4a26; --green-bright:#28a552; --green-soft:#e6f2e9;
+        --ink:#0f2117; --ink-soft:#516d5c; --paper:#f7f5ee; --paper2:#efece1; --border:#e1ddcf;
+        --red:#b5222b;
+      }
+
+      html, body {
+        background: linear-gradient(160deg, var(--green-deep) 0%, #0a2e18 65%) !important;
+        min-height: 100vh;
+      }
+      #nc-root, #nc-root input, #nc-root button, #nc-root textarea, #nc-root select {
+        font-family: "Gothic A1", "Noto Sans KR", -apple-system, sans-serif !important;
+      }
+      ::selection{ background: var(--green-bright); color:#fff; }
+
+      /* --- 로그인 화면 (실제 렌더링 확인 후 작성) --- */
+      [class*="StyledAuthenticationPage"]{
+        min-height: 100vh !important;
+        position: relative;
+      }
+      [class*="StyledAuthenticationPage"]::before{
+        content:"";
+        position:fixed; inset:0; z-index:-1;
+        background:
+          radial-gradient(circle at 18% 20%, rgba(255,255,255,0.06), transparent 40%),
+          radial-gradient(circle at 85% 80%, rgba(40,165,82,0.22), transparent 45%);
+      }
+
+      /* 데카프 기본 로고를 회사 로고로 교체 (실제 표시 요소는 그대로 두고 배경이미지로 덮음) */
+      [class*="IconWrapper-DecapLogoIcon"]{
+        width: 190px !important;
+        height: 68px !important;
+        background-image: url('/assets/logo.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        margin: 0 auto 1.6rem !important;
+      }
+      [class*="IconWrapper-DecapLogoIcon"] svg{ display:none !important; }
+
+      /* 로그인 폼을 흰색 카드로 */
+      [class*="AuthForm"]::before{
+        content: "관리자 로그인";
+        display: block;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 1.1rem;
+      }
+      [class*="AuthForm"]{
+        background:#fff !important;
+        width: 360px !important;
+        max-width: 90vw !important;
+        height:auto !important;
+        margin: 0 auto !important;
+        padding: 2.2rem 2rem 1.9rem !important;
+        border-radius: 14px !important;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.35) !important;
+        box-sizing: border-box !important;
+      }
+
+      [class*="AuthInput"]{
+        width: 100% !important;
+        box-sizing: border-box !important;
+        background: var(--paper) !important;
+        border: 1px solid var(--border) !important;
+        border-radius: 8px !important;
+        padding: 0.7rem 0.85rem !important;
+        font-size: 0.9rem !important;
+        margin-bottom: 0.85rem !important;
+        color: var(--ink) !important;
+      }
+      [class*="AuthInput"]:focus{
+        outline: none !important;
+        border-color: var(--green-bright) !important;
+        box-shadow: 0 0 0 3px var(--green-soft) !important;
+      }
+
+      [class*="LoginButton"]{
+        width: 100% !important;
+        background: var(--green-deep) !important;
+        color: #fff !important;
+        border: none !important;
+        border-radius: 8px !important;
+        padding: 0.75rem 1rem !important;
+        font-weight: 700 !important;
+        font-size: 0.92rem !important;
+        letter-spacing: -0.01em;
+        cursor: pointer;
+        transition: background .15s ease;
+      }
+      [class*="LoginButton"]:hover{ background: var(--green) !important; }
+
+      [class*="ErrorMessage"]{
+        color: var(--red) !important;
+        font-size: 0.8rem !important;
+        margin: 0 0 0.4rem !important;
+      }
+    </style>
   </head>
   <body>
     <!-- Decap CMS: admin/config.yml 설정을 그대로 읽어서 로그인 화면을 만들어줍니다. -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script src="https://unpkg.com/decap-cms@3.16.0/dist/decap-cms.js"></script>
   </body>
 </html>
