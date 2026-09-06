@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>(주)한진종합건설 | 채용공고</title>
-<meta name="description" content="(주)한진종합건설의 채용공고를 확인하세요." />
-<link rel="canonical" href="https://hanjingc.co.kr/jobs.html" />
+<title>(주)한진종합건설 | 인재상</title>
+<meta name="description" content="한진종합건설이 추구하는 인재상과 채용 철학을 소개합니다." />
+<link rel="canonical" href="https://hanjingc.co.kr/talent.html" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="css/main.css" />
@@ -50,12 +50,71 @@
 })();
 </script>
 <div class="pageshell dossier">
-<div class="rail"><span class="rail-label">채용</span><div class="rail-list"><a href="talent.html" class="">인재상</a><a href="benefits.html" class="">복리후생</a><a href="jobs.html" class="current">채용공고</a></div></div>
+<div class="rail"><span class="rail-label">채용</span><div class="rail-list"><a href="talent.html" class="current">인재상</a><a href="benefits.html" class="">복리후생</a><a href="jobs.html" class="">채용공고</a></div></div>
 <div class="content short-page">
-<div class="crumb"><a href="index.html">HOME</a><span>/</span>채용<span>/</span>채용공고</div><div class="pagehead"><div><h1>채용공고</h1><div class="rule"></div></div></div>
-<div id="jobs-root"></div>
+<div class="crumb"><a href="index.html">HOME</a><span>/</span>채용<span>/</span>인재상</div><div class="pagehead"><div><h1>인재상</h1><div class="rule"></div></div></div>
+<p class="lede">한진종합건설은 아래 세 가지를 갖춘 사람과 함께 성장합니다.</p>
+<div class="trait-list"><div class="trait-row"><span class="idx">01</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/></svg></span><div><h3>도전정신</h3><p>변화를 두려워하지 않고 끊임없이 도전하는 사람</p></div></div><div class="trait-row"><span class="idx">02</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3"/><path d="M5 6h14"/><path d="M5 6 2 12a3 3 0 0 0 6 0L5 6Z"/><path d="M19 6l-3 6a3 3 0 0 0 6 0l-3-6Z"/><path d="M12 6v15"/><path d="M8 21h8"/></svg></span><div><h3>윤리의식</h3><p>투명하고 정직하며 기본을 지키는 바른 인재</p></div></div><div class="trait-row"><span class="idx">03</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5-10-5Z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v6"/></svg></span><div><h3>전문성</h3><p>자기 분야에서 최고가 되기 위해 노력하는 사람</p></div></div></div>
+<div class="recruit-wrap">
+  <h2>채용 문의</h2>
+  <form class="recruit-grid" id="recruitForm" action="https://formsubmit.co/hanjingc@hanjingc.co.kr" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="_subject" value="한진종합건설 채용문의!">
+    <input type="hidden" name="_captcha" value="false">
+    <label>이름<input type="text" name="이름" required></label>
+    <label>이메일<input type="email" name="이메일" required></label>
+    <label class="full">제목<input type="text" name="제목" required></label>
+    <label class="full">문의 내용<textarea name="문의내용" rows="5" required></textarea></label>
+    <label class="full">이력서 첨부<input type="file" name="resume"></label>
+    <div class="recruit-actions full">
+      <button class="btn-primary" type="submit" id="recruitSubmitBtn">문의 보내기</button>
+      <a class="resume-link" href="download/HANJIN_recruit.hwp" download>이력서 양식 다운로드</a>
+    </div>
+    <div class="form-msg" id="recruitMsg" role="status" aria-live="polite"></div>
+  </form>
 </div>
 </div>
+</div>
+<script>
+(function(){
+  var form = document.getElementById('recruitForm');
+  var btn = document.getElementById('recruitSubmitBtn');
+  var msg = document.getElementById('recruitMsg');
+  if(!form || !btn || !msg) return;
+
+  function setMsg(state, title, body){
+    msg.className = 'form-msg show is-' + state;
+    msg.innerHTML = '<div><b>' + title + '</b>' + (body ? body : '') + '</div>';
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var endpoint = 'https://formsubmit.co/ajax/hanjingc@hanjingc.co.kr';
+    var formData = new FormData(form);
+    btn.disabled = true;
+    var prevLabel = btn.textContent;
+    btn.textContent = '전송 중…';
+    setMsg('sending', '전송 중입니다…', '');
+
+    fetch(endpoint, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    }).then(function(res){
+      if(!res.ok){ throw new Error('bad status'); }
+      return res.json().catch(function(){ return {}; });
+    }).then(function(){
+      setMsg('success', '문의가 정상적으로 접수되었습니다.', '빠른 시일 내에 담당자가 확인 후 연락드리겠습니다.');
+      form.reset();
+      btn.textContent = prevLabel;
+      btn.disabled = false;
+    }).catch(function(){
+      setMsg('error', '전송에 실패했습니다.', '잠시 후 다시 시도해 주시거나, 전화(052-242-1293) 또는 이메일(hanjingc@hanjingc.co.kr)로 직접 문의해 주세요.');
+      btn.textContent = prevLabel;
+      btn.disabled = false;
+    });
+  });
+})();
+</script>
 
 <footer class="foot-slim">
   <div class="foot-info">
@@ -63,6 +122,6 @@
     <div class="foot-right">© 2026 HANJIN CONSTRUCTION <a href="admin/" class="admin-link mono">관리자</a><a href="https://hanjin.tailb662fe.ts.net/" class="admin-link mono" target="_blank" rel="noopener">통합관리</a></div>
   </div>
 </footer>
-<script src="js/jobs.js"></script>
+
 </body>
 </html>

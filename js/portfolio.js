@@ -2,7 +2,7 @@
 (function () {
   const grid = document.getElementById("pf-grid");
   if (!grid) return;
-  const PAGE_SIZE = 12;
+  const PAGE_SIZE = 15;
   const params = new URLSearchParams(location.search);
   let activeCat = params.get("cat") || "전체";
   let page = 1;

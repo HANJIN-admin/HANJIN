@@ -15,7 +15,7 @@
           ${ICON_INBOX}
           <h3>현재 진행중인 채용공고가 없습니다</h3>
           <p>새로운 채용 소식은 등록되는 즉시 이 페이지와 공지사항에 함께 안내드립니다.</p>
-          <div class="links"><a href="news.html">공지사항 바로가기</a><a href="인재상.html">인재상 보기</a><a href="복리후생.html">복리후생 보기</a></div>
+          <div class="links"><a href="news.html">공지사항 바로가기</a><a href="talent.html">인재상 보기</a><a href="benefits.html">복리후생 보기</a></div>
         </div>`;
         return;
       }

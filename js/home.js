@@ -38,7 +38,7 @@
       if (!el) return;
       const items = (data.items || []).filter((j) => j.status !== "마감").slice(0, 3);
       if (!items.length) {
-        el.innerHTML = '<div class="empty-row">현재 등록된 채용공고가 없습니다.<br>채용 문의는 <a href="인재상.html" style="color:var(--green-deep);font-weight:700;">인재상 페이지</a>에서 남겨주세요.</div>';
+        el.innerHTML = '<div class="empty-row">현재 등록된 채용공고가 없습니다.<br>채용 문의는 <a href="talent.html" style="color:var(--green-deep);font-weight:700;">인재상 페이지</a>에서 남겨주세요.</div>';
         return;
       }
       el.innerHTML = items
