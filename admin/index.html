@@ -84,6 +84,7 @@
         flex-direction: column !important;
         align-items: center !important;
         justify-content: center !important;
+        gap: 0 !important;
       }
       [class*="StyledAuthenticationPage"]::after{
         content: "(주)한진종합건설 · 관리자 전용";
@@ -92,18 +93,27 @@
         color: rgba(255,255,255,.55);
       }
 
-      /* 데카프 기본 로고 자리를 회사 로고로 교체 */
-      /* 로고(실제 카드 안쪽 첫 요소)와 그 아래 인사말을 같은 자리에서 세로로 쌓음:
-         ::before = 로고 이미지, ::after = 인사말 텍스트. 이렇게 하면 실제 DOM 순서와
-         무관하게 항상 "로고 → 인사말" 순서로 보임 */
+      /* 로고(IconWrapper-DecapLogoIcon)와 폼(AuthForm)은 콘솔로 실측한 결과
+         부모-자식이 아니라 형제(sibling) 요소였음 — 그래서 로고에 의사요소를
+         붙이는 이전 방식은 "카드 안에 넣기"가 원천적으로 불가능했음.
+         대신 두 요소를 각각 흰 배경 박스로 만들고 사이 여백을 0으로 붙여서
+         위(로고)/아래(폼) 이음매 없는 하나의 카드처럼 보이게 처리.
+         그림자로 인한 이음매 라인은 로고 박스에 z-index를 높여 덮어서 제거 */
       [class*="IconWrapper-DecapLogoIcon"]{
-        width: 100% !important;
-        height: auto !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
+        justify-content: flex-end !important;
+        width: 392px !important;
+        max-width: 90vw !important;
+        box-sizing: border-box !important;
+        margin: 0 auto !important;
+        background: var(--white) !important;
         background-image: none !important;
-        margin: 0 0 1.6rem !important;
+        border-radius: var(--r-xl) var(--r-xl) 0 0 !important;
+        padding: 2.7rem 2.4rem 1.6rem !important;
+        position: relative !important;
+        z-index: 2;
       }
       [class*="IconWrapper-DecapLogoIcon"] svg{ display:none !important; }
       [class*="IconWrapper-DecapLogoIcon"]::before{
@@ -115,7 +125,6 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
-        filter: drop-shadow(0 6px 16px rgba(0,0,0,.35));
       }
       [class*="IconWrapper-DecapLogoIcon"]::after{
         content: "환영합니다, 관리자님";
@@ -127,16 +136,17 @@
         color: var(--steel);
       }
 
-      /* 로그인 카드 — 장식 없이 여백과 그림자만으로 */
+      /* 로그인 카드 아래쪽 절반 — 장식 없이 여백과 그림자만으로 */
       [class*="AuthForm"]{
         position: relative;
+        z-index: 1;
         background: var(--white) !important;
         width: 392px !important;
         max-width: 90vw !important;
         height:auto !important;
         margin: 0 auto !important;
-        padding: 2.7rem 2.4rem 2.3rem !important;
-        border-radius: var(--r-xl) !important;
+        padding: 0 2.4rem 2.3rem !important;
+        border-radius: 0 0 var(--r-xl) var(--r-xl) !important;
         box-shadow: var(--shadow-3) !important;
         box-sizing: border-box !important;
         overflow: visible;
@@ -500,12 +510,26 @@
         color: var(--red) !important;
       }
 
-      /* 리스트 위젯 (통계 항목 등 반복 필드) */
+      /* 리스트 위젯 (73개 시공사례 항목처럼 반복되는 필드) — 실제로 화면에
+         보이는 회색 박스는 ListItem 자체가 아니라 그 안의 StyledListItemTopBar
+         였음 (콘솔로 클래스 실측 확인). ListItem은 그냥 여백만 담당하게 정리 */
       [class*="ListItem"][class*="listControlItem"]{
+        background: transparent !important;
+        border: none !important;
+        margin-bottom: .5rem !important;
+      }
+      [class*="StyledListItemTopBar"]{
         background: var(--paper) !important;
         border: 1px solid var(--line) !important;
         border-radius: var(--r-md) !important;
+        transition: border-color .15s ease, background-color .15s ease;
       }
+      [class*="StyledListItemTopBar"]:hover{
+        border-color: var(--green-500) !important;
+        background: #fff !important;
+      }
+      [class*="TopBarButton"]{ color: var(--steel-soft) !important; transition: color .15s ease; }
+      [class*="TopBarButton"]:hover{ color: var(--green-700) !important; }
       [class*="AddButton"]{
         background: transparent !important;
         color: var(--green-700) !important;
