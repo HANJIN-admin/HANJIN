@@ -8,101 +8,150 @@
     <link rel="icon" href="../favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
     <!--
-      관리자 화면 브랜드 리스킨 (2026-09-06)
+      관리자 화면 브랜드 리스킨 — v3 "에디토리얼 캔버스" (2026-09-08)
       ------------------------------------------------------------
-      Decap CMS는 로그인/편집 화면 자체를 공식적으로 테마 커스터마이징하는 기능이 없어서,
-      실제 로그인 화면의 렌더링 결과(class명)를 브라우저로 직접 열어 확인한 뒤 그 class에
-      맞춰 아래 CSS를 작성했습니다. Decap CMS는 Emotion(css-in-js)을 쓰는데, 클래스명이
-      "css-해시값-컴포넌트이름" 형태라서 해시 앞부분(css-xxxxx)이 아니라 컴포넌트 이름
-      부분(예: StyledAuthenticationPage)을 [class*="..."]로 골라 썼습니다 — 버전이 살짝
-      올라가도 해시만 바뀌고 컴포넌트 이름은 잘 안 바뀌는 경우가 많아 더 오래 갑니다.
+      1차(09-06/07)는 데카프 기본 UI에 브랜드 색만 입힌 수준, 2차(09-07)는 카드+그림자를
+      더했지만 여전히 "촌스럽다"는 피드백. 실제 대시보드/CMS(Linear, Stripe, Notion·Sanity
+      Studio) 디자인 원칙을 리서치해서 3가지 방향(A 미니멀/B 카드형/C 에디토리얼)을 시안으로
+      제안했고, 사용자가 C "에디토리얼 캔버스"를 확정했습니다.
 
-      * 로그인 화면: 실제 화면 보고 확인 후 작성 — 정식 적용
-      * 로그인 이후 대시보드(목록/편집 화면): 관리자 계정으로 로그인해야만 보이는 화면이라
-        이번엔 직접 확인 없이 CSS를 넣지 않았습니다 (추측으로 만들면 실제로 안 맞을 수 있어서).
-        로그인 후 화면을 보여주시면 그 다음 라운드에서 이어서 맞춰드릴게요.
+      C의 핵심 문법:
+      - 박스·카드·그림자를 최소화하고, 여백과 얇은 구분선(hairline)만으로 영역을 나눔
+      - 라벨은 작고 흐린 모노스페이스로 — 실제 내용과 라벨이 헷갈리지 않게
+      - 필드는 평소엔 옅게, 포커스될 때만 또렷해지는 "조용한 입력창"
+      - 목록도 카드 없이 줄글 + 우측 정렬 날짜(모노)로 — 73건이어도 안 산만함
+      - 브랜드 그린은 로그인 버튼/포커스링/활성 표시 등 정말 필요한 곳에만
 
-      * decap-cms 버전을 "^3.0.0"(자동 최신화) 대신 지금 실제로 쓰이고 있는 3.16.0으로
-        고정해서, 나중에 라이브러리가 조용히 업데이트되며 이 CSS가 깨지는 걸 방지했습니다.
+      Decap CMS는 공식 테마 API가 없어 실제 화면 콘솔에서 뽑은 class명 기준
+      [class*="..."] 선택자를 씁니다. 색상은 03_디자인컨셉.md 확정 HEX 그대로.
+      decap-cms는 3.16.0 고정 — 자동 업데이트로 CSS 깨지는 것 방지.
     -->
     <style>
       :root{
-        --green:#1b7a3e; --green-deep:#0f4a26; --green-bright:#28a552; --green-soft:#e6f2e9;
-        --ink:#0f2117; --ink-soft:#516d5c; --paper:#f7f5ee; --paper2:#efece1; --border:#e1ddcf;
-        --red:#b5222b;
+        /* 브랜드 팔레트 — 03_디자인컨셉.md 확정값 */
+        --green:      #1B7A3E;
+        --green-700:  #14602F;
+        --green-900:  #0B3D1E;
+        --green-500:  #2E9450;
+        --green-100:  #E7F2EA;
+        --red:        #B5222B;
+        --ink:        #12233A;
+        --steel:      #57685C;
+        --steel-soft: #8B978E;
+        --paper:      #F5F7F3;
+        --line:       #E3E7DF;
+        --white:      #FFFFFF;
+
+        --font-display: "Gothic A1", "Noto Sans KR", -apple-system, sans-serif;
+        --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+
+        --r-sm:6px; --r-md:10px; --r-lg:14px; --r-xl:20px;
+        --shadow-1: 0 1px 2px rgba(18,35,58,.05);
+        --shadow-2: 0 8px 22px rgba(18,35,58,.07);
+        --shadow-3: 0 24px 60px rgba(11,61,30,.38);
       }
 
       html, body {
-        background: linear-gradient(160deg, var(--green-deep) 0%, #0a2e18 65%) !important;
+        background:
+          radial-gradient(ellipse 900px 600px at 20% 15%, rgba(255,255,255,0.05), transparent 55%),
+          radial-gradient(ellipse 900px 700px at 88% 92%, rgba(46,148,80,0.24), transparent 55%),
+          linear-gradient(165deg, var(--green-700) 0%, var(--green-900) 70%) !important;
         min-height: 100vh;
       }
       #nc-root, #nc-root input, #nc-root button, #nc-root textarea, #nc-root select {
-        font-family: "Gothic A1", "Noto Sans KR", -apple-system, sans-serif !important;
+        font-family: var(--font-display) !important;
       }
-      ::selection{ background: var(--green-bright); color:#fff; }
+      #nc-root{ -webkit-font-smoothing: antialiased; }
+      ::selection{ background: var(--green-500); color:#fff; }
+      #nc-root ::-webkit-scrollbar{ width:9px; height:9px; }
+      #nc-root ::-webkit-scrollbar-thumb{ background: var(--line); border-radius: 8px; }
+      #nc-root ::-webkit-scrollbar-track{ background: transparent; }
 
-      /* --- 로그인 화면 (실제 렌더링 확인 후 작성) --- */
+      /* ==========================================================
+         로그인 화면 — 조용한 인사말 카드
+      ========================================================== */
       [class*="StyledAuthenticationPage"]{
         min-height: 100vh !important;
         position: relative;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
       }
-      [class*="StyledAuthenticationPage"]::before{
-        content:"";
-        position:fixed; inset:0; z-index:-1;
-        background:
-          radial-gradient(circle at 18% 20%, rgba(255,255,255,0.06), transparent 40%),
-          radial-gradient(circle at 85% 80%, rgba(40,165,82,0.22), transparent 45%);
+      [class*="StyledAuthenticationPage"]::after{
+        content: "(주)한진종합건설 · 관리자 전용";
+        position:fixed; left:0; right:0; bottom: 22px; text-align:center;
+        font-family: var(--font-mono); font-size:.72rem; letter-spacing:.04em;
+        color: rgba(255,255,255,.55);
       }
 
-      /* 데카프 기본 로고를 회사 로고로 교체 (실제 표시 요소는 그대로 두고 배경이미지로 덮음) */
+      /* 데카프 기본 로고 자리를 회사 로고로 교체 */
       [class*="IconWrapper-DecapLogoIcon"]{
-        width: 190px !important;
-        height: 68px !important;
+        width: 172px !important;
+        height: 60px !important;
         background-image: url('/assets/logo.png');
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
-        margin: 0 auto 1.6rem !important;
+        margin: 0 auto 2.1rem !important;
+        filter: drop-shadow(0 6px 16px rgba(0,0,0,.35));
       }
       [class*="IconWrapper-DecapLogoIcon"] svg{ display:none !important; }
 
-      /* 로그인 폼을 흰색 카드로 */
-      [class*="AuthForm"]::before{
-        content: "관리자 로그인";
-        display: block;
-        font-size: 1.05rem;
-        font-weight: 700;
-        color: var(--ink);
-        margin-bottom: 1.1rem;
-      }
+      /* 로그인 카드 — 장식 없이 여백과 그림자만으로 */
       [class*="AuthForm"]{
-        background:#fff !important;
-        width: 360px !important;
+        position: relative;
+        background: var(--white) !important;
+        width: 392px !important;
         max-width: 90vw !important;
         height:auto !important;
         margin: 0 auto !important;
-        padding: 2.2rem 2rem 1.9rem !important;
-        border-radius: 14px !important;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.35) !important;
+        padding: 2.7rem 2.4rem 2.3rem !important;
+        border-radius: var(--r-xl) !important;
+        box-shadow: var(--shadow-3) !important;
         box-sizing: border-box !important;
+        overflow: hidden;
+      }
+      [class*="AuthForm"]::before{
+        content: "환영합니다, 관리자님";
+        display: block;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        color: var(--steel);
+        margin-bottom: 1.4rem;
       }
 
       [class*="AuthInput"]{
+        display:block !important;
         width: 100% !important;
         box-sizing: border-box !important;
         background: var(--paper) !important;
-        border: 1px solid var(--border) !important;
-        border-radius: 8px !important;
-        padding: 0.7rem 0.85rem !important;
-        font-size: 0.9rem !important;
-        margin-bottom: 0.85rem !important;
+        border: 1.5px solid transparent !important;
+        border-radius: var(--r-lg) !important;
+        padding: 0.85rem 0.9rem 0.85rem 2.6rem !important;
+        font-size: 0.92rem !important;
+        margin: 0 0 .7rem !important;
         color: var(--ink) !important;
+        background-repeat: no-repeat !important;
+        background-position: .9rem center !important;
+        background-size: 16px !important;
+        transition: border-color .15s ease, box-shadow .15s ease, background-color .15s ease;
       }
+      [class*="AuthInput"][type="email"]{
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2357685C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='14' rx='2'/%3E%3Cpath d='m3 7 9 6 9-6'/%3E%3C/svg%3E") !important;
+      }
+      [class*="AuthInput"][type="password"]{
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2357685C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='11' width='16' height='9' rx='2'/%3E%3Cpath d='M7.5 11V7.5a4.5 4.5 0 0 1 9 0V11'/%3E%3C/svg%3E") !important;
+      }
+      [class*="AuthInput"]:hover{ border-color: var(--line) !important; }
       [class*="AuthInput"]:focus{
         outline: none !important;
-        border-color: var(--green-bright) !important;
-        box-shadow: 0 0 0 3px var(--green-soft) !important;
+        background-color: #fff !important;
+        border-color: var(--green-500) !important;
+        box-shadow: 0 0 0 4px var(--green-100) !important;
       }
+      [class*="AuthInput"]::placeholder{ color: #9aa79f; }
 
       [class*="LoginButton"]{
         display: flex !important;
@@ -110,34 +159,332 @@
         justify-content: center !important;
         width: 100% !important;
         height: auto !important;
-        min-height: 44px !important;
-        background: var(--green-deep) !important;
+        min-height: 46px !important;
+        margin-top: .4rem !important;
+        background: var(--green) !important;
         color: #fff !important;
         border: none !important;
-        border-radius: 8px !important;
-        padding: 0.75rem 1rem !important;
+        border-radius: var(--r-lg) !important;
+        padding: 0.8rem 1rem !important;
         font-weight: 700 !important;
-        font-size: 0.92rem !important;
+        font-size: 0.94rem !important;
         line-height: 1.2 !important;
         letter-spacing: -0.01em;
         cursor: pointer;
         box-sizing: border-box !important;
-        transition: background .15s ease;
+        transition: background .15s ease, transform .1s ease;
         text-decoration: none !important;
       }
       [class*="LoginButton"]:hover,
       [class*="LoginButton"]:focus,
       [class*="LoginButton"]:active,
-      [class*="LoginButton"]:visited{
-        text-decoration: none !important;
-      }
-      [class*="LoginButton"]:hover{ background: var(--green) !important; }
+      [class*="LoginButton"]:visited{ text-decoration: none !important; }
+      [class*="LoginButton"]:hover{ background: var(--green-700) !important; }
+      [class*="LoginButton"]:active{ transform: translateY(1px); }
 
       [class*="ErrorMessage"]{
         color: var(--red) !important;
         font-size: 0.8rem !important;
-        margin: 0 0 0.4rem !important;
+        margin: 0 0 0.6rem !important;
+        padding: .5rem .7rem;
+        background: #fbeceb;
+        border-radius: var(--r-sm);
       }
+
+      /* ==========================================================
+         대시보드 공통 — 앱 셸 (박스 최소, 여백 중심)
+      ========================================================== */
+      #nc-root [class*="AppMainContainer"]{
+        background: var(--paper) !important;
+      }
+
+      /* 상단 헤더 */
+      [class*="AppHeaderContent"]{
+        background: var(--white) !important;
+        border-bottom: 1px solid var(--line) !important;
+        box-shadow: none !important;
+      }
+      [class*="AppHeaderNavList"]{ gap: .3rem; }
+      [class*="AppHeaderButton"]{
+        position: relative;
+        color: var(--steel) !important;
+        font-weight: 600 !important;
+        background: transparent !important;
+        border-radius: 0 !important;
+        transition: color .15s ease;
+      }
+      [class*="AppHeaderButton"]:hover{ color: var(--ink) !important; }
+      [class*="AppHeaderButton"][class*="buttonActive"]{
+        color: var(--ink) !important;
+        font-weight: 800 !important;
+      }
+      [class*="AppHeaderButton"][class*="buttonActive"]::after{
+        content:"";
+        position:absolute; left:10px; right:10px; bottom:-1px; height:2px;
+        background: var(--green);
+      }
+      [class*="AppHeaderActions"] [class*="IconWrapper"]{ color: var(--steel) !important; }
+      [class*="AvatarDropdownButton"]{
+        background: var(--green-700) !important;
+        border-radius: 50% !important;
+      }
+      [class*="IconWrapper-AvatarPlaceholderIcon"]{ color: #fff !important; }
+
+      /* 왼쪽 사이드바 — 박스 없이 여백으로만 구분 */
+      [class*="SidebarContainer"]{
+        background: transparent !important;
+        border: none !important;
+        border-right: 1px solid var(--line) !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        padding-top: .2rem !important;
+      }
+      [class*="SidebarHeading"]{
+        color: var(--ink) !important;
+        font-weight: 700 !important;
+        font-size: .8rem !important;
+      }
+      [class*="SidebarHeading"]::before{
+        content: "MENU";
+        display:block;
+        font-family: var(--font-mono);
+        font-size: .6rem;
+        font-weight: 600;
+        letter-spacing: .12em;
+        color: var(--steel-soft);
+        margin-bottom: .35rem;
+      }
+      [class*="SidebarNavList"]{ gap: .1rem; }
+      [class*="SidebarNavLink"]{
+        position: relative;
+        color: var(--steel) !important;
+        background: transparent !important;
+        border-radius: var(--r-sm) !important;
+        font-weight: 500 !important;
+        padding-left: 1rem !important;
+        transition: color .15s ease;
+      }
+      [class*="SidebarNavLink"]:hover{ color: var(--ink) !important; }
+      [class*="SidebarNavLink"][class*="sidebarNavLinkActive"]{
+        color: var(--ink) !important;
+        font-weight: 800 !important;
+      }
+      [class*="SidebarNavLink"][class*="sidebarNavLinkActive"]::before{
+        content:"";
+        position:absolute; left: -1px; top: 3px; bottom: 3px; width: 2px;
+        background: var(--green);
+      }
+
+      /* 오른쪽 상단 — 카드 대신 eyebrow + 큰 제목 + 밑줄 구분선 */
+      [class*="CollectionTopContainer"]{
+        background: transparent !important;
+        border: none !important;
+        border-bottom: 1px solid var(--line) !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+      }
+      [class*="CollectionTopHeading"]{
+        color: var(--ink) !important;
+        font-weight: 800 !important;
+        font-size: 1.2rem !important;
+        letter-spacing: -0.01em;
+      }
+      [class*="CollectionTopRow"]::before{
+        content: "CONTENTS";
+        display:block;
+        font-family: var(--font-mono);
+        font-size: .62rem;
+        font-weight: 600;
+        letter-spacing: .12em;
+        color: var(--steel-soft);
+        margin-bottom: .3rem;
+      }
+
+      [class*="SearchContainer"] [class*="InputContainer"],
+      [class*="SearchInput"]{
+        background: var(--paper) !important;
+        border: 1.5px solid transparent !important;
+        border-radius: var(--r-md) !important;
+        color: var(--ink) !important;
+      }
+      [class*="SearchInput"]:focus{
+        outline: none !important;
+        background: #fff !important;
+        border-color: var(--green-500) !important;
+        box-shadow: 0 0 0 4px var(--green-100) !important;
+      }
+
+      [class*="StyledDropdownButton"],
+      [class*="ViewControlsButton"]{
+        background: transparent !important;
+        border: 1px solid var(--line) !important;
+        border-radius: var(--r-md) !important;
+        color: var(--steel) !important;
+        font-weight: 600 !important;
+        transition: border-color .15s ease, color .15s ease;
+      }
+      [class*="StyledDropdownButton"]:hover,
+      [class*="ViewControlsButton"]:hover{
+        border-color: var(--green-500) !important;
+        color: var(--green-700) !important;
+      }
+      [class*="ViewControlsButton"][class*="buttonActive"]{
+        background: var(--green-700) !important;
+        border-color: var(--green-700) !important;
+        color: #fff !important;
+      }
+
+      /* 목록 — 카드 없이 줄글 + 얇은 구분선 (73건이어도 안 산만하게) */
+      [class*="ListCardLink"]{
+        background: transparent !important;
+        border: none !important;
+        border-bottom: 1px solid var(--line) !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        padding-top: .9rem !important;
+        padding-bottom: .9rem !important;
+        transition: background .15s ease;
+      }
+      [class*="ListCardLink"]:hover{
+        background: var(--paper) !important;
+      }
+      [class*="ListCardTitle"]{
+        color: var(--ink) !important;
+        font-weight: 600 !important;
+      }
+      [class*="CardsGrid"]{ gap: 0 !important; }
+
+      /* ==========================================================
+         엔트리 편집기 (글쓰기 화면) — 문서를 쓰는 듯한 느낌
+      ========================================================== */
+      [class*="ToolbarContainer"]{
+        background: var(--white) !important;
+        border-bottom: 1px solid var(--line) !important;
+        box-shadow: none !important;
+      }
+      [class*="BackArrow"],
+      [class*="BackCollection"]{ color: var(--steel) !important; transition: color .15s ease; }
+      [class*="BackCollection"]:hover{ color: var(--green-700) !important; }
+      [class*="BackStatus"]{
+        color: var(--green-700) !important;
+        font-weight: 600 !important;
+        font-family: var(--font-mono);
+        font-size: .76rem !important;
+      }
+      [class*="PreviewButtonContainer"],
+      [class*="RefreshPreviewButton"]{ color: var(--steel) !important; transition: color .15s ease; }
+      [class*="PreviewButtonContainer"]:hover,
+      [class*="RefreshPreviewButton"]:hover{ color: var(--green-700) !important; }
+
+      [class*="PublishedButton"]{
+        background: var(--green-100) !important;
+        color: var(--green-700) !important;
+        border: none !important;
+        border-radius: 20px !important;
+        font-weight: 700 !important;
+        padding-left: 1.1em !important;
+        padding-right: 1.1em !important;
+      }
+      [class*="PublishedButton"]:hover{ background: var(--green-500) !important; color: #fff !important; }
+
+      /* 필드 폼 영역 — 섹션 헤더도 박스 없이 여백+구분선 */
+      [class*="ControlPaneContainer"]{ padding: 2rem 2.4rem !important; }
+      [class*="ControlTopbar"]{
+        background: transparent !important;
+        border: none !important;
+        border-bottom: 1px solid var(--line) !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        font-weight: 800 !important;
+        font-size: 1.02rem !important;
+        color: var(--ink) !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+      [class*="ExpandButton"]{ color: var(--green-700) !important; }
+
+      [class*="FieldLabel"]{
+        display: inline-block;
+        color: var(--steel-soft) !important;
+        font-weight: 600 !important;
+        font-family: var(--font-mono) !important;
+        font-size: .7rem !important;
+        letter-spacing: .07em !important;
+        text-transform: uppercase;
+        margin-bottom: .4rem !important;
+      }
+      [class*="ControlHint"]{
+        color: var(--steel-soft) !important;
+        font-size: .78rem !important;
+      }
+      [class*="NestedObjectLabel"]{
+        color: var(--ink) !important;
+        font-weight: 700 !important;
+      }
+
+      /* 필드 자체는 평소엔 조용하게, 포커스될 때만 또렷하게 */
+      [class*="TextControl"]{
+        background: var(--paper) !important;
+        border: 1.5px solid transparent !important;
+        border-radius: var(--r-md) !important;
+        color: var(--ink) !important;
+        padding: .7rem .85rem !important;
+        transition: border-color .15s ease, box-shadow .15s ease, background-color .15s ease;
+      }
+      [class*="TextControl"]:hover{ border-color: var(--line) !important; }
+      [class*="TextControl"]:focus{
+        outline: none !important;
+        background: #fff !important;
+        border-color: var(--green-500) !important;
+        box-shadow: 0 0 0 4px var(--green-100) !important;
+      }
+
+      /* 이미지 위젯 */
+      [class*="ImageWrapper"]{
+        border: 1px solid var(--line) !important;
+        border-radius: var(--r-md) !important;
+        overflow: hidden;
+      }
+      [class*="FileWidgetButton"]:not([class*="Remove"]){
+        background: var(--paper) !important;
+        border: 1.5px solid transparent !important;
+        color: var(--ink) !important;
+        border-radius: var(--r-sm) !important;
+        font-weight: 600 !important;
+      }
+      [class*="FileWidgetButton"]:not([class*="Remove"])::before{ content:"⤒ "; }
+      [class*="FileWidgetButton"]:not([class*="Remove"]):hover{
+        border-color: var(--green-500) !important;
+        color: var(--green-700) !important;
+      }
+      [class*="FileWidgetButtonRemove"]{
+        background: transparent !important;
+        color: var(--red) !important;
+      }
+
+      /* 리스트 위젯 (통계 항목 등 반복 필드) */
+      [class*="ListItem"][class*="listControlItem"]{
+        background: var(--paper) !important;
+        border: 1px solid var(--line) !important;
+        border-radius: var(--r-md) !important;
+      }
+      [class*="AddButton"]{
+        background: transparent !important;
+        color: var(--green-700) !important;
+        border: 1.5px dashed var(--green-500) !important;
+        border-radius: var(--r-md) !important;
+        font-weight: 700 !important;
+        transition: background .15s ease, color .15s ease;
+      }
+      [class*="AddButton"]:hover{ background: var(--green-100) !important; }
+
+      /* 토글(참/거짓) 위젯 */
+      [class*="ToggleBackground"]{ background: var(--line) !important; }
+      [class*="ToggleHandle"]{ background: #fff !important; box-shadow: var(--shadow-1); }
+
+      /* 오른쪽 미리보기 패널 */
+      [class*="PreviewPaneContainer"]{ background: var(--white) !important; }
+      [class*="StyledSplitPane"]{ background: var(--paper) !important; }
     </style>
   </head>
   <body>
