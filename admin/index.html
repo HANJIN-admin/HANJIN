@@ -235,12 +235,29 @@
       #nc-root [class*="AppMainContainer"]{
         background: var(--paper) !important;
       }
+      [class*="CollectionMain"]{ flex: 1 1 auto !important; min-width: 0; }
 
       /* 상단 헤더 */
       [class*="AppHeaderContent"]{
         background: var(--white) !important;
         border-bottom: 1px solid var(--line) !important;
         box-shadow: none !important;
+        display: flex !important;
+        align-items: center !important;
+        padding-left: 1.4rem !important;
+      }
+      /* 헤더에 브랜드 아이콘 — 로그인 화면 말고는 어디에도 로고가 없어서
+         관리자 화면 전체가 데카프 기본 느낌이 나던 것 보완 */
+      [class*="AppHeaderContent"]::before{
+        content: "";
+        display: block;
+        width: 24px; height: 24px;
+        margin-right: 1rem;
+        flex: none;
+        background-image: url('/assets/justlogo.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
       }
       [class*="AppHeaderNavList"]{ gap: .3rem; }
       [class*="AppHeaderButton"]{
@@ -248,10 +265,12 @@
         color: var(--steel) !important;
         font-weight: 600 !important;
         background: transparent !important;
-        border-radius: 0 !important;
-        transition: color .15s ease;
+        border-radius: var(--r-sm) !important;
+        padding: .5rem .85rem !important;
+        text-decoration: none !important;
+        transition: color .15s ease, background-color .15s ease;
       }
-      [class*="AppHeaderButton"]:hover{ color: var(--ink) !important; }
+      [class*="AppHeaderButton"]:hover{ color: var(--ink) !important; background: var(--paper) !important; }
       /* [class*="buttonActive"]는 사이드바 때와 똑같이 활성/비활성 상관없이
          항상 클래스명에 박혀있는 정적 문자열이라 판별에 못 씀 (콘솔로 확인함).
          데카프가 실제 활성 탭에만 붙이는 순수 클래스 header-link-active 사용 */
@@ -271,14 +290,19 @@
       }
       [class*="IconWrapper-AvatarPlaceholderIcon"]{ color: #fff !important; }
 
-      /* 왼쪽 사이드바 — 박스 없이 여백으로만 구분 */
+      /* 왼쪽 사이드바 — 옅은 초록빛 배경으로 본문(흰색/paper)과 구역을 나눔
+         (Notion/Linear류 관리자 UI에서 흔한 "2톤" 레이아웃) */
+      [class*="AppMainContainer"]{ display: flex !important; }
       [class*="SidebarContainer"]{
-        background: transparent !important;
+        background: #EEF2EA !important;
         border: none !important;
-        border-right: 1px solid var(--line) !important;
+        border-right: none !important;
         border-radius: 0 !important;
         box-shadow: none !important;
-        padding-top: .2rem !important;
+        width: 248px !important;
+        flex: none !important;
+        padding: 1.4rem 1.1rem !important;
+        box-sizing: border-box !important;
       }
       [class*="SidebarHeading"]{
         color: var(--ink) !important;
@@ -295,32 +319,32 @@
         color: var(--steel-soft);
         margin-bottom: .35rem;
       }
-      [class*="SidebarNavList"]{ gap: .1rem; }
+      [class*="SidebarNavList"]{ gap: .15rem; display: flex !important; flex-direction: column !important; }
       [class*="SidebarNavLink"]{
         position: relative;
         /* 데카프 기본값 z-index:-1 때문에 부모 <li>가 클릭을 가로채서
            사이드바 메뉴가 눌러도 반응 없던 버그 수정 (콘솔로 실측 확인함) */
         z-index: auto !important;
+        display: flex !important;
+        align-items: center !important;
         color: var(--steel) !important;
         background: transparent !important;
-        border-radius: var(--r-sm) !important;
+        border-radius: 999px !important;
         font-weight: 500 !important;
-        padding-left: 1rem !important;
-        transition: color .15s ease;
+        padding: .55rem .9rem !important;
+        margin: 0 -.2rem !important;
+        text-decoration: none !important;
+        transition: color .15s ease, background-color .15s ease;
       }
-      [class*="SidebarNavLink"]:hover{ color: var(--ink) !important; }
+      [class*="SidebarNavLink"]:hover{ color: var(--ink) !important; background: rgba(27,122,62,.08) !important; }
       /* [class*="sidebarNavLinkActive"]는 실제로는 모든 링크에 항상 붙어있는
          정적 클래스명이라 활성 상태 판별에 못 씀 (콘솔로 확인함). 데카프가
          실제 활성 링크에만 붙이는 순수 클래스 sidebar-active를 대신 사용 */
       [class*="SidebarNavLink"].sidebar-active{
         color: var(--ink) !important;
         font-weight: 800 !important;
-      }
-      [class*="SidebarNavLink"].sidebar-active::before{
-        content:"";
-        position:absolute; left: -1px; top: 3px; bottom: 3px; width: 2px;
-        background: var(--green);
-        z-index: 1;
+        background: #fff !important;
+        box-shadow: var(--shadow-1);
       }
 
       /* 오른쪽 상단 — 카드 대신 eyebrow + 큰 제목 + 밑줄 구분선 */
@@ -334,9 +358,11 @@
       [class*="CollectionTopHeading"]{
         color: var(--ink) !important;
         font-weight: 800 !important;
-        font-size: 1.2rem !important;
+        font-size: 1.5rem !important;
         letter-spacing: -0.01em;
       }
+      [class*="CollectionTopContainer"]{ padding: 1.6rem 2.2rem 1.2rem !important; }
+      [class*="CollectionContainer"]{ padding: 0 2.2rem 2rem !important; box-sizing: border-box; }
       [class*="CollectionTopRow"]::before{
         content: "CONTENTS";
         display:block;
@@ -382,23 +408,42 @@
         color: #fff !important;
       }
 
-      /* 목록 — 카드 없이 줄글 + 얇은 구분선 (73건이어도 안 산만하게) */
+      /* 목록 — 기본은 카드 없이 줄글 + 얇은 구분선(73건이어도 안 산만함),
+         마우스 올렸을 때만 살짝 카드처럼 떠오르게 + 아이콘 칩 추가 (Notion류
+         모던 리스트 UI 패턴) */
       [class*="ListCardLink"]{
+        display: flex !important;
+        align-items: center !important;
+        gap: .85rem !important;
         background: transparent !important;
         border: none !important;
         border-bottom: 1px solid var(--line) !important;
         border-radius: 0 !important;
         box-shadow: none !important;
-        padding-top: .9rem !important;
-        padding-bottom: .9rem !important;
-        transition: background .15s ease;
+        padding: .85rem .6rem !important;
+        margin: 0 -.6rem !important;
+        text-decoration: none !important;
+        transition: background .15s ease, box-shadow .15s ease, transform .15s ease;
+      }
+      [class*="ListCardLink"]::before{
+        content: "";
+        display: block;
+        flex: none;
+        width: 34px; height: 34px;
+        border-radius: var(--r-sm);
+        background: var(--green-100) url('/assets/justlogo.png') no-repeat center;
+        background-size: 15px;
       }
       [class*="ListCardLink"]:hover{
-        background: var(--paper) !important;
+        background: #fff !important;
+        box-shadow: var(--shadow-2);
+        border-radius: var(--r-md) !important;
+        transform: translateX(2px);
       }
       [class*="ListCardTitle"]{
         color: var(--ink) !important;
         font-weight: 600 !important;
+        font-size: .98rem !important;
       }
       [class*="CardsGrid"]{ gap: 0 !important; }
 
@@ -454,6 +499,7 @@
       [class*="FieldLabel"]{
         display: inline-block;
         color: var(--steel-soft) !important;
+        background: transparent !important;
         font-weight: 600 !important;
         font-family: var(--font-mono) !important;
         font-size: .7rem !important;
@@ -465,9 +511,13 @@
         color: var(--steel-soft) !important;
         font-size: .78rem !important;
       }
+      /* 시공사례 목록 항목 제목 줄이 진회색 박스로 남아있던 것 — 아이콘 줄
+         (StyledListItemTopBar)과는 별개 요소로 추정됨. 확실한 검증 전이라
+         우선 배경만 투명 처리해둠 (콘솔 확인 후 최종 조정 예정) */
       [class*="NestedObjectLabel"]{
         color: var(--ink) !important;
         font-weight: 700 !important;
+        background: transparent !important;
       }
 
       /* 필드 자체는 평소엔 조용하게, 포커스될 때만 또렷하게 */
