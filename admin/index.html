@@ -242,11 +242,14 @@
         transition: color .15s ease;
       }
       [class*="AppHeaderButton"]:hover{ color: var(--ink) !important; }
-      [class*="AppHeaderButton"][class*="buttonActive"]{
+      /* [class*="buttonActive"]는 사이드바 때와 똑같이 활성/비활성 상관없이
+         항상 클래스명에 박혀있는 정적 문자열이라 판별에 못 씀 (콘솔로 확인함).
+         데카프가 실제 활성 탭에만 붙이는 순수 클래스 header-link-active 사용 */
+      [class*="AppHeaderButton"].header-link-active{
         color: var(--ink) !important;
         font-weight: 800 !important;
       }
-      [class*="AppHeaderButton"][class*="buttonActive"]::after{
+      [class*="AppHeaderButton"].header-link-active::after{
         content:"";
         position:absolute; left:10px; right:10px; bottom:-1px; height:2px;
         background: var(--green);
@@ -285,6 +288,9 @@
       [class*="SidebarNavList"]{ gap: .1rem; }
       [class*="SidebarNavLink"]{
         position: relative;
+        /* 데카프 기본값 z-index:-1 때문에 부모 <li>가 클릭을 가로채서
+           사이드바 메뉴가 눌러도 반응 없던 버그 수정 (콘솔로 실측 확인함) */
+        z-index: auto !important;
         color: var(--steel) !important;
         background: transparent !important;
         border-radius: var(--r-sm) !important;
@@ -293,14 +299,18 @@
         transition: color .15s ease;
       }
       [class*="SidebarNavLink"]:hover{ color: var(--ink) !important; }
-      [class*="SidebarNavLink"][class*="sidebarNavLinkActive"]{
+      /* [class*="sidebarNavLinkActive"]는 실제로는 모든 링크에 항상 붙어있는
+         정적 클래스명이라 활성 상태 판별에 못 씀 (콘솔로 확인함). 데카프가
+         실제 활성 링크에만 붙이는 순수 클래스 sidebar-active를 대신 사용 */
+      [class*="SidebarNavLink"].sidebar-active{
         color: var(--ink) !important;
         font-weight: 800 !important;
       }
-      [class*="SidebarNavLink"][class*="sidebarNavLinkActive"]::before{
+      [class*="SidebarNavLink"].sidebar-active::before{
         content:"";
         position:absolute; left: -1px; top: 3px; bottom: 3px; width: 2px;
         background: var(--green);
+        z-index: 1;
       }
 
       /* 오른쪽 상단 — 카드 대신 eyebrow + 큰 제목 + 밑줄 구분선 */
