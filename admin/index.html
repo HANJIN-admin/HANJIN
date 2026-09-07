@@ -51,12 +51,19 @@
         --shadow-3: 0 24px 60px rgba(11,61,30,.38);
       }
 
+      /* 기본 배경은 항상 밝은 paper — 대시보드 화면에서 콘텐츠 높이가 화면보다
+         짧을 때 밑에 남는 여백이 로그인 화면의 짙은 초록으로 보이던 버그 수정 */
       html, body {
+        background: var(--paper) !important;
+        min-height: 100vh;
+      }
+      /* 짙은 초록 분위기 배경은 로그인 화면(StyledAuthenticationPage)에만 적용 */
+      body:has([class*="StyledAuthenticationPage"]),
+      [class*="StyledAuthenticationPage"] {
         background:
           radial-gradient(ellipse 900px 600px at 20% 15%, rgba(255,255,255,0.05), transparent 55%),
           radial-gradient(ellipse 900px 700px at 88% 92%, rgba(46,148,80,0.24), transparent 55%),
           linear-gradient(165deg, var(--green-700) 0%, var(--green-900) 70%) !important;
-        min-height: 100vh;
       }
       #nc-root, #nc-root input, #nc-root button, #nc-root textarea, #nc-root select {
         font-family: var(--font-display) !important;
@@ -86,17 +93,39 @@
       }
 
       /* 데카프 기본 로고 자리를 회사 로고로 교체 */
+      /* 로고(실제 카드 안쪽 첫 요소)와 그 아래 인사말을 같은 자리에서 세로로 쌓음:
+         ::before = 로고 이미지, ::after = 인사말 텍스트. 이렇게 하면 실제 DOM 순서와
+         무관하게 항상 "로고 → 인사말" 순서로 보임 */
       [class*="IconWrapper-DecapLogoIcon"]{
-        width: 172px !important;
-        height: 60px !important;
+        width: 100% !important;
+        height: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        background-image: none !important;
+        margin: 0 0 1.6rem !important;
+      }
+      [class*="IconWrapper-DecapLogoIcon"] svg{ display:none !important; }
+      [class*="IconWrapper-DecapLogoIcon"]::before{
+        content: "";
+        display: block;
+        width: 172px;
+        height: 60px;
         background-image: url('/assets/logo.png');
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
-        margin: 0 auto 2.1rem !important;
         filter: drop-shadow(0 6px 16px rgba(0,0,0,.35));
       }
-      [class*="IconWrapper-DecapLogoIcon"] svg{ display:none !important; }
+      [class*="IconWrapper-DecapLogoIcon"]::after{
+        content: "환영합니다, 관리자님";
+        display: block;
+        margin-top: 1rem;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        color: var(--steel);
+      }
 
       /* 로그인 카드 — 장식 없이 여백과 그림자만으로 */
       [class*="AuthForm"]{
@@ -110,16 +139,7 @@
         border-radius: var(--r-xl) !important;
         box-shadow: var(--shadow-3) !important;
         box-sizing: border-box !important;
-        overflow: hidden;
-      }
-      [class*="AuthForm"]::before{
-        content: "환영합니다, 관리자님";
-        display: block;
-        font-size: 1rem;
-        font-weight: 600;
-        letter-spacing: -0.01em;
-        color: var(--steel);
-        margin-bottom: 1.4rem;
+        overflow: visible;
       }
 
       [class*="AuthInput"]{
@@ -182,7 +202,15 @@
       [class*="LoginButton"]:hover{ background: var(--green-700) !important; }
       [class*="LoginButton"]:active{ transform: translateY(1px); }
 
-      [class*="ErrorMessage"]{
+      /* 에러가 없을 때도 빈 오류 메시지 칸이 렌더링돼서 분홍색 띠로 보이던 버그 수정:
+         내용이 없는 경우는 완전히 숨김 */
+      [class*="ErrorMessage"]:empty{
+        display: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: none !important;
+      }
+      [class*="ErrorMessage"]:not(:empty){
         color: var(--red) !important;
         font-size: 0.8rem !important;
         margin: 0 0 0.6rem !important;
