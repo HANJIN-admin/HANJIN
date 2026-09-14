@@ -33,6 +33,68 @@
     );
   }
 
+  // ===== 사진 라이트박스 (확대 보기 + 좌우 넘기기) =====
+  // 대표 사진 + 추가 사진을 하나의 배열로 합쳐서, 어느 썸네일을 클릭해도
+  // 그 사진부터 확대해서 보고 화살표/키보드로 다른 사진들도 넘겨볼 수 있게 함.
+  let lbImages = [];
+  let lbIndex = 0;
+  let lbEl = null;
+
+  function buildLightbox() {
+    if (lbEl) return lbEl;
+    const el = document.createElement("div");
+    el.className = "pd-lightbox";
+    el.innerHTML =
+      '<button type="button" class="lb-close" aria-label="닫기">&times;</button>' +
+      '<button type="button" class="lb-prev" aria-label="이전 사진">&#10094;</button>' +
+      '<img class="lb-img" alt="" />' +
+      '<button type="button" class="lb-next" aria-label="다음 사진">&#10095;</button>' +
+      '<div class="lb-count"></div>';
+    document.body.appendChild(el);
+
+    el.querySelector(".lb-close").addEventListener("click", closeLightbox);
+    el.querySelector(".lb-prev").addEventListener("click", (e) => { e.stopPropagation(); showLightbox(lbIndex - 1); });
+    el.querySelector(".lb-next").addEventListener("click", (e) => { e.stopPropagation(); showLightbox(lbIndex + 1); });
+    // 이미지 바깥(어두운 배경) 클릭하면 닫기
+    el.addEventListener("click", (e) => {
+      if (e.target === el) closeLightbox();
+    });
+    lbEl = el;
+    return el;
+  }
+
+  function showLightbox(idx) {
+    if (!lbImages.length) return;
+    lbIndex = (idx + lbImages.length) % lbImages.length;
+    const el = buildLightbox();
+    el.querySelector(".lb-img").src = lbImages[lbIndex];
+    el.querySelector(".lb-count").textContent = lbImages.length > 1 ? `${lbIndex + 1} / ${lbImages.length}` : "";
+    const multi = lbImages.length > 1;
+    el.querySelector(".lb-prev").style.display = multi ? "" : "none";
+    el.querySelector(".lb-next").style.display = multi ? "" : "none";
+  }
+
+  function openLightbox(images, startIndex) {
+    lbImages = images;
+    const el = buildLightbox();
+    showLightbox(startIndex || 0);
+    el.classList.add("open");
+    document.body.classList.add("pd-lb-open");
+  }
+
+  function closeLightbox() {
+    if (!lbEl) return;
+    lbEl.classList.remove("open");
+    document.body.classList.remove("pd-lb-open");
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (!lbEl || !lbEl.classList.contains("open")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") showLightbox(lbIndex - 1);
+    if (e.key === "ArrowRight") showLightbox(lbIndex + 1);
+  });
+
   fetch("content/portfolio.json")
     .then((r) => r.json())
     .then((data) => {
@@ -49,12 +111,35 @@
       document.getElementById("pd-title").textContent = item.title;
       document.getElementById("pd-cat").textContent = item.category;
       document.getElementById("pd-date").textContent = item.date;
-      document.getElementById("pd-figure").style.backgroundImage = `url(${item.image || item.thumb})`;
+
+      const heroSrc = item.image || item.thumb;
+      const galleryList = item.gallery && item.gallery.length ? item.gallery : [];
+      // 대표 사진 + 추가 사진을 합친 전체 목록 (라이트박스에서 순서대로 넘겨볼 목록)
+      const allImages = [heroSrc, ...galleryList].filter(Boolean);
+
+      const heroEl = document.getElementById("pd-figure");
+      heroEl.style.backgroundImage = `url(${heroSrc})`;
+      heroEl.setAttribute("role", "button");
+      heroEl.setAttribute("tabindex", "0");
+      heroEl.setAttribute("aria-label", "사진 확대 보기");
+      heroEl.addEventListener("click", () => openLightbox(allImages, 0));
+      heroEl.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLightbox(allImages, 0); }
+      });
 
       const galleryEl = document.getElementById("pd-thumbs");
-      if (item.gallery && item.gallery.length) {
-        galleryEl.style.display = "grid";
-        galleryEl.innerHTML = item.gallery.map((g) => `<div style="background-image:url(${g})"></div>`).join("");
+      if (galleryList.length) {
+        galleryEl.style.display = "flex";
+        galleryEl.innerHTML = galleryList
+          .map((g, i) => `<div style="background-image:url(${g})" role="button" tabindex="0" aria-label="사진 ${i + 2}번 확대 보기" data-idx="${i + 1}"></div>`)
+          .join("");
+        galleryEl.querySelectorAll("[data-idx]").forEach((thumbEl) => {
+          const openThis = () => openLightbox(allImages, Number(thumbEl.getAttribute("data-idx")));
+          thumbEl.addEventListener("click", openThis);
+          thumbEl.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openThis(); }
+          });
+        });
       } else {
         galleryEl.style.display = "none";
       }

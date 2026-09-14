@@ -260,8 +260,10 @@ section.band-surface{ background:var(--surface); border-top:1px solid var(--bord
 /* ---- detail page ---- */
 .detail-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:2.4rem; align-items:start; }
 .detail-figure{ height:340px; border-radius:8px; overflow:hidden; box-shadow:var(--shadow); background-size:cover; background-position:center; }
-.detail-thumbs{ display:grid; grid-template-columns:repeat(4,1fr); gap:0.7rem; margin-top:0.9rem; }
-.detail-thumbs div{ height:64px; border-radius:5px; background-size:cover; background-position:center; border:1px solid var(--border); }
+.detail-thumbs{ display:flex; flex-wrap:wrap; gap:0.7rem; margin-top:0.9rem; }
+.detail-thumbs div{ flex:0 0 auto; width:110px; height:74px; border-radius:5px; background-size:cover; background-position:center; border:1.5px solid var(--border); cursor:zoom-in; transition:border-color .15s ease, transform .15s ease; }
+.detail-thumbs div:hover, .detail-thumbs div:focus-visible{ border-color:var(--green-bright); transform:translateY(-2px); outline:none; }
+@media (max-width:480px){ .detail-thumbs div{ width:calc(25% - 0.53rem); } }
 .detail-body h3{ font-size:1.05rem; font-weight:800; margin-bottom:0.7rem; }
 .detail-body p{ color:var(--ink-soft); font-size:0.92rem; line-height:1.8; }
 .detail-table{ width:100%; border-collapse:collapse; background:var(--surface); border:1px solid var(--border); border-radius:8px; overflow:hidden; box-shadow:var(--shadow); font-size:0.87rem; }
@@ -659,7 +661,47 @@ footer.foot-slim{ background:var(--ink); color:#8ea294; padding:1.9rem clamp(1.2
    커져서 화질이 흐려짐 — 원본 해상도에 맞춰 표시 최대폭을 줄임.
    크럼·사진·제목·본문을 전부 이 폭(.pd-col)에 맞춰 가운데 정렬해서 서로 어긋나지 않게 함. */
 .pd-col{ max-width:1100px; margin:0 auto; }
-.pd-hero{ width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:2px; background-size:cover; background-position:center; }
+.pd-hero{ width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:2px; background-size:cover; background-position:center; cursor:zoom-in; position:relative; }
+.pd-hero::after{
+  content:"확대 보기"; position:absolute; right:0.9rem; bottom:0.9rem;
+  font-family:"IBM Plex Mono",monospace; font-size:0.7rem; letter-spacing:0.06em;
+  color:#fff; background:rgba(15,33,23,0.55); padding:0.35rem 0.7rem; border-radius:20px;
+  opacity:0; transform:translateY(4px); transition:opacity .15s ease, transform .15s ease;
+}
+.pd-hero:hover::after, .pd-hero:focus-visible::after{ opacity:1; transform:translateY(0); }
+
+/* 사진 라이트박스 — 대표사진/추가사진 클릭 시 확대 + 좌우로 넘겨보기 */
+.pd-lightbox{
+  position:fixed; inset:0; background:rgba(15,33,23,0.92);
+  display:none; align-items:center; justify-content:center;
+  z-index:200; padding:2rem;
+}
+.pd-lightbox.open{ display:flex; }
+.pd-lightbox .lb-img{ max-width:min(1100px,92vw); max-height:86vh; object-fit:contain; border-radius:3px; box-shadow:0 24px 60px rgba(0,0,0,0.5); }
+.pd-lightbox .lb-close{
+  position:absolute; top:1.2rem; right:1.4rem; background:none; border:none; color:#fff;
+  font-size:2.2rem; line-height:1; cursor:pointer; opacity:.85; font-family:inherit;
+}
+.pd-lightbox .lb-close:hover{ opacity:1; }
+.pd-lightbox .lb-prev, .pd-lightbox .lb-next{
+  position:absolute; top:50%; transform:translateY(-50%);
+  background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.3); color:#fff;
+  width:48px; height:48px; border-radius:50%; font-size:1.05rem; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; transition:background .15s ease;
+}
+.pd-lightbox .lb-prev:hover, .pd-lightbox .lb-next:hover{ background:rgba(255,255,255,0.24); }
+.pd-lightbox .lb-prev{ left:1.4rem; }
+.pd-lightbox .lb-next{ right:1.4rem; }
+.pd-lightbox .lb-count{
+  position:absolute; bottom:1.4rem; left:50%; transform:translateX(-50%); color:#fff;
+  font-family:"IBM Plex Mono",monospace; font-size:0.8rem; letter-spacing:0.05em; opacity:.85;
+}
+body.pd-lb-open{ overflow:hidden; }
+@media (max-width:640px){
+  .pd-lightbox{ padding:1rem; }
+  .pd-lightbox .lb-prev, .pd-lightbox .lb-next{ width:40px; height:40px; }
+  .pd-hero::after{ display:none; }
+}
 .pd-meta2{ display:flex; gap:1rem; align-items:center; margin:1.4rem 0 0.6rem; }
 .pd-meta2 .ptag{ font-family:"IBM Plex Mono",monospace; font-size:0.7rem; background:var(--green-deep); color:#fff; padding:0.25rem 0.6rem; border-radius:2px; }
 .pd-meta2 .pdate{ font-family:"IBM Plex Mono",monospace; font-size:0.8rem; color:var(--steel); }

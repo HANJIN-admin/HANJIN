@@ -59,7 +59,7 @@ collections:
               { name: "id", label: "고유 ID", hint: "다른 항목과 겹치지 않는 영문/숫자 조합 (예: p074). 한 번 정하면 나중에 바꾸지 마세요.", widget: "string" },
               { name: "title", label: "프로젝트명", widget: "string" },
               { name: "category", label: "사업분야", widget: "select", options: ["건축", "토목", "플랜트", "기타"] },
-              { name: "date", label: "날짜", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true },
+              { name: "date", label: "날짜", widget: "datetime", format: "YYYY-MM", date_format: "YYYY-MM", time_format: false, picker_utc: true, hint: "일(day)은 저장되지 않고 년-월까지만 저장됩니다 (기존 시공사례들과 동일한 형식)." },
               { name: "location", label: "위치", widget: "string", required: false },
               { name: "client", label: "발주처 (선택)", widget: "string", required: false },
               { name: "period", label: "공사기간 (선택)", widget: "string", required: false, hint: "예: 2024.03 ~ 2024.11" },
