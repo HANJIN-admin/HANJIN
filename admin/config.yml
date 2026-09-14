@@ -8,6 +8,16 @@ backend:
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
+# 사진 자동 압축: 사진을 선택하는 순간 브라우저에서 자동으로 가로 1600px,
+# 화질 80%로 줄여서 올립니다 (원본 폰카 사진 7~10MB대 → 보통 0.5~1MB대로 축소).
+# 게시(저장) 실패의 주 원인이었던 "사진 용량 너무 큼" 문제를 근본적으로 줄여줍니다.
+media_processing:
+  enabled: true
+  quality: 80
+  strip_metadata: true
+  width: 1600
+  height: null
+
 locale: "ko"
 
 collections:
