@@ -632,12 +632,41 @@ footer.foot-slim{ background:var(--ink); color:#8ea294; padding:1.9rem clamp(1.2
 .news-tabs a.active{ color:var(--ink); border-bottom:2px solid var(--green-bright); }
 .news-tabs .cnt{ font-family:"IBM Plex Mono",monospace; font-size:0.7rem; color:#b7b09a; margin-left:0.3rem; }
 .news-list{ margin-top:0.5rem; }
-.news-item{ padding:1.8rem 0; border-bottom:1px solid var(--border); }
+.news-item{ display:block; padding:1.8rem 0; border-bottom:1px solid var(--border); transition:background .15s ease; }
+.news-item:hover{ background:var(--paper2); }
+.news-item:hover h3{ color:var(--green-deep); text-decoration:underline; }
 .news-item .nmeta{ display:flex; gap:0.9rem; align-items:center; margin-bottom:0.6rem; }
 .news-item .ntag{ font-family:"IBM Plex Mono",monospace; font-size:0.68rem; background:var(--green-deep); color:#fff; padding:0.22rem 0.55rem; border-radius:2px; letter-spacing:0.05em; }
 .news-item .ndate{ font-family:"IBM Plex Mono",monospace; font-size:0.76rem; color:var(--steel); }
 .news-item h3{ font-size:1.08rem; font-weight:800; margin-bottom:0.5rem; color:var(--ink); }
+.news-item .nexcerpt{ font-size:0.9rem; color:var(--ink-soft); line-height:1.7; }
 .news-item .nauthor{ font-size:0.76rem; color:#9aa398; margin-top:0.6rem; }
+
+/* ---- 뉴스룸 상세 페이지 (news-detail.js가 렌더링) ---- */
+.nd-col{ max-width:760px; margin:0 auto; }
+.nd-title{ font-size:clamp(1.3rem,2.6vw,1.7rem); font-weight:800; margin:0.6rem 0 0.8rem; color:var(--ink); line-height:1.4; }
+.nd-author{ font-size:0.82rem; color:var(--ink-faint); padding-bottom:1.4rem; border-bottom:1px solid var(--border); }
+.nd-body{ padding-top:1.6rem; font-size:0.96rem; line-height:1.85; color:var(--ink-soft); }
+.nd-body p{ margin:0 0 1.2rem; }
+.nd-body p:last-child{ margin-bottom:0; }
+.nd-body h3, .nd-body h4{ color:var(--ink); font-weight:800; margin:1.8rem 0 0.8rem; }
+.nd-body h3{ font-size:1.08rem; }
+.nd-body h4{ font-size:0.98rem; }
+.nd-body ul, .nd-body ol{ margin:0 0 1.2rem; padding-left:1.3rem; }
+.nd-body li{ margin-bottom:0.4rem; }
+.nd-body a{ color:var(--green-deep); font-weight:700; text-decoration:underline; text-underline-offset:2px; }
+.nd-body blockquote{ margin:0 0 1.2rem; padding:0.2rem 1.2rem; border-left:3px solid var(--green-bright); color:var(--ink-soft); background:var(--paper2); }
+.nd-body code{ font-family:"IBM Plex Mono",monospace; font-size:0.86em; background:var(--paper2); padding:0.1rem 0.35rem; border-radius:3px; }
+.nd-body pre{ background:var(--ink); color:#eef2ee; padding:1rem 1.2rem; border-radius:4px; overflow-x:auto; margin:0 0 1.2rem; }
+.nd-body pre code{ background:none; padding:0; color:inherit; }
+.nd-body img{ max-width:100%; border-radius:3px; display:block; margin:0.4rem 0 1.4rem; }
+.nd-body hr{ border:none; border-top:1px solid var(--border); margin:1.8rem 0; }
+.nd-body .fallback{ color:#9aa398; }
+.nd-attachment{ display:inline-flex; margin-top:0.6rem; }
+.nd-back{ margin-top:1.6rem; }
+.nd-back a{ font-size:0.86rem; font-weight:700; color:var(--ink-soft); }
+.nd-back a:hover{ color:var(--green-deep); }
+@media (max-width:640px){ .nd-body{ font-size:0.92rem; } }
 
 /* ---- 시공사례: 필터탭 + 카드 그리드 (실제 데이터, portfolio.js가 렌더링) ---- */
 .cat-tabs{ display:flex; gap:0.6rem; flex-wrap:wrap; }

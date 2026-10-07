@@ -104,6 +104,6 @@ collections:
               { name: "type", label: "구분", widget: "select", options: ["공지사항", "보도자료"] },
               { name: "date", label: "작성일", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true },
               { name: "author", label: "작성자", widget: "string", default: "관리자" },
-              { name: "body", label: "본문", widget: "text" },
+              { name: "body", label: "본문", widget: "markdown", hint: "굵게·목록·링크·사진을 자유롭게 섞어서 작성할 수 있습니다. 사진은 선택하는 즉시 자동으로 용량이 줄어서 올라갑니다." },
               { name: "attachment", label: "첨부파일 (선택)", widget: "file", required: false },
             ] }
